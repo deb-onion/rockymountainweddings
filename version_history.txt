@@ -1,7 +1,11 @@
 ﻿# Rocky Mountain Weddings & Events - Version History
 
 ## Update - 2025-02-26
-- Fixed Cloudflare Pages deployment configuration
+- Changed build output directory to root
+
+## Update - 2025-02-26
+- Changed build output directory from "src" to root directory
+- Updated both cloudflare.toml and pages.json configuration
 
 ## Update - 2025-02-26
 - Fixed Cloudflare Pages deployment configuration
@@ -18,5 +22,6 @@ Date: 2025-02-26
 - Initial website launch
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
