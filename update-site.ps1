@@ -40,4 +40,4 @@ git commit -m "$Description"
 git push
 
 Write-Host "Changes committed and pushed to GitHub"
-Write-Host "Your Netlify site will update automatically" 
+Write-Host "Your Cloudflare Pages site will update automatically" 

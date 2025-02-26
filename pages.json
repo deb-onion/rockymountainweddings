@@ -1,0 +1,33 @@
+{
+  "build": {
+    "baseDirectory": "src",
+    "publicPath": "/",
+    "rootDirectory": "."
+  },
+  "routes": [
+    {
+      "pattern": "/assets/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "pattern": "/*.html",
+      "headers": {
+        "cache-control": "public, max-age=3600"
+      }
+    },
+    {
+      "pattern": "/*.css",
+      "headers": {
+        "cache-control": "public, max-age=86400"
+      }
+    },
+    {
+      "pattern": "/*.js",
+      "headers": {
+        "cache-control": "public, max-age=86400"
+      }
+    }
+  ]
+} 

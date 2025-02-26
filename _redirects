@@ -1,0 +1,15 @@
+# Redirects for Cloudflare Pages
+# Redirect from www to non-www (uncomment and modify with your actual domain when ready)
+# www.yourdomain.com/* https://yourdomain.com/:splat 301!
+
+# Redirects for pages if they move
+# /old-page.html /new-page.html 301
+# /old-directory/* /new-directory/:splat 301
+
+# Force trailing slash on directories
+# /services /services/ 301
+# /venues /venues/ 301
+# /portfolio /portfolio/ 301
+
+# Error page redirect
+/* /index.html 404 

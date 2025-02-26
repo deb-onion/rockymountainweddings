@@ -1,7 +1,16 @@
-# Rocky Mountain Weddings & Events - Version History
+﻿# Rocky Mountain Weddings & Events - Version History
+
+## Update - 2025-02-26
+- Migrated from Netlify to Cloudflare Pages
+
+## Update - 2025-02-26
+- Migrated from Netlify to Cloudflare Pages
+- Added Cloudflare configuration files (_headers, _redirects, _workers.js, pages.json)
+- Removed Netlify-specific configuration
 
 ## Version 1.0.0 - Initial Release
 Date: 2025-02-26
 - Initial website launch
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
