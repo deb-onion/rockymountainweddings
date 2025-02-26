@@ -1,6 +1,6 @@
 [build]
   command = ""
-  publish = "."
+  publish = "src"
   
 [build.processing]
   skip_processing = false
