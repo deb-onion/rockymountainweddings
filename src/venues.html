@@ -1,0 +1,156 @@
+<!-- Top Featured Venues -->
+<section class="top-featured-venues reveal">
+    <div class="container">
+        <h2 class="section-title">Our Signature Venues</h2>
+        
+        <!-- Mainspace -->
+        <div class="venue-content featured-main">
+            <div class="venue-gallery">
+                <div class="gallery-main">
+                    <img src="assets/images/venues/mainspace-ceremony.jpg" alt="Mainspace Contemporary Wedding Venue">
+                </div>
+                <div class="gallery-thumbs">
+                    <img src="assets/images/venues/mainspace-reception.jpg" alt="Mainspace Reception Setup">
+                    <img src="assets/images/venues/mainspace-details.jpg" alt="Mainspace Interior Details">
+                    <img src="assets/images/venues/mainspace-evening.jpg" alt="Mainspace Evening Setup">
+                </div>
+            </div>
+            <div class="venue-info">
+                <span class="venue-badge">Featured Venue</span>
+                <h2>Mainspace</h2>
+                <p class="venue-location">Contemporary Arts Centre, Canmore</p>
+                <div class="venue-details">
+                    <div class="detail-item">
+                        <span class="label">Capacity</span>
+                        <span class="value">Up to 200 guests</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Style</span>
+                        <span class="value">Modern Industrial</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Features</span>
+                        <span class="value">High Ceilings, Natural Light, Mountain Views</span>
+                    </div>
+                </div>
+                <p class="venue-description">
+                    A stunning contemporary space in the heart of Canmore. Mainspace offers a perfect blend of modern industrial elegance with breathtaking mountain views. The venue features soaring ceilings, abundant natural light, and a versatile open concept design that can be transformed to match any wedding style.
+                </p>
+                <div class="venue-highlights">
+                    <h4>Venue Highlights:</h4>
+                    <ul>
+                        <li>Flexible open concept space</li>
+                        <li>Floor-to-ceiling windows with mountain views</li>
+                        <li>State-of-the-art lighting and sound</li>
+                        <li>Dedicated prep kitchen for caterers</li>
+                        <li>Indoor and outdoor ceremony options</li>
+                    </ul>
+                </div>
+                <button class="btn-venue-inquiry primary">Schedule a Viewing</button>
+            </div>
+        </div>
+
+        <!-- The Gem -->
+        <div class="venue-content featured-main">
+            <div class="venue-gallery">
+                <div class="gallery-main">
+                    <img src="assets/images/venues/the-gem-interior.jpg" alt="The Gem Theatre Wedding Venue">
+                </div>
+                <div class="gallery-thumbs">
+                    <img src="assets/images/venues/the-gem-ceremony.jpg" alt="The Gem Ceremony Setup">
+                    <img src="assets/images/venues/the-gem-stage.jpg" alt="The Gem Stage Area">
+                    <img src="assets/images/venues/the-gem-exterior.jpg" alt="The Gem Theatre Exterior">
+                </div>
+            </div>
+            <div class="venue-info">
+                <span class="venue-badge">Featured Venue</span>
+                <h2>The Gem Theatre</h2>
+                <p class="venue-location">Historic Downtown, Banff</p>
+                <div class="venue-details">
+                    <div class="detail-item">
+                        <span class="label">Capacity</span>
+                        <span class="value">Up to 150 guests</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Style</span>
+                        <span class="value">Historic Art Deco</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Features</span>
+                        <span class="value">Historic Architecture, Stage, Bar Area</span>
+                    </div>
+                </div>
+                <p class="venue-description">
+                    A beautifully restored historic theatre in the heart of Banff, The Gem offers a unique blend of vintage charm and modern amenities. This iconic venue features original Art Deco details, a grand stage, and sophisticated lighting that creates the perfect ambiance for your celebration.
+                </p>
+                <div class="venue-highlights">
+                    <h4>Venue Highlights:</h4>
+                    <ul>
+                        <li>Historic Art Deco architecture</li>
+                        <li>Professional stage and lighting system</li>
+                        <li>Built-in bar and lounge area</li>
+                        <li>Downtown Banff location</li>
+                        <li>Perfect for both ceremony and reception</li>
+                    </ul>
+                </div>
+                <button class="btn-venue-inquiry primary">Schedule a Viewing</button>
+            </div>
+        </div>
+    </div>
+    <!-- Venue Inquiry Modal -->
+<div class="venue-modal" id="venueModal">
+    <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <h2>Schedule a Venue Viewing</h2>
+        <p class="modal-intro">Complete the form below and we'll be in touch within 24 hours to arrange your private venue tour.</p>
+        
+        <form id="venueInquiryForm" class="venue-form" netlify>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="names">Full Names*</label>
+                    <input type="text" id="names" name="names" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="weddingDate">Wedding Date</label>
+                    <input type="date" id="weddingDate" name="weddingDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="guestCount">Estimated Guest Count</label>
+                    <select id="guestCount" name="guestCount">
+                        <option value="">Select guest count</option>
+                        <option value="0-50">0-50 guests</option>
+                        <option value="51-100">51-100 guests</option>
+                        <option value="101-150">101-150 guests</option>
+                        <option value="151-200">151-200 guests</option>
+                        <option value="200+">200+ guests</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectedVenue">Selected Venue*</label>
+                    <input type="text" id="selectedVenue" name="selectedVenue" readonly>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Request</button>
+        </form>
+    </div>
+</div>
+</section>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head content as index.html -->
+    <title>Wedding Services - Rocky Mountain Weddings</title>
+    <link rel="stylesheet" href="styles/services.css">
+</head>
+<body>
+    <!-- Navigation remains the same -->
+
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <div class="hero-content">
+            <h1 class="animate-up">Wedding Planning Services</h1>
+            <p class="animate-up delay-1">Tailored packages for your perfect day</p>
+        </div>
+    </section>
+
+    <!-- Service Packages -->
+    <section class="service-packages reveal">
+        <div class="container">
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Full Planning</h3>
+                        <p class="price">Starting at $7,000</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>Unlimited consultations</li>
+                        <li>Vendor selection & management</li>
+                        <li>Budget planning & tracking</li>
+                        <li>Timeline creation & coordination</li>
+                        <li>Full day-of coordination</li>
+                        <li>Design & styling</li>
+                    </ul>
+                    <button class="btn-book" data-package="full">Book Now</button>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="package-header">
+                        <span class="badge">Most Popular</span>
+                        <h3>Partial Planning</h3>
+                        <p class="price">Starting at $4,000</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>6 planning consultations</li>
+                        <li>Vendor recommendations</li>
+                        <li>Month-of coordination</li>
+                        <li>Timeline creation</li>
+                        <li>Design consultation</li>
+                    </ul>
+                    <button class="btn-book" data-package="partial">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Month-Of</h3>
+                        <p class="price">Starting at $3,000</p>
+                    </div>
+                    <ul class="package-features">
+                        <li>2 planning sessions</li>
+                        <li>Vendor coordination</li>
+                        <li>Timeline creation</li>
+                        <li>Day-of coordination</li>
+                        <li>Setup & teardown</li>
+                    </ul>
+                    <button class="btn-book" data-package="month">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Book Your Wedding Package</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name*</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Wedding Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="package">Selected Package</label>
+                        <input type="text" id="package" name="package" readonly>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Tell us about your vision</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add FAQ Section -->
+    <section class="faq reveal">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What's included in the full planning package?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Our full planning package includes comprehensive wedding planning services from start to finish...
+                    </div>
+                </div>
+                <!-- Add more FAQ items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer remains the same -->
+    <script src="scripts/services.js"></script>
+</body>
+</html>

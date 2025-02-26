@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Mountain Weddings & Events - Banff Wedding Planner</title>
+    <meta name="description" content="Premier wedding planning and venue services in the Canadian Rockies. Creating unforgettable celebrations in Banff, Canmore, and Lake Louise.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Add smooth scroll polyfill -->
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-container">
+            <nav class="mobile-nav">
+                <a href="/services" class="mobile-link">Services</a>
+                <a href="/venues" class="mobile-link">Venues</a>
+                <a href="/about" class="mobile-link">About</a>
+                <a href="/portfolio" class="mobile-link">Portfolio</a>
+                <a href="/contact" class="mobile-link highlight">Get Started</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-text">Rocky Mountain Weddings</span>
+            </a>
+            <div class="nav-links">
+                <a href="/services" class="nav-link">Services</a>
+                <a href="/venues" class="nav-link">Venues</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/portfolio" class="nav-link">Portfolio</a>
+                <a href="/contact" class="nav-cta">Get Started</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero-poster.jpg">
+            <source src="assets/videos/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="animate-up">Modern Weddings Done Differently</h1>
+            <p class="animate-up delay-1">Creating unforgettable celebrations in the Canadian Rockies</p>
+            <div class="hero-buttons animate-up delay-2">
+                <a href="/contact" class="btn btn-primary">Start Planning</a>
+                <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
+            </div>
+            <div class="scroll-indicator animate-up delay-3">
+                <div class="scroll-line"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured reveal">
+        <div class="container">
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <span class="featured-number">10+</span>
+                    <h3>Years Experience</h3>
+                </div>
+                <div class="featured-item">
+                    <span class="featured-number">200+</span>
+                    <h3>Weddings Planned</h3>
+                </div>
+                <div class="featured-item">
+                    <span class="featured-number">5</span>
+                    <h3>Exclusive Venues</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of your existing sections with 'reveal' class added -->
+
+    <!-- Quick Contact -->
+    <section class="quick-contact reveal">
+        <div class="container">
+            <div class="quick-contact-content">
+                <h2>Ready to Start Planning?</h2>
+                <p>Let's create something extraordinary together</p>
+                <a href="/contact" class="btn btn-primary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

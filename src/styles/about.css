@@ -1,0 +1,156 @@
+/* Import main styles */
+@import 'main.css';
+
+/* About Hero Section */
+.about-hero {
+    height: 70vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('../assets/images/about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
+
+/* Team Introduction */
+.team-intro {
+    padding: 100px 0;
+    background: var(--color-background);
+}
+
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.intro-content h2 {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    margin-bottom: 30px;
+    color: var(--color-text);
+}
+
+.intro-content p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* Team Grid Section */
+.team-grid {
+    padding: 100px 0;
+    background: var(--color-secondary);
+}
+
+.team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.team-member {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.member-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.member-info {
+    padding: 30px;
+    text-align: center;
+}
+
+.member-info h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.member-info h4 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.member-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Values Section */
+.our-values {
+    padding: 100px 0;
+    background: white;
+}
+
+.values-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    text-align: center;
+    padding: 40px;
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+}
+
+.value-card h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .about-hero {
+        height: 50vh;
+    }
+
+    .intro-content h2 {
+        font-size: 36px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+}

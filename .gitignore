@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build files
+.cache/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db 

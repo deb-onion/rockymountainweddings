@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Portfolio - Rocky Mountain Weddings</title>
+    <meta name="description" content="Explore our stunning wedding portfolio in Banff, Canmore, and Lake Louise. Real weddings in the Canadian Rockies.">
+    <link rel="stylesheet" href="styles/portfolio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation (same as other pages) -->
+
+    <!-- Portfolio Hero -->
+    <section class="portfolio-hero">
+        <div class="hero-content">
+            <h1 class="animate-up">Our Wedding Portfolio</h1>
+            <p class="animate-up delay-1">Real celebrations in the Canadian Rockies</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Filters -->
+    <section class="portfolio-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="banff">Banff</button>
+                <button class="filter-btn" data-filter="canmore">Canmore</button>
+                <button class="filter-btn" data-filter="lake-louise">Lake Louise</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-grid">
+        <div class="container">
+            <div class="grid-container">
+                <!-- Portfolio Items -->
+                <div class="portfolio-item" data-category="banff">
+                    <a href="#" class="portfolio-link">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/wedding-1.jpg" alt="Banff Wedding">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Sarah & James</h3>
+                            <p>Banff Springs Hotel</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Add more portfolio items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Wedding -->
+    <section class="featured-wedding reveal">
+        <div class="container">
+            <div class="featured-content">
+                <div class="featured-text">
+                    <span class="overline">Featured Wedding</span>
+                    <h2>Emma & Michael</h2>
+                    <p class="location">Fairmont Banff Springs</p>
+                    <p class="description">An elegant mountain celebration combining traditional elements with modern touches. The couple chose a neutral palette accented with deep burgundy and gold details.</p>
+                    <a href="#" class="btn-view">View Wedding</a>
+                </div>
+                <div class="featured-image">
+                    <img src="assets/images/portfolio/featured-wedding.jpg" alt="Featured Wedding">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials reveal">
+        <div class="container">
+            <h2>Kind Words</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-slide">
+                    <p class="quote">"Working with Rocky Mountain Weddings was the best decision we made. They made our dream wedding come true!"</p>
+                    <p class="author">- Sarah & James</p>
+                </div>
+                <!-- Add more testimonials -->
+            </div>
+        </div>
+    </section>
+    <script src="scripts/portfolio.js"></script>
+</body>
+</html>

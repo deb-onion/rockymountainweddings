@@ -1,0 +1,9 @@
+[build]
+  publish = "src"
+
+# Netlify provides built-in SPA support by serving the same index.html
+# for all routes. This maintains SPA-like routing without Node.js.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
