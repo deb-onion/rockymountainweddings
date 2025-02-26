@@ -148,3 +148,651 @@
         padding: 30px;
     }
 }
+
+/* Services Page Styles */
+
+/* Page Header */
+.page-header {
+    position: relative;
+    height: 60vh;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('../assets/images/services-header.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.page-header-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.page-header h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.page-header p {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+/* Service Introduction */
+.service-intro {
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+.intro-content {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.intro-text {
+    flex: 1;
+}
+
+.intro-text h2 {
+    margin-bottom: 25px;
+}
+
+.intro-text p {
+    font-size: 1.7rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.intro-image {
+    flex: 1;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Service Offerings */
+.service-offerings {
+    background-color: var(--color-light);
+    padding: 80px 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.service-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-medium);
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    font-size: 3.6rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.service-item h3 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+}
+
+.service-item p {
+    color: var(--color-gray);
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+}
+
+.service-features {
+    margin-bottom: 30px;
+}
+
+.service-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+}
+
+.service-features li i {
+    color: var(--color-primary);
+    font-size: 1.4rem;
+}
+
+/* Planning Process */
+.planning-process {
+    padding: 80px 0;
+}
+
+.process-timeline {
+    max-width: 900px;
+    margin: 60px auto 0;
+    position: relative;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px;
+    width: 2px;
+    background-color: var(--color-primary);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-number {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    margin-right: 30px;
+    font-family: var(--font-heading);
+    box-shadow: 0 5px 15px rgba(228, 183, 183, 0.4);
+}
+
+.timeline-content {
+    flex: 1;
+    padding-top: 10px;
+}
+
+.timeline-content h3 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-size: 1.6rem;
+    color: var(--color-gray);
+}
+
+/* Case Studies */
+.case-studies {
+    background-color: var(--color-light);
+    padding: 80px 0;
+}
+
+.case-studies-container {
+    margin-top: 50px;
+}
+
+.case-study {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 40px;
+}
+
+.case-study:last-child {
+    margin-bottom: 0;
+}
+
+.case-study-header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 20px 30px;
+}
+
+.case-study-header h3 {
+    margin-bottom: 5px;
+    font-size: 2.8rem;
+}
+
+.case-location {
+    font-size: 1.6rem;
+    opacity: 0.9;
+}
+
+.case-study-content {
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.case-before-after {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.case-before, .case-after {
+    position: relative;
+}
+
+.case-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.case-before img, .case-after img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.case-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-description {
+    margin-bottom: 30px;
+}
+
+.case-description p {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.case-services h4 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.case-services ul {
+    margin-bottom: 30px;
+}
+
+.case-services li {
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    position: relative;
+    padding-left: 20px;
+}
+
+.case-services li::before {
+    content: '•';
+    color: var(--color-primary);
+    position: absolute;
+    left: 0;
+}
+
+/* Pricing Calculator */
+.pricing-calculator {
+    padding: 80px 0;
+}
+
+.calculator-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    padding: 40px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.calculator-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.calculator-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.option:hover {
+    border-color: var(--color-primary);
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+    margin-right: 15px;
+    accent-color: var(--color-primary);
+    width: 18px;
+    height: 18px;
+}
+
+.option label {
+    flex: 1;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.option-price {
+    font-weight: 500;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
+.calculator-results {
+    background-color: var(--color-light);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.price-estimate h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.price-range {
+    font-size: 3.6rem;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.price-separator {
+    margin: 0 10px;
+}
+
+.price-note {
+    font-size: 1.4rem;
+    color: var(--color-gray);
+    margin-bottom: 25px;
+}
+
+.calculator-cta {
+    margin-top: 20px;
+}
+
+/* Consultation CTA */
+.consultation-cta {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../assets/images/consultation-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+}
+
+.consultation-cta .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.consultation-cta h2 {
+    font-size: 3.6rem;
+    margin-bottom: 20px;
+}
+
+.consultation-cta p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 80px 0;
+    background-color: var(--color-light);
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 50px auto 0;
+}
+
+.faq-item {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.faq-question h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    flex: 1;
+    padding-right: 20px;
+}
+
+.faq-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-medium), padding var(--transition-medium);
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 20px;
+    max-height: 300px;
+}
+
+.faq-answer p {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: var(--color-gray);
+}
+
+/* Final CTA */
+.final-cta {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.final-cta .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.final-cta h2 {
+    font-size: 3.6rem;
+    margin-bottom: 20px;
+}
+
+.final-cta p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.final-cta .btn-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+.final-cta .btn-secondary:hover {
+    background-color: white;
+    color: var(--color-primary);
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Active State for Navigation */
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+.main-nav.scrolled .nav-link.active {
+    color: var(--color-primary);
+}
+
+.mobile-link.active {
+    color: var(--color-primary);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .page-header {
+        height: 50vh;
+    }
+    
+    .page-header h1 {
+        font-size: 4.2rem;
+    }
+    
+    .intro-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .calculator-options {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .case-study-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-number {
+        width: 60px;
+        height: 60px;
+        font-size: 2.4rem;
+    }
+    
+    .process-timeline::before {
+        left: 30px;
+    }
+    
+    .consultation-cta h2, 
+    .final-cta h2 {
+        font-size: 3rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header h1 {
+        font-size: 3.6rem;
+    }
+    
+    .page-header p,
+    .consultation-cta p,
+    .final-cta p {
+        font-size: 1.6rem;
+    }
+    
+    .case-study-content {
+        padding: 25px;
+    }
+    
+    .case-study-header {
+        padding: 15px 25px;
+    }
+    
+    .case-study-header h3 {
+        font-size: 2.4rem;
+    }
+    
+    .calculator-container {
+        padding: 25px;
+    }
+    
+    .price-range {
+        font-size: 3rem;
+    }
+}

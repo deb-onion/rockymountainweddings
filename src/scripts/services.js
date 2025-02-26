@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initBookingButtons();
     initModal();
     initFormValidation();
+    initPricingCalculator();
+    initFaqToggles();
+    initServiceLinkScrolling();
 });
 
 // Initialize Booking Buttons
@@ -172,3 +175,170 @@ async function submitForm(data) {
 
     return response;
 }
+
+// Pricing Calculator
+function initPricingCalculator() {
+    const calculator = document.querySelector('.pricing-calculator');
+    if (!calculator) return;
+
+    // Cache DOM elements
+    const primaryServiceOptions = document.querySelectorAll('.primary-service .option');
+    const addOnOptions = document.querySelectorAll('.add-ons .option input[type="checkbox"]');
+    const guestCountOptions = document.querySelectorAll('.guest-count .option input[type="radio"]');
+    const priceMinElement = document.querySelector('.price-min');
+    const priceMaxElement = document.querySelector('.price-max');
+
+    // Initial prices
+    let basePrice = 5000; // Default to Full Planning
+    let addOnsTotal = 0;
+    let guestUpcharge = 0;
+
+    // Set up event listeners
+    primaryServiceOptions.forEach(option => {
+        const radio = option.querySelector('input[type="radio"]');
+        
+        radio.addEventListener('change', () => {
+            if (radio.checked) {
+                // Update selected state visually
+                primaryServiceOptions.forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+                
+                // Update base price
+                basePrice = parseInt(option.getAttribute('data-price'));
+                updateTotalPrice();
+            }
+        });
+        
+        // Set initial selected state
+        if (radio.checked) {
+            option.classList.add('selected');
+        }
+    });
+
+    addOnOptions.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const option = checkbox.closest('.option');
+            const price = parseInt(option.getAttribute('data-price'));
+            
+            if (checkbox.checked) {
+                option.classList.add('selected');
+                addOnsTotal += price;
+            } else {
+                option.classList.remove('selected');
+                addOnsTotal -= price;
+            }
+            
+            updateTotalPrice();
+        });
+    });
+
+    guestCountOptions.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.checked) {
+                const option = radio.closest('.option');
+                
+                // Update selected state visually
+                guestCountOptions.forEach(r => {
+                    r.closest('.option').classList.remove('selected');
+                });
+                option.classList.add('selected');
+                
+                // Update guest upcharge
+                guestUpcharge = parseInt(option.getAttribute('data-price'));
+                updateTotalPrice();
+            }
+        });
+        
+        // Set initial selected state
+        if (radio.checked) {
+            radio.closest('.option').classList.add('selected');
+        }
+    });
+
+    // Calculate and update price display
+    function updateTotalPrice() {
+        const totalMin = basePrice + addOnsTotal + guestUpcharge;
+        const totalMax = totalMin + 1500; // Add buffer for customizations
+        
+        // Format prices with commas
+        const formattedMin = '$' + totalMin.toLocaleString();
+        const formattedMax = '$' + totalMax.toLocaleString();
+        
+        // Update DOM
+        priceMinElement.textContent = formattedMin;
+        priceMaxElement.textContent = formattedMax;
+    }
+
+    // Initialize with default values
+    updateTotalPrice();
+}
+
+// FAQ Toggles
+function initFaqToggles() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length === 0) return;
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Toggle active state on clicked item
+            item.classList.toggle('active');
+            
+            // Optional: close other FAQs when one is opened
+            // Uncomment to enable this behavior
+            /*
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            */
+        });
+    });
+
+    // Optionally open the first FAQ item by default
+    // faqItems[0].classList.add('active');
+}
+
+// Smooth scroll to services when clicking service links from other pages
+function initServiceLinkScrolling() {
+    // Check if URL contains a hash that corresponds to a service
+    const hash = window.location.hash;
+    if (hash) {
+        // Remove # from the hash
+        const targetId = hash.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            // Add slight delay to ensure page is fully loaded
+            setTimeout(() => {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }, 500);
+        }
+    }
+
+    // Also handle links within the page
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Call the function to handle anchor links
+initServiceLinkScrolling();

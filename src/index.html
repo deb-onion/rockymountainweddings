@@ -8,8 +8,32 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Add smooth scroll polyfill -->
     <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WeddingPlanner",
+            "name": "Rocky Mountain Weddings",
+            "url": "https://rockymountainweddings.pages.dev/",
+            "logo": "https://rockymountainweddings.pages.dev/assets/images/logo.png",
+            "description": "Premier wedding planning and venue services in the Canadian Rockies",
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Alberta",
+                "addressCountry": "Canada"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "51.1784",
+                "longitude": "-115.5708"
+            },
+            "areaServed": ["Banff", "Canmore", "Lake Louise", "Emerald Lake", "Kananaskis"]
+        }
+    </script>
 </head>
 <body>
     <!-- Preloader -->
@@ -21,27 +45,36 @@
     <div class="mobile-menu">
         <div class="mobile-menu-container">
             <nav class="mobile-nav">
-                <a href="/services" class="mobile-link">Services</a>
-                <a href="/venues" class="mobile-link">Venues</a>
-                <a href="/about" class="mobile-link">About</a>
-                <a href="/portfolio" class="mobile-link">Portfolio</a>
-                <a href="/contact" class="mobile-link highlight">Get Started</a>
+                <a href="services.html" class="mobile-link">Services</a>
+                <a href="venues.html" class="mobile-link">Venues</a>
+                <a href="about.html" class="mobile-link">About</a>
+                <a href="portfolio.html" class="mobile-link">Portfolio</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="contact.html" class="mobile-link highlight">Start Planning</a>
             </nav>
+            <div class="mobile-menu-footer">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="/" class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <span class="logo-text">Rocky Mountain Weddings</span>
             </a>
             <div class="nav-links">
-                <a href="/services" class="nav-link">Services</a>
-                <a href="/venues" class="nav-link">Venues</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/portfolio" class="nav-link">Portfolio</a>
-                <a href="/contact" class="nav-cta">Get Started</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="venues.html" class="nav-link">Venues</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-cta">Start Planning</a>
             </div>
             <button class="mobile-menu-toggle" aria-label="Toggle Menu">
                 <span></span>
@@ -52,58 +85,302 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero fullscreen">
         <video class="hero-video" autoplay loop muted playsinline poster="assets/images/hero-poster.jpg">
             <source src="assets/videos/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="animate-up">Modern Weddings Done Differently</h1>
-            <p class="animate-up delay-1">Creating unforgettable celebrations in the Canadian Rockies</p>
+            <h1 class="animate-up">Your Dream Wedding in the Rockies</h1>
+            <p class="animate-up delay-1">Creating unforgettable celebrations amid breathtaking mountain landscapes</p>
             <div class="hero-buttons animate-up delay-2">
-                <a href="/contact" class="btn btn-primary">Start Planning</a>
-                <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
+                <a href="contact.html" class="btn btn-primary">Start Planning Your Dream Wedding</a>
+                <a href="portfolio.html" class="btn btn-secondary">Explore Our Portfolio</a>
             </div>
             <div class="scroll-indicator animate-up delay-3">
                 <div class="scroll-line"></div>
-                <span>Scroll to explore</span>
+                <span>Discover More</span>
             </div>
         </div>
     </section>
 
-    <!-- Featured Section -->
-    <section class="featured reveal">
+    <!-- Featured Imagery -->
+    <section class="featured-imagery reveal">
         <div class="container">
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <span class="featured-number">10+</span>
-                    <h3>Years Experience</h3>
+            <div class="section-heading">
+                <h2>Unforgettable Moments</h2>
+                <p>Discover the magic of Rocky Mountain celebrations</p>
+            </div>
+            <div class="image-slideshow">
+                <div class="slideshow-container">
+                    <div class="slide fade-in active">
+                        <img src="assets/images/featured-1.jpg" alt="Mountain wedding ceremony">
+                        <div class="slide-caption">
+                            <h3>Lakeside Ceremony</h3>
+                            <p>Lake Louise, Alberta</p>
+                        </div>
+                    </div>
+                    <div class="slide fade-in">
+                        <img src="assets/images/featured-2.jpg" alt="Elegant reception setup">
+                        <div class="slide-caption">
+                            <h3>Elegant Reception</h3>
+                            <p>Banff Springs Hotel</p>
+                        </div>
+                    </div>
+                    <div class="slide fade-in">
+                        <img src="assets/images/featured-3.jpg" alt="Mountain backdrop portraits">
+                        <div class="slide-caption">
+                            <h3>Breathtaking Views</h3>
+                            <p>Moraine Lake, Banff</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="featured-item">
-                    <span class="featured-number">200+</span>
-                    <h3>Weddings Planned</h3>
-                </div>
-                <div class="featured-item">
-                    <span class="featured-number">5</span>
-                    <h3>Exclusive Venues</h3>
+                <div class="slideshow-controls">
+                    <button class="prev-slide" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                    <button class="next-slide" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rest of your existing sections with 'reveal' class added -->
-
-    <!-- Quick Contact -->
-    <section class="quick-contact reveal">
+    <!-- Services Overview -->
+    <section class="services-overview reveal">
         <div class="container">
-            <div class="quick-contact-content">
-                <h2>Ready to Start Planning?</h2>
-                <p>Let's create something extraordinary together</p>
-                <a href="/contact" class="btn btn-primary">Get in Touch</a>
+            <div class="section-heading">
+                <h2>Our Wedding Services</h2>
+                <p>Tailored planning solutions for your special day</p>
+            </div>
+            <div class="services-carousel">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Full Wedding Planning</h3>
+                        <p>Comprehensive planning from engagement to "I do"</p>
+                        <a href="services.html#full-planning" class="service-link">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>Day-of Coordination</h3>
+                        <p>Ensuring your wedding day runs flawlessly</p>
+                        <a href="services.html#day-coordination" class="service-link">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>Destination Weddings</h3>
+                        <p>Specialized planning for Rocky Mountain celebrations</p>
+                        <a href="services.html#destination" class="service-link">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Design & Styling</h3>
+                        <p>Creating beautiful, cohesive wedding aesthetics</p>
+                        <a href="services.html#design" class="service-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-prev" aria-label="Previous service"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-next" aria-label="Next service"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="services-cta">
+                <a href="services.html" class="btn btn-secondary">View All Services</a>
             </div>
         </div>
     </section>
 
+    <!-- Testimonials -->
+    <section class="testimonials reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Love Stories</h2>
+                <p>Hear from our couples about their Rocky Mountain experience</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-image">
+                            <img src="assets/images/testimonial-1.jpg" alt="Happy couple in Banff">
+                        </div>
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Working with Rocky Mountain Weddings was the best decision we made. They turned our vision into reality and handled everything with such care and attention to detail."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h4>Emma & James</h4>
+                                <p>Banff Springs Wedding, June 2023</p>
+                            </div>
+                            <a href="#" class="video-preview" data-video="testimonial-1-video.mp4">
+                                <i class="fas fa-play-circle"></i> Watch Their Story
+                            </a>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="assets/images/testimonial-2.jpg" alt="Couple at Lake Louise">
+                        </div>
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Planning a destination wedding seemed overwhelming until we found Rocky Mountain Weddings. Their knowledge of the area and vendor connections made everything seamless."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h4>Sarah & Michael</h4>
+                                <p>Lake Louise Wedding, August 2023</p>
+                            </div>
+                            <a href="#" class="video-preview" data-video="testimonial-2-video.mp4">
+                                <i class="fas fa-play-circle"></i> Watch Their Story
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                    </div>
+                    <button class="testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="instagram-feed reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Wedding Inspiration</h2>
+                <p>Follow us on Instagram for more beautiful moments</p>
+            </div>
+            <div class="instagram-grid">
+                <!-- Instagram posts will be loaded dynamically via JavaScript -->
+                <div class="instagram-placeholder">
+                    <div class="instagram-loading">
+                        <i class="fab fa-instagram"></i>
+                        <span>Loading beautiful moments...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="instagram-cta">
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                    <i class="fab fa-instagram"></i> Follow @rockymountainweddings
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Primary CTA Section -->
+    <section class="cta-section reveal">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Planning Your Dream Wedding</h2>
+                <p>Let's create magic together in the breathtaking Canadian Rockies</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>
+                    <a href="services.html" class="btn btn-secondary">Explore Our Services</a>
+                </div>
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Free Initial Consultation</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Customized Planning Packages</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Expert Local Knowledge</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Rocky Mountain Weddings</h3>
+                    <p>Creating unforgettable celebrations in the Canadian Rockies</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="venues.html">Venues</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
+            <div class="video-container">
+                <video controls id="modal-video">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner (GDPR Compliance) -->
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our <a href="#">Cookie Policy</a>.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-accept">Accept</button>
+                <button class="cookie-settings">Customize Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="scripts/main.js"></script>
 </body>
 </html>

@@ -1,132 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head content as index.html -->
-    <title>Wedding Services - Rocky Mountain Weddings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Planning Services - Rocky Mountain Weddings</title>
+    <meta name="description" content="Comprehensive wedding planning services in the Canadian Rockies. From full-service planning to day-of coordination for your perfect mountain wedding.">
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/services.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add smooth scroll polyfill -->
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Wedding Planning",
+            "provider": {
+                "@type": "WeddingPlanner",
+                "name": "Rocky Mountain Weddings",
+                "url": "https://rockymountainweddings.pages.dev/"
+            },
+            "areaServed": ["Banff", "Canmore", "Lake Louise", "Emerald Lake", "Kananaskis"],
+            "description": "Comprehensive wedding planning services in the Canadian Rockies",
+            "offers": {
+                "@type": "Offer",
+                "price": "1500",
+                "priceCurrency": "CAD"
+            }
+        }
+    </script>
 </head>
 <body>
-    <!-- Navigation remains the same -->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
 
-    <!-- Services Hero -->
-    <section class="services-hero">
-        <div class="hero-content">
-            <h1 class="animate-up">Wedding Planning Services</h1>
-            <p class="animate-up delay-1">Tailored packages for your perfect day</p>
-        </div>
-    </section>
-
-    <!-- Service Packages -->
-    <section class="service-packages reveal">
-        <div class="container">
-            <div class="packages-grid">
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Full Planning</h3>
-                        <p class="price">Starting at $7,000</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Unlimited consultations</li>
-                        <li>Vendor selection & management</li>
-                        <li>Budget planning & tracking</li>
-                        <li>Timeline creation & coordination</li>
-                        <li>Full day-of coordination</li>
-                        <li>Design & styling</li>
-                    </ul>
-                    <button class="btn-book" data-package="full">Book Now</button>
-                </div>
-
-                <div class="package-card featured">
-                    <div class="package-header">
-                        <span class="badge">Most Popular</span>
-                        <h3>Partial Planning</h3>
-                        <p class="price">Starting at $4,000</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>6 planning consultations</li>
-                        <li>Vendor recommendations</li>
-                        <li>Month-of coordination</li>
-                        <li>Timeline creation</li>
-                        <li>Design consultation</li>
-                    </ul>
-                    <button class="btn-book" data-package="partial">Book Now</button>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Month-Of</h3>
-                        <p class="price">Starting at $3,000</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>2 planning sessions</li>
-                        <li>Vendor coordination</li>
-                        <li>Timeline creation</li>
-                        <li>Day-of coordination</li>
-                        <li>Setup & teardown</li>
-                    </ul>
-                    <button class="btn-book" data-package="month">Book Now</button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-container">
+            <nav class="mobile-nav">
+                <a href="services.html" class="mobile-link active">Services</a>
+                <a href="venues.html" class="mobile-link">Venues</a>
+                <a href="about.html" class="mobile-link">About</a>
+                <a href="portfolio.html" class="mobile-link">Portfolio</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="contact.html" class="mobile-link highlight">Start Planning</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Booking Modal -->
-    <div class="booking-modal" id="bookingModal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h2>Book Your Wedding Package</h2>
-            <form id="bookingForm" class="booking-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Full Name*</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email*</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number*</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Wedding Date</label>
-                        <input type="date" id="date" name="date">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="package">Selected Package</label>
-                        <input type="text" id="package" name="package" readonly>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="message">Tell us about your vision</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn-submit">Submit Booking Request</button>
-            </form>
         </div>
     </div>
 
-    <!-- Add FAQ Section -->
-    <section class="faq reveal">
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">Rocky Mountain Weddings</span>
+            </a>
+            <div class="nav-links">
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="venues.html" class="nav-link">Venues</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-cta">Start Planning</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <h1 class="animate-up">Wedding Planning Services</h1>
+            <p class="animate-up delay-1">Creating unforgettable celebrations in the Canadian Rockies</p>
+        </div>
+    </header>
+
+    <!-- Service Introduction -->
+    <section class="service-intro reveal">
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        What's included in the full planning package?
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        Our full planning package includes comprehensive wedding planning services from start to finish...
-                    </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Planning Your Dream Mountain Wedding</h2>
+                    <p>At Rocky Mountain Weddings, we understand that planning a wedding in the breathtaking Canadian Rockies comes with its own unique set of opportunities and challenges. Our team of experienced planners specializes in helping couples navigate every aspect of creating a memorable mountain celebration.</p>
+                    <p>Whether you're dreaming of an intimate lakeside ceremony, a luxurious hotel reception, or an adventurous mountaintop elopement, we offer a range of services tailored to your specific vision, needs, and budget.</p>
                 </div>
-                <!-- Add more FAQ items -->
+                <div class="intro-image">
+                    <img src="assets/images/service-intro.jpg" alt="Wedding planner with couple in mountains">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer remains the same -->
+    <!-- Service Offerings -->
+    <section class="service-offerings reveal" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our Services</h2>
+                <p>Comprehensive wedding planning tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Full Wedding Planning -->
+                <div class="service-item" id="full-planning">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Full Wedding Planning</h3>
+                    <p>Our most comprehensive package includes complete planning support from engagement to "I do." We'll guide you through every decision, manage all vendor relationships, and ensure your wedding day is perfectly executed.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Unlimited planning consultations</li>
+                        <li><i class="fas fa-check"></i> Vendor selection and management</li>
+                        <li><i class="fas fa-check"></i> Budget development and tracking</li>
+                        <li><i class="fas fa-check"></i> Timeline creation and management</li>
+                        <li><i class="fas fa-check"></i> Full design and styling</li>
+                        <li><i class="fas fa-check"></i> Day-of coordination (10 hours)</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+
+                <!-- Wedding Coordination & Management -->
+                <div class="service-item" id="coordination">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Wedding Coordination & Management</h3>
+                    <p>Perfect for couples who want to plan their own wedding but need professional support to bring it all together. We'll step in 6-8 weeks before your wedding to finalize details and coordinate your celebration.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 3 planning consultations</li>
+                        <li><i class="fas fa-check"></i> Vendor coordination</li>
+                        <li><i class="fas fa-check"></i> Timeline creation</li>
+                        <li><i class="fas fa-check"></i> Rehearsal coordination</li>
+                        <li><i class="fas fa-check"></i> Day-of coordination (8 hours)</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+
+                <!-- Destination Weddings -->
+                <div class="service-item" id="destination">
+                    <div class="service-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Destination Weddings</h3>
+                    <p>Specializing in Canadian Rockies destination weddings, we'll help you navigate planning from afar. Our local expertise ensures your guests experience the best of what the mountains have to offer.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Virtual planning consultations</li>
+                        <li><i class="fas fa-check"></i> Local vendor recommendations</li>
+                        <li><i class="fas fa-check"></i> Guest accommodations assistance</li>
+                        <li><i class="fas fa-check"></i> Activity planning for guests</li>
+                        <li><i class="fas fa-check"></i> On-site coordination</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+
+                <!-- Custom Wedding Design & Styling -->
+                <div class="service-item" id="design">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Custom Wedding Design & Styling</h3>
+                    <p>Transform your wedding vision into reality with our design and styling services. We'll create a cohesive aesthetic that reflects your personality and enhances the natural beauty of your mountain venue.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Design concept development</li>
+                        <li><i class="fas fa-check"></i> Custom mood boards</li>
+                        <li><i class="fas fa-check"></i> Decor selection and rental management</li>
+                        <li><i class="fas fa-check"></i> Floral design consultation</li>
+                        <li><i class="fas fa-check"></i> Day-of styling and setup</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+
+                <!-- Vendor Coordination -->
+                <div class="service-item" id="vendor">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Vendor Coordination</h3>
+                    <p>Access our extensive network of trusted local vendors. We'll help you select the perfect team and manage all communications to ensure seamless execution of your vision.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Personalized vendor recommendations</li>
+                        <li><i class="fas fa-check"></i> Contract review</li>
+                        <li><i class="fas fa-check"></i> Communication management</li>
+                        <li><i class="fas fa-check"></i> Payment schedule tracking</li>
+                        <li><i class="fas fa-check"></i> Day-of vendor management</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+
+                <!-- Day-Of Coordination -->
+                <div class="service-item" id="day-coordination">
+                    <div class="service-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Day-Of Coordination</h3>
+                    <p>Enjoy your wedding day without worrying about the details. Our day-of coordination ensures everything runs smoothly so you can focus on celebrating with your loved ones.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 2 pre-wedding consultations</li>
+                        <li><i class="fas fa-check"></i> Vendor confirmation</li>
+                        <li><i class="fas fa-check"></i> Detailed timeline development</li>
+                        <li><i class="fas fa-check"></i> Ceremony rehearsal direction</li>
+                        <li><i class="fas fa-check"></i> On-site coordination (8 hours)</li>
+                    </ul>
+                    <a href="#pricing-calculator" class="btn btn-secondary">View Pricing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planning Process -->
+    <section class="planning-process reveal" id="process">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our Planning Process</h2>
+                <p>A step-by-step journey to your perfect wedding day</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Initial Consultation</h3>
+                        <p>We'll discuss your vision, priorities, and budget to understand what matters most for your celebration.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Planning Strategy</h3>
+                        <p>Based on your needs, we'll create a customized planning strategy and timeline for your wedding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Vendor Selection</h3>
+                        <p>We'll recommend and secure the perfect team of vendors to bring your vision to life.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Design Development</h3>
+                        <p>Creating a cohesive design concept that reflects your style and enhances your venue.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <h3>Logistics Planning</h3>
+                        <p>Managing all details including timelines, guest experience, and contingency plans.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">6</div>
+                    <div class="timeline-content">
+                        <h3>Final Preparation</h3>
+                        <p>Confirming all details with vendors and finalizing your wedding day timeline.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">7</div>
+                    <div class="timeline-content">
+                        <h3>Wedding Day</h3>
+                        <p>Professional coordination ensuring everything runs perfectly while you enjoy every moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies reveal" id="case-studies">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Real Wedding Transformations</h2>
+                <p>See how we turned our couples' visions into unforgettable celebrations</p>
+            </div>
+
+            <div class="case-studies-container">
+                <!-- Case Study 1 -->
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Elegant Mountain Luxury</h3>
+                        <p class="case-location">Banff Springs Hotel</p>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="case-before-after">
+                            <div class="case-before">
+                                <span class="case-label">Vision</span>
+                                <img src="assets/images/case-before-1.jpg" alt="Vision board for Banff Springs wedding">
+                            </div>
+                            <div class="case-after">
+                                <span class="case-label">Reality</span>
+                                <img src="assets/images/case-after-1.jpg" alt="Elegant Banff Springs Hotel wedding reception">
+                            </div>
+                        </div>
+                        <div class="case-details">
+                            <div class="case-description">
+                                <p>Emily and Michael dreamed of a classic, elegant wedding that embraced the historic grandeur of the Banff Springs Hotel while incorporating subtle mountain-inspired elements.</p>
+                                <p>With a palette of ivory, dusty blue, and gold, we created a design that balanced timeless elegance with the natural majesty of the surrounding mountains.</p>
+                            </div>
+                            <div class="case-services">
+                                <h4>Services Provided:</h4>
+                                <ul>
+                                    <li>Full Wedding Planning</li>
+                                    <li>Custom Design & Styling</li>
+                                    <li>Vendor Coordination</li>
+                                </ul>
+                            </div>
+                            <a href="portfolio.html" class="btn btn-secondary">View More Weddings</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <h3>Rustic Lakeside Celebration</h3>
+                        <p class="case-location">Lake Louise</p>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="case-before-after">
+                            <div class="case-before">
+                                <span class="case-label">Vision</span>
+                                <img src="assets/images/case-before-2.jpg" alt="Vision board for Lake Louise wedding">
+                            </div>
+                            <div class="case-after">
+                                <span class="case-label">Reality</span>
+                                <img src="assets/images/case-after-2.jpg" alt="Rustic Lake Louise wedding setup">
+                            </div>
+                        </div>
+                        <div class="case-details">
+                            <div class="case-description">
+                                <p>Sarah and James wanted an intimate, relaxed celebration that made the most of Lake Louise's breathtaking natural beauty.</p>
+                                <p>We designed a rustic-chic experience with natural wood elements, wildflower arrangements, and thoughtful details that created a warm, inviting atmosphere for their 70 guests.</p>
+                            </div>
+                            <div class="case-services">
+                                <h4>Services Provided:</h4>
+                                <ul>
+                                    <li>Partial Planning</li>
+                                    <li>Design & Styling</li>
+                                    <li>Day-of Coordination</li>
+                                </ul>
+                            </div>
+                            <a href="portfolio.html" class="btn btn-secondary">View More Weddings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section class="pricing-calculator reveal" id="pricing-calculator">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Wedding Planning Investment</h2>
+                <p>Customize your services to get an estimated price range</p>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calculator-options">
+                    <div class="calculator-section">
+                        <h3>Select Your Primary Service:</h3>
+                        <div class="option-group primary-service">
+                            <div class="option" data-value="full-planning" data-price="5000">
+                                <input type="radio" name="primary-service" id="full-planning" checked>
+                                <label for="full-planning">Full Wedding Planning</label>
+                                <span class="option-price">$5,000+</span>
+                            </div>
+                            <div class="option" data-value="coordination" data-price="2500">
+                                <input type="radio" name="primary-service" id="coordination">
+                                <label for="coordination">Wedding Coordination</label>
+                                <span class="option-price">$2,500+</span>
+                            </div>
+                            <div class="option" data-value="destination" data-price="3500">
+                                <input type="radio" name="primary-service" id="destination">
+                                <label for="destination">Destination Wedding</label>
+                                <span class="option-price">$3,500+</span>
+                            </div>
+                            <div class="option" data-value="design" data-price="2000">
+                                <input type="radio" name="primary-service" id="design">
+                                <label for="design">Design & Styling</label>
+                                <span class="option-price">$2,000+</span>
+                            </div>
+                            <div class="option" data-value="day-of" data-price="1500">
+                                <input type="radio" name="primary-service" id="day-of">
+                                <label for="day-of">Day-Of Coordination</label>
+                                <span class="option-price">$1,500+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-section">
+                        <h3>Add-On Services:</h3>
+                        <div class="option-group add-ons">
+                            <div class="option" data-value="vendor" data-price="800">
+                                <input type="checkbox" id="vendor-add-on">
+                                <label for="vendor-add-on">Vendor Coordination</label>
+                                <span class="option-price">$800</span>
+                            </div>
+                            <div class="option" data-value="design-add" data-price="1200">
+                                <input type="checkbox" id="design-add-on">
+                                <label for="design-add-on">Design Package</label>
+                                <span class="option-price">$1,200</span>
+                            </div>
+                            <div class="option" data-value="rehearsal" data-price="350">
+                                <input type="checkbox" id="rehearsal-add-on">
+                                <label for="rehearsal-add-on">Rehearsal Dinner Planning</label>
+                                <span class="option-price">$350</span>
+                            </div>
+                            <div class="option" data-value="travel" data-price="500">
+                                <input type="checkbox" id="travel-add-on">
+                                <label for="travel-add-on">Travel Coordination</label>
+                                <span class="option-price">$500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-section">
+                        <h3>Guest Count:</h3>
+                        <div class="option-group guest-count">
+                            <div class="option" data-value="small" data-price="0">
+                                <input type="radio" name="guest-count" id="small-wedding" checked>
+                                <label for="small-wedding">Intimate (0-50 guests)</label>
+                                <span class="option-price">Included</span>
+                            </div>
+                            <div class="option" data-value="medium" data-price="500">
+                                <input type="radio" name="guest-count" id="medium-wedding">
+                                <label for="medium-wedding">Medium (51-100 guests)</label>
+                                <span class="option-price">+$500</span>
+                            </div>
+                            <div class="option" data-value="large" data-price="1000">
+                                <input type="radio" name="guest-count" id="large-wedding">
+                                <label for="large-wedding">Large (101-200 guests)</label>
+                                <span class="option-price">+$1,000</span>
+                            </div>
+                            <div class="option" data-value="xl" data-price="1500">
+                                <input type="radio" name="guest-count" id="xl-wedding">
+                                <label for="xl-wedding">X-Large (201+ guests)</label>
+                                <span class="option-price">+$1,500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <div class="price-estimate">
+                        <h3>Estimated Investment:</h3>
+                        <div class="price-range">
+                            <span class="price-min">$5,000</span>
+                            <span class="price-separator">-</span>
+                            <span class="price-max">$6,500</span>
+                        </div>
+                        <p class="price-note">Final pricing is customized based on your specific needs and wedding details</p>
+                    </div>
+                    <div class="calculator-cta">
+                        <a href="contact.html" class="btn btn-primary">Request Detailed Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation CTA -->
+    <section class="consultation-cta reveal">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Planning Your Dream Mountain Wedding?</h2>
+                <p>Schedule a complimentary 30-minute consultation to discuss your vision</p>
+                <a href="contact.html" class="btn btn-primary">Book Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>What Our Couples Say</h2>
+                <p>The experiences of couples who trusted us with their special day</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-image">
+                            <img src="assets/images/testimonial-1.jpg" alt="Happy couple in Banff">
+                        </div>
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Working with Rocky Mountain Weddings was the best decision we made. They turned our vision into reality and handled everything with such care and attention to detail."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h4>Emma & James</h4>
+                                <p>Full Wedding Planning, Banff Springs Hotel</p>
+                            </div>
+                            <a href="#" class="video-preview" data-video="testimonial-1-video.mp4">
+                                <i class="fas fa-play-circle"></i> Watch Their Story
+                            </a>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="assets/images/testimonial-2.jpg" alt="Couple at Lake Louise">
+                        </div>
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Planning a destination wedding seemed overwhelming until we found Rocky Mountain Weddings. Their knowledge of the area and vendor connections made everything seamless."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h4>Sarah & Michael</h4>
+                                <p>Destination Wedding Package, Lake Louise</p>
+                            </div>
+                            <a href="#" class="video-preview" data-video="testimonial-2-video.mp4">
+                                <i class="fas fa-play-circle"></i> Watch Their Story
+                            </a>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="assets/images/testimonial-3.jpg" alt="Wedding couple in Canmore">
+                        </div>
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Even with just day-of coordination, the team made our wedding day completely stress-free. They thought of details we never would have considered and executed everything perfectly."
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h4>Jessica & Daniel</h4>
+                                <p>Day-Of Coordination, Canmore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                    <button class="testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Frequently Asked Questions</h2>
+                <p>Answers to common questions about our wedding planning services</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How far in advance should I book your services?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For full planning services, we recommend booking 12-18 months in advance, especially for peak wedding season (June-September). For day-of coordination, 6-8 months is ideal, though we occasionally have availability for shorter timelines.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you only work in specific venues?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While we have established relationships with many venues throughout the Canadian Rockies, we're happy to work at any venue. If it's a location we haven't worked at before, we'll conduct a site visit to ensure we're familiar with all logistics before your wedding day.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What makes mountain weddings different from planning elsewhere?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Mountain weddings require special considerations including weather contingency plans, transportation logistics (especially for remote locations), altitude adjustments for guests, and understanding of local regulations for National Park venues. Our expertise in these areas ensures a smooth planning process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do you handle inclement weather for mountain weddings?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We always prepare detailed weather contingency plans for every wedding, especially in the mountains where conditions can change quickly. This includes securing backup indoor locations, arranging appropriate guest transportation, and having timing flexibility built into your wedding day schedule.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your payment schedule?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically require a 30% deposit to secure your date, with the remaining balance split into 2-3 installments leading up to your wedding. We're happy to work with you to create a payment schedule that fits your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta reveal">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Experience the Rocky Mountain Weddings Difference</h2>
+                <p>Let our team of experienced planners bring your mountain wedding vision to life</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>
+                    <a href="portfolio.html" class="btn btn-secondary">View Our Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Rocky Mountain Weddings</h3>
+                    <p>Creating unforgettable celebrations in the Canadian Rockies</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="venues.html">Venues</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
+            <div class="video-container">
+                <video controls id="modal-video">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our <a href="#">Cookie Policy</a>.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-accept">Accept</button>
+                <button class="cookie-settings">Customize Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
     <script src="scripts/services.js"></script>
 </body>
+</html>
 </html>

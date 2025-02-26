@@ -1,156 +1,694 @@
-<!-- Top Featured Venues -->
-<section class="top-featured-venues reveal">
-    <div class="container">
-        <h2 class="section-title">Our Signature Venues</h2>
-        
-        <!-- Mainspace -->
-        <div class="venue-content featured-main">
-            <div class="venue-gallery">
-                <div class="gallery-main">
-                    <img src="assets/images/venues/mainspace-ceremony.jpg" alt="Mainspace Contemporary Wedding Venue">
-                </div>
-                <div class="gallery-thumbs">
-                    <img src="assets/images/venues/mainspace-reception.jpg" alt="Mainspace Reception Setup">
-                    <img src="assets/images/venues/mainspace-details.jpg" alt="Mainspace Interior Details">
-                    <img src="assets/images/venues/mainspace-evening.jpg" alt="Mainspace Evening Setup">
-                </div>
-            </div>
-            <div class="venue-info">
-                <span class="venue-badge">Featured Venue</span>
-                <h2>Mainspace</h2>
-                <p class="venue-location">Contemporary Arts Centre, Canmore</p>
-                <div class="venue-details">
-                    <div class="detail-item">
-                        <span class="label">Capacity</span>
-                        <span class="value">Up to 200 guests</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Style</span>
-                        <span class="value">Modern Industrial</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Features</span>
-                        <span class="value">High Ceilings, Natural Light, Mountain Views</span>
-                    </div>
-                </div>
-                <p class="venue-description">
-                    A stunning contemporary space in the heart of Canmore. Mainspace offers a perfect blend of modern industrial elegance with breathtaking mountain views. The venue features soaring ceilings, abundant natural light, and a versatile open concept design that can be transformed to match any wedding style.
-                </p>
-                <div class="venue-highlights">
-                    <h4>Venue Highlights:</h4>
-                    <ul>
-                        <li>Flexible open concept space</li>
-                        <li>Floor-to-ceiling windows with mountain views</li>
-                        <li>State-of-the-art lighting and sound</li>
-                        <li>Dedicated prep kitchen for caterers</li>
-                        <li>Indoor and outdoor ceremony options</li>
-                    </ul>
-                </div>
-                <button class="btn-venue-inquiry primary">Schedule a Viewing</button>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Venues in the Canadian Rockies - Rocky Mountain Weddings</title>
+    <meta name="description" content="Discover stunning wedding venues across the Canadian Rockies including Banff, Canmore, Lake Louise, Emerald Lake, and Kananaskis.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/venues.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Mapbox GL for interactive map -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <!-- Add smooth scroll polyfill -->
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "Place",
+                        "name": "Banff Springs Hotel",
+                        "description": "Historic castle-like venue in Banff National Park",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Banff",
+                            "addressRegion": "Alberta",
+                            "addressCountry": "Canada"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "Place",
+                        "name": "Silvertip Resort",
+                        "description": "Mountain view venue in Canmore",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Canmore",
+                            "addressRegion": "Alberta",
+                            "addressCountry": "Canada"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "Place",
+                        "name": "Chateau Lake Louise",
+                        "description": "Iconic lakeside venue in Lake Louise",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Lake Louise",
+                            "addressRegion": "Alberta",
+                            "addressCountry": "Canada"
+                        }
+                    }
+                }
+            ]
+        }
+    </script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
 
-        <!-- The Gem -->
-        <div class="venue-content featured-main">
-            <div class="venue-gallery">
-                <div class="gallery-main">
-                    <img src="assets/images/venues/the-gem-interior.jpg" alt="The Gem Theatre Wedding Venue">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-container">
+            <nav class="mobile-nav">
+                <a href="services.html" class="mobile-link">Services</a>
+                <a href="venues.html" class="mobile-link active">Venues</a>
+                <a href="about.html" class="mobile-link">About</a>
+                <a href="portfolio.html" class="mobile-link">Portfolio</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="contact.html" class="mobile-link highlight">Start Planning</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
-                <div class="gallery-thumbs">
-                    <img src="assets/images/venues/the-gem-ceremony.jpg" alt="The Gem Ceremony Setup">
-                    <img src="assets/images/venues/the-gem-stage.jpg" alt="The Gem Stage Area">
-                    <img src="assets/images/venues/the-gem-exterior.jpg" alt="The Gem Theatre Exterior">
-                </div>
-            </div>
-            <div class="venue-info">
-                <span class="venue-badge">Featured Venue</span>
-                <h2>The Gem Theatre</h2>
-                <p class="venue-location">Historic Downtown, Banff</p>
-                <div class="venue-details">
-                    <div class="detail-item">
-                        <span class="label">Capacity</span>
-                        <span class="value">Up to 150 guests</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Style</span>
-                        <span class="value">Historic Art Deco</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Features</span>
-                        <span class="value">Historic Architecture, Stage, Bar Area</span>
-                    </div>
-                </div>
-                <p class="venue-description">
-                    A beautifully restored historic theatre in the heart of Banff, The Gem offers a unique blend of vintage charm and modern amenities. This iconic venue features original Art Deco details, a grand stage, and sophisticated lighting that creates the perfect ambiance for your celebration.
-                </p>
-                <div class="venue-highlights">
-                    <h4>Venue Highlights:</h4>
-                    <ul>
-                        <li>Historic Art Deco architecture</li>
-                        <li>Professional stage and lighting system</li>
-                        <li>Built-in bar and lounge area</li>
-                        <li>Downtown Banff location</li>
-                        <li>Perfect for both ceremony and reception</li>
-                    </ul>
-                </div>
-                <button class="btn-venue-inquiry primary">Schedule a Viewing</button>
             </div>
         </div>
     </div>
-    <!-- Venue Inquiry Modal -->
-<div class="venue-modal" id="venueModal">
-    <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <h2>Schedule a Venue Viewing</h2>
-        <p class="modal-intro">Complete the form below and we'll be in touch within 24 hours to arrange your private venue tour.</p>
-        
-        <form id="venueInquiryForm" class="venue-form" netlify>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="names">Full Names*</label>
-                    <input type="text" id="names" name="names" required>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">Rocky Mountain Weddings</span>
+            </a>
+            <div class="nav-links">
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="venues.html" class="nav-link active">Venues</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-cta">Start Planning</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header venues-header">
+        <div class="page-header-content">
+            <h1 class="animate-up">Stunning Wedding Venues</h1>
+            <p class="animate-up delay-1">Discover magical locations across the Canadian Rockies</p>
+        </div>
+    </header>
+
+    <!-- Venues Introduction -->
+    <section class="venues-intro reveal">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Find Your Perfect Mountain Backdrop</h2>
+                    <p>The Canadian Rockies offer some of the world's most breathtaking wedding venues. From historic castle-like hotels to intimate lakeside lodges, there's a perfect setting for every couple's vision.</p>
+                    <p>As experts in mountain weddings, we've developed close relationships with the region's most prestigious venues. Our knowledge ensures you'll find the ideal location that aligns with your style, guest count, and budget.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="assets/images/venues-intro.jpg" alt="Stunning mountain ceremony setup overlooking the Canadian Rockies">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="interactive-map-section reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Explore Venues by Location</h2>
+                <p>Click on the map to discover our curated collection of wedding venues</p>
+            </div>
+            
+            <div class="map-container">
+                <div id="venuesMap" class="venues-map"></div>
+                
+                <div class="map-sidebar">
+                    <div class="region-filters">
+                        <button class="region-filter active" data-region="all">All Regions</button>
+                        <button class="region-filter" data-region="banff">Banff</button>
+                        <button class="region-filter" data-region="canmore">Canmore</button>
+                        <button class="region-filter" data-region="lake-louise">Lake Louise</button>
+                        <button class="region-filter" data-region="emerald-lake">Emerald Lake</button>
+                        <button class="region-filter" data-region="kananaskis">Kananaskis</button>
+                    </div>
+                    
+                    <div class="venue-preview">
+                        <div class="venue-preview-placeholder">
+                            <p><i class="fas fa-map-marker-alt"></i> Click on a venue marker to view details</p>
+                        </div>
+                        <div class="venue-preview-content" style="display: none;">
+                            <img src="" alt="" class="preview-image">
+                            <h3 class="preview-title"></h3>
+                            <p class="preview-location"></p>
+                            <p class="preview-description"></p>
+                            <a href="#" class="btn btn-secondary btn-view-venue">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Regions Section -->
+    <section class="featured-regions reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Destination Regions</h2>
+                <p>Explore our wedding venues by region</p>
+            </div>
+
+            <div class="regions-grid">
+                <!-- Banff Region -->
+                <div class="region-card" id="banff">
+                    <div class="region-image">
+                        <img src="assets/images/venues/banff-region.jpg" alt="Banff wedding venues">
+                        <div class="region-name">
+                            <h3>Banff</h3>
+                        </div>
+                    </div>
+                    <div class="region-details">
+                        <p>Famous for its stunning mountain backdrop and historic venues including the iconic Banff Springs Hotel.</p>
+                        <a href="#banff-venues" class="region-link">View Banff Venues <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email">Email Address*</label>
-                    <input type="email" id="email" name="email" required>
+                <!-- Canmore Region -->
+                <div class="region-card" id="canmore">
+                    <div class="region-image">
+                        <img src="assets/images/venues/canmore-region.jpg" alt="Canmore wedding venues">
+                        <div class="region-name">
+                            <h3>Canmore</h3>
+                        </div>
+                    </div>
+                    <div class="region-details">
+                        <p>A charming mountain town offering elegant lodges, contemporary spaces, and breathtaking mountain views.</p>
+                        <a href="#canmore-venues" class="region-link">View Canmore Venues <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number*</label>
-                    <input type="tel" id="phone" name="phone" required>
+                
+                <!-- Lake Louise Region -->
+                <div class="region-card" id="lake-louise">
+                    <div class="region-image">
+                        <img src="assets/images/venues/lake-louise-region.jpg" alt="Lake Louise wedding venues">
+                        <div class="region-name">
+                            <h3>Lake Louise</h3>
+                        </div>
+                    </div>
+                    <div class="region-details">
+                        <p>Home to the turquoise blue lake and magnificent Chateau, offering unparalleled natural beauty.</p>
+                        <a href="#lake-louise-venues" class="region-link">View Lake Louise Venues <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="weddingDate">Wedding Date</label>
-                    <input type="date" id="weddingDate" name="weddingDate">
+                
+                <!-- Emerald Lake Region -->
+                <div class="region-card" id="emerald-lake">
+                    <div class="region-image">
+                        <img src="assets/images/venues/emerald-lake-region.jpg" alt="Emerald Lake wedding venues">
+                        <div class="region-name">
+                            <h3>Emerald Lake</h3>
+                        </div>
+                    </div>
+                    <div class="region-details">
+                        <p>A secluded paradise in Yoho National Park with a stunning emerald-colored lake and intimate lodge.</p>
+                        <a href="#emerald-lake-venues" class="region-link">View Emerald Lake Venues <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="guestCount">Estimated Guest Count</label>
-                    <select id="guestCount" name="guestCount">
-                        <option value="">Select guest count</option>
-                        <option value="0-50">0-50 guests</option>
-                        <option value="51-100">51-100 guests</option>
-                        <option value="101-150">101-150 guests</option>
-                        <option value="151-200">151-200 guests</option>
-                        <option value="200+">200+ guests</option>
-                    </select>
+                
+                <!-- Kananaskis Region -->
+                <div class="region-card" id="kananaskis">
+                    <div class="region-image">
+                        <img src="assets/images/venues/kananaskis-region.jpg" alt="Kananaskis wedding venues">
+                        <div class="region-name">
+                            <h3>Kananaskis</h3>
+                        </div>
+                    </div>
+                    <div class="region-details">
+                        <p>A wilderness area with luxury resorts and lodges offering privacy in a spectacular mountain setting.</p>
+                        <a href="#kananaskis-venues" class="region-link">View Kananaskis Venues <i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="form-group">
-                    <label for="selectedVenue">Selected Venue*</label>
-                    <input type="text" id="selectedVenue" name="selectedVenue" readonly>
+    <!-- Venue Comparison Tool -->
+    <section class="venue-comparison reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Compare Wedding Venues</h2>
+                <p>Select up to 3 venues to compare features side by side</p>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="venue-selector">
+                    <div class="selector-intro">
+                        <p>Add venues to compare:</p>
+                    </div>
+                    <div class="selector-input">
+                        <select id="venueSelector" class="venue-select">
+                            <option value="">Select a venue</option>
+                            <optgroup label="Banff">
+                                <option value="banff-springs">Fairmont Banff Springs</option>
+                                <option value="tunnel-mountain">Tunnel Mountain Reservoir</option>
+                                <option value="buffalo-mountain">Buffalo Mountain Lodge</option>
+                            </optgroup>
+                            <optgroup label="Canmore">
+                                <option value="silvertip">Silvertip Resort</option>
+                                <option value="cornerstone">Cornerstone Theatre</option>
+                                <option value="stewart-creek">Stewart Creek Golf Club</option>
+                            </optgroup>
+                            <optgroup label="Lake Louise">
+                                <option value="chateau-louise">Fairmont Chateau Lake Louise</option>
+                                <option value="post-hotel">Post Hotel & Spa</option>
+                            </optgroup>
+                            <optgroup label="Emerald Lake">
+                                <option value="emerald-lodge">Emerald Lake Lodge</option>
+                            </optgroup>
+                            <optgroup label="Kananaskis">
+                                <option value="kananaskis-resort">Kananaskis Mountain Lodge</option>
+                                <option value="boundary-ranch">Boundary Ranch</option>
+                                <option value="mount-engadine">Mount Engadine Lodge</option>
+                            </optgroup>
+                        </select>
+                        <button id="addVenueBtn" class="btn-add-venue"><i class="fas fa-plus"></i> Add to Compare</button>
+                    </div>
                 </div>
+                
+                <div class="comparison-table-container">
+                    <div class="comparison-placeholder">
+                        <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
+                    </div>
+                    <div class="comparison-table" style="display: none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th class="venue-col venue-1">Venue 1</th>
+                                    <th class="venue-col venue-2">Venue 2</th>
+                                    <th class="venue-col venue-3">Venue 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Location</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Capacity</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Price Range</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Indoor/Outdoor</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Accommodation</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Catering</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr>
+                                    <td>Seasonal Availability</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                                <tr class="action-row">
+                                    <td>View Details</td>
+                                    <td class="venue-col venue-1"></td>
+                                    <td class="venue-col venue-2"></td>
+                                    <td class="venue-col venue-3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="form-group full-width">
-                    <label for="message">Additional Details</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
+    <!-- Banff Venues -->
+    <section class="regional-venues reveal" id="banff-venues">
+        <div class="container">
+            <div class="region-heading">
+                <h2>Banff Wedding Venues</h2>
+                <p>Iconic venues in Canada's first national park</p>
+            </div>
+            
+            <!-- Fairmont Banff Springs -->
+            <div class="venue-item">
+                <div class="venue-gallery">
+                    <div class="gallery-main">
+                        <img src="assets/images/venues/banff-springs-main.jpg" alt="Fairmont Banff Springs wedding setup">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <img src="assets/images/venues/banff-springs-1.jpg" alt="Banff Springs terrace">
+                        <img src="assets/images/venues/banff-springs-2.jpg" alt="Banff Springs ballroom">
+                        <img src="assets/images/venues/banff-springs-3.jpg" alt="Banff Springs exterior">
+                    </div>
+                </div>
+                <div class="venue-info">
+                    <h3>Fairmont Banff Springs</h3>
+                    <p class="venue-tagline">A castle in the mountains for your fairy tale wedding</p>
+                    
+                    <div class="venue-details">
+                        <div class="detail-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Capacity: 10-800 guests</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Price Range: $$$-$$$$</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Available: Year-round</span>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-description">
+                        <p>Known as Canada's "Castle in the Rockies," the Fairmont Banff Springs offers a perfect blend of old-world charm and modern luxury. With multiple ceremony and reception spaces including grand ballrooms, intimate terraces, and beautiful outdoor locations, this venue can accommodate both grand celebrations and intimate gatherings.</p>
+                        <p>The historic architecture, stunning mountain views, and impeccable service make this iconic hotel one of the most sought-after wedding venues in the Canadian Rockies.</p>
+                    </div>
+                    
+                    <div class="venue-features">
+                        <span class="feature-tag">On-site Accommodations</span>
+                        <span class="feature-tag">In-house Catering</span>
+                        <span class="feature-tag">Indoor & Outdoor Options</span>
+                        <span class="feature-tag">Spa Services</span>
+                        <span class="feature-tag">Wedding Packages</span>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <button class="btn btn-secondary view-360" data-venue="banff-springs"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
+                        <button class="btn-venue-inquiry primary" data-venue="Fairmont Banff Springs">Schedule a Visit</button>
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">Submit Request</button>
-        </form>
+            <!-- Tunnel Mountain Reservoir -->
+            <div class="venue-item">
+                <div class="venue-gallery">
+                    <div class="gallery-main">
+                        <img src="assets/images/venues/tunnel-mountain-main.jpg" alt="Tunnel Mountain Reservoir ceremony setup">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <img src="assets/images/venues/tunnel-mountain-1.jpg" alt="Tunnel Mountain views">
+                        <img src="assets/images/venues/tunnel-mountain-2.jpg" alt="Ceremony at Tunnel Mountain">
+                        <img src="assets/images/venues/tunnel-mountain-3.jpg" alt="Tunnel Mountain landscape">
+                    </div>
+                </div>
+                <div class="venue-info">
+                    <h3>Tunnel Mountain Reservoir</h3>
+                    <p class="venue-tagline">A stunning outdoor ceremony location with panoramic mountain views</p>
+                    
+                    <div class="venue-details">
+                        <div class="detail-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Capacity: Up to 100 guests</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Price Range: $-$$</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Available: May-October</span>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-description">
+                        <p>For couples seeking a beautiful outdoor ceremony location, Tunnel Mountain Reservoir offers breathtaking panoramic views of the surrounding mountains and the town of Banff. This semi-private location provides a natural, rustic setting for your ceremony.</p>
+                        <p>This venue is perfect for intimate ceremonies and is often paired with a reception at another Banff location. The spectacular mountain backdrop creates unforgettable photo opportunities.</p>
+                    </div>
+                    
+                    <div class="venue-features">
+                        <span class="feature-tag">Outdoor Only</span>
+                        <span class="feature-tag">Ceremony Site</span>
+                        <span class="feature-tag">Mountain Views</span>
+                        <span class="feature-tag">Park Permit Required</span>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <button class="btn-venue-inquiry primary" data-venue="Tunnel Mountain Reservoir">Schedule a Visit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Canmore Venues Section -->
+    <section class="regional-venues reveal" id="canmore-venues">
+        <div class="container">
+            <div class="region-heading">
+                <h2>Canmore Wedding Venues</h2>
+                <p>Charming venues in this picturesque mountain town</p>
+            </div>
+            
+            <!-- Silvertip Resort -->
+            <div class="venue-item">
+                <div class="venue-gallery">
+                    <div class="gallery-main">
+                        <img src="assets/images/venues/silvertip-main.jpg" alt="Silvertip Resort wedding setup">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <img src="assets/images/venues/silvertip-1.jpg" alt="Silvertip outdoor ceremony">
+                        <img src="assets/images/venues/silvertip-2.jpg" alt="Silvertip pavilion">
+                        <img src="assets/images/venues/silvertip-3.jpg" alt="Silvertip mountain views">
+                    </div>
+                </div>
+                <div class="venue-info">
+                    <h3>Silvertip Resort</h3>
+                    <p class="venue-tagline">Luxury mountain golf resort with panoramic Three Sisters views</p>
+                    
+                    <div class="venue-details">
+                        <div class="detail-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Capacity: 20-250 guests</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Price Range: $$$-$$$$</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Available: Year-round</span>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-description">
+                        <p>Silvertip Resort offers a spectacular mountain setting with unobstructed views of the iconic Three Sisters peaks. The venue features multiple ceremony locations including an outdoor pavilion and an elegant indoor space, both with stunning panoramic views.</p>
+                        <p>The spacious reception area features floor-to-ceiling windows, a grand stone fireplace, and a beautiful outdoor terrace. The professional staff and customizable wedding packages make planning your mountain celebration seamless.</p>
+                    </div>
+                    
+                    <div class="venue-features">
+                        <span class="feature-tag">On-site Accommodations</span>
+                        <span class="feature-tag">In-house Catering</span>
+                        <span class="feature-tag">Indoor & Outdoor Options</span>
+                        <span class="feature-tag">Golf Course</span>
+                        <span class="feature-tag">Wedding Packages</span>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <button class="btn btn-secondary view-360" data-venue="silvertip"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
+                        <button class="btn-venue-inquiry primary" data-venue="Silvertip Resort">Schedule a Visit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Inquiry Form -->
+    <div class="venue-modal" id="venueModal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Schedule a Venue Viewing</h2>
+            <p class="modal-intro">Complete the form below and we'll be in touch within 24 hours to arrange your private venue tour.</p>
+            
+            <form id="venueInquiryForm" class="venue-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="names">Full Names*</label>
+                        <input type="text" id="names" name="names" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weddingDate">Potential Wedding Date</label>
+                        <input type="date" id="weddingDate" name="weddingDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guestCount">Estimated Guest Count</label>
+                        <select id="guestCount" name="guestCount">
+                            <option value="">Select guest count</option>
+                            <option value="0-50">0-50 guests</option>
+                            <option value="51-100">51-100 guests</option>
+                            <option value="101-150">101-150 guests</option>
+                            <option value="151-200">151-200 guests</option>
+                            <option value="200+">200+ guests</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedVenue">Selected Venue*</label>
+                        <input type="text" id="selectedVenue" name="selectedVenue" readonly>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Additional Details</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Request</button>
+            </form>
+        </div>
     </div>
-</div>
-</section>
+
+    <!-- 360 Virtual Tour Modal -->
+    <div class="tour-modal" id="tourModal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Virtual Tour</h2>
+            <div class="tour-container">
+                <iframe id="tourFrame" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Planning CTA Section -->
+    <section class="venues-cta reveal">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need Help Finding Your Perfect Venue?</h2>
+                <p>Our venue specialists can help you find the ideal location that matches your vision and budget</p>
+                <a href="contact.html" class="btn btn-primary">Get Personalized Recommendations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Rocky Mountain Weddings</h3>
+                    <p>Creating unforgettable celebrations in the Canadian Rockies</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="venues.html">Venues</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our <a href="#">Cookie Policy</a>.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-accept">Accept</button>
+                <button class="cookie-settings">Customize Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/venues.js"></script>
+</body>
+</html>
