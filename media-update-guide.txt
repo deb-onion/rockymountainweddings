@@ -9,60 +9,96 @@ This guide will help you update any image or video on the website without having
 3. When you replace these files, the website automatically updates
 4. All changes are tracked in a log file
 
-## IMAGE LOCATIONS AND NAMES
+## IMPORTANT UPDATE: FILE PLACEMENT
 
-### HOMEPAGE
+**IMPORTANT:** All image and video files must be placed directly in the main image or video folders, NOT in subfolders:
+- All images go directly in: `src/assets/images/`
+- All videos go directly in: `src/assets/videos/`
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
-| Hero banner image    | hero-banner.jpg | src/assets/images/homepage-hero/ |
-| Featured images      | featured-1.jpg, featured-2.jpg, etc. | src/assets/images/homepage-featured/ |
-| Hero background video| hero.mp4        | src/assets/videos/homepage-hero/ |
+The website code is looking for files in these main folders, not in subfolders.
 
-### SERVICES PAGE
+## COMPLETE IMAGE & VIDEO REFERENCE LIST
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
+### HOMEPAGE IMAGES & VIDEOS
+
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
+| Hero banner image    | hero-banner.jpg | src/assets/images/ |
+| Featured image 1     | featured-1.jpg | src/assets/images/ |
+| Featured image 2     | featured-2.jpg | src/assets/images/ |
+| Featured image 3     | featured-3.jpg | src/assets/images/ |
+| Hero background video| hero.mp4       | src/assets/videos/ |
+
+### SERVICES PAGE IMAGES
+
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
 | Services intro image | service-intro.jpg | src/assets/images/ |
-| Service category images | service-1.jpg, service-2.jpg, etc. | src/assets/images/ |
+| Case study before 1  | case-before-1.jpg | src/assets/images/ |
+| Case study after 1   | case-after-1.jpg | src/assets/images/ |
+| Case study before 2  | case-before-2.jpg | src/assets/images/ |
+| Case study after 2   | case-after-2.jpg | src/assets/images/ |
 
-### VENUES PAGE
+### VENUES PAGE IMAGES
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
-| Venues intro image   | venues-intro.jpg | src/assets/images/venues-intro/ |
-| Region images        | region-1.jpg, region-2.jpg, etc. | src/assets/images/venues-regions/ |
-| Venue detail images  | venue-1.jpg, venue-2.jpg, etc. | src/assets/images/venues-details/ |
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
+| Venues intro image   | venues-intro.jpg | src/assets/images/ |
+| **Region Images** | | |
+| Banff region image   | banff-region.jpg | src/assets/images/ |
+| Canmore region image | canmore-region.jpg | src/assets/images/ |
+| Lake Louise region   | lake-louise-region.jpg | src/assets/images/ |
+| Emerald Lake region  | emerald-lake-region.jpg | src/assets/images/ |
+| Kananaskis region    | kananaskis-region.jpg | src/assets/images/ |
+| **Banff Venues** | | |
+| Banff Springs main   | banff-springs-main.jpg | src/assets/images/ |
+| Banff Springs image 1| banff-springs-1.jpg | src/assets/images/ |
+| Banff Springs image 2| banff-springs-2.jpg | src/assets/images/ |
+| Banff Springs image 3| banff-springs-3.jpg | src/assets/images/ |
+| Tunnel Mountain main | tunnel-mountain-main.jpg | src/assets/images/ |
+| Tunnel Mountain img 1| tunnel-mountain-1.jpg | src/assets/images/ |
+| Tunnel Mountain img 2| tunnel-mountain-2.jpg | src/assets/images/ |
+| Tunnel Mountain img 3| tunnel-mountain-3.jpg | src/assets/images/ |
+| **Canmore Venues** | | |
+| Silvertip Resort main| silvertip-main.jpg | src/assets/images/ |
+| Silvertip Resort img 1| silvertip-1.jpg | src/assets/images/ |
+| Silvertip Resort img 2| silvertip-2.jpg | src/assets/images/ |
+| Silvertip Resort img 3| silvertip-3.jpg | src/assets/images/ |
 
-### TESTIMONIALS
+### TESTIMONIAL IMAGES & VIDEOS
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
-| Testimonial photos   | testimonial-1.jpg, testimonial-2.jpg, etc. | src/assets/images/testimonials/ |
-| Testimonial videos   | testimonial-1-video.mp4, etc. | src/assets/videos/testimonials/ |
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
+| Testimonial image 1  | testimonial-1.jpg | src/assets/images/ |
+| Testimonial image 2  | testimonial-2.jpg | src/assets/images/ |
+| Testimonial image 3  | testimonial-3.jpg | src/assets/images/ |
+| Testimonial video 1  | testimonial-1-video.mp4 | src/assets/videos/ |
 
-### ABOUT PAGE
+### ABOUT PAGE IMAGES
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
-| About us banner      | about-banner.jpg | src/assets/images/about/ |
-| Team member photos   | team-1.jpg, team-2.jpg, etc. | src/assets/images/team/ |
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
+| Team member image 1  | team-1.jpg | src/assets/images/ |
+| Heart icon           | heart.svg | src/assets/images/icons/ |
+| Star icon            | star.svg | src/assets/images/icons/ |
+| Mountains icon       | mountains.svg | src/assets/images/icons/ |
 
-### PORTFOLIO/CASE STUDIES
+### PORTFOLIO IMAGES
 
-| What you see on page | File to replace | Where to put it |
-|----------------------|-----------------|-----------------|
-| Portfolio images     | portfolio-1.jpg, portfolio-2.jpg, etc. | src/assets/images/portfolio/ |
-| Case study images    | case-1.jpg, case-2.jpg, etc. | src/assets/images/case-studies/ |
+| What you see on page | Exact filename | Where to put it |
+|----------------------|----------------|-----------------|
+| Wedding 1 image      | wedding-1.jpg | src/assets/images/ |
+| Featured wedding     | featured-wedding.jpg | src/assets/images/ |
 
 ## STEPS TO UPDATE AN IMAGE OR VIDEO
 
 1. Find the image/video you want to replace on the website
-2. Look up its name and location in the tables above
+2. Find its exact filename in the tables above
 3. Create your new image/video in the right dimensions
 4. Save it with EXACTLY the same filename (check for typos!)
-5. Put it in the correct folder
-6. Check the page to see if your update worked
+5. Place it directly in the main folders (src/assets/images/ or src/assets/videos/)
+6. Deploy the changes (see instructions below)
+7. Check the page to see if your update worked
 
 ### IMPORTANT TIPS
 
@@ -72,6 +108,8 @@ This guide will help you update any image or video on the website without having
 - JPG format works best for photos
 - PNG format works best if you need transparency
 - MP4 format works best for videos
+- DO NOT place files in subfolders - put them directly in the main folders
+- To find what an image is called, right-click on it in your browser and select "Inspect" to see its filename
 
 ## HOW TO DEPLOY YOUR CHANGES
 
@@ -91,7 +129,7 @@ After updating any images or videos, you need to deploy your changes to the live
 2. Check this file to see if your update was recorded
 3. If your update isn't showing on the website:
    - Make sure the filename is exactly correct
-   - Check that you put it in the right folder
+   - Check that you put it directly in the main folder (not in a subfolder)
    - Try clearing your browser cache (Ctrl+F5)
    - Try deploying again
 
@@ -101,4 +139,5 @@ If you're still having trouble updating media:
 1. Double-check the filename and location
 2. Check the size of your image (too large may cause issues)
 3. Try a different image format
-4. Try running the site locally using `dev-server.bat` to test changes 
+4. Try running the site locally using `dev-server.bat` to test changes
+5. Right-click on the image on the website and select "Inspect" to confirm the exact filename being used 
