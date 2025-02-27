@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Rocky Mountain Weddings</title>
+    <meta name="description" content="Start planning your dream wedding in the Canadian Rockies. Contact our team for a free consultation.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add smooth scroll polyfill -->
+    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-container">
+            <nav class="mobile-nav">
+                <a href="services.html" class="mobile-link">Services</a>
+                <a href="venues.html" class="mobile-link">Venues</a>
+                <a href="about.html" class="mobile-link">About</a>
+                <a href="portfolio.html" class="mobile-link">Portfolio</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="contact.html" class="mobile-link highlight active">Start Planning</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">Rocky Mountain Weddings</span>
+            </a>
+            <div class="nav-links">
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="venues.html" class="nav-link">Venues</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-cta active">Start Planning</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <header class="page-header contact-header">
+        <div class="page-header-content">
+            <h1 class="animate-up">Start Planning Your Dream Wedding</h1>
+            <p class="animate-up delay-1">We'd love to hear about your vision for your special day</p>
+        </div>
+    </header>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section reveal">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Let's Connect</h2>
+                    <p>Ready to start planning your Rocky Mountain wedding? Fill out the form or contact us directly. We'll be in touch within 24 hours.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+15551234567">(555) 123-4567</a>
+                        </div>
+                    </div>
+                    
+                    <div class="social-connect">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-heading">
+                            <h3>Request a Consultation</h3>
+                            <p>Fields marked with * are required</p>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="names">Full Names*</label>
+                                <input type="text" id="names" name="names" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address*</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number*</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weddingDate">Wedding Date (if known)</label>
+                                <input type="date" id="weddingDate" name="weddingDate">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="location">Preferred Location</label>
+                                <select id="location" name="location">
+                                    <option value="">Select a location</option>
+                                    <option value="banff">Banff</option>
+                                    <option value="canmore">Canmore</option>
+                                    <option value="lake-louise">Lake Louise</option>
+                                    <option value="emerald-lake">Emerald Lake</option>
+                                    <option value="kananaskis">Kananaskis</option>
+                                    <option value="other">Other/Not Sure</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Approximate Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget range</option>
+                                    <option value="under-20k">Under $20,000</option>
+                                    <option value="20k-35k">$20,000 - $35,000</option>
+                                    <option value="35k-50k">$35,000 - $50,000</option>
+                                    <option value="50k-75k">$50,000 - $75,000</option>
+                                    <option value="75k-plus">$75,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="services">Services You're Interested In</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="services[]" value="full-planning"> Full Wedding Planning
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="services[]" value="day-coordination"> Day-of Coordination
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="services[]" value="design"> Design & Styling
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="services[]" value="venue-selection"> Venue Selection
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="message">Tell Us About Your Vision*</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Share your wedding dreams, important details, guest count, or any questions you have..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about our wedding planning services</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>When should we start planning our wedding?</h3>
+                    <p>For Rocky Mountain weddings, we recommend starting the planning process 12-18 months before your desired date, especially if you're considering popular venues which book up quickly.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you offer customized planning packages?</h3>
+                    <p>Absolutely! While we have standard packages to meet common needs, we understand every wedding is unique. We can create a custom package tailored specifically to your requirements.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What's your typical process for working with couples?</h3>
+                    <p>We start with a free consultation to understand your vision, followed by a customized proposal. Once we begin working together, we'll guide you through each phase of planning with regular check-ins.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you work with couples from outside the area?</h3>
+                    <p>Yes! We specialize in helping couples plan destination weddings in the Canadian Rockies, using a combination of virtual meetings and in-person sessions when possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Rocky Mountain Weddings</h3>
+                    <p>Creating unforgettable celebrations in the Canadian Rockies</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="venues.html">Venues</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/media-manager.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/contact.js"></script>
+</body>
+</html>

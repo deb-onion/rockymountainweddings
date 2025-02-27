@@ -10,7 +10,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation (same as other pages) -->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-container">
+            <nav class="mobile-nav">
+                <a href="services.html" class="mobile-link">Services</a>
+                <a href="venues.html" class="mobile-link">Venues</a>
+                <a href="about.html" class="mobile-link active">About</a>
+                <a href="portfolio.html" class="mobile-link">Portfolio</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="contact.html" class="mobile-link highlight">Start Planning</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">Rocky Mountain Weddings</span>
+            </a>
+            <div class="nav-links">
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="venues.html" class="nav-link">Venues</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-cta">Start Planning</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
     <!-- About Hero -->
     <section class="about-hero">
