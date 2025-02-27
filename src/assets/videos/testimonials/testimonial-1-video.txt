@@ -1,0 +1,6 @@
+This is a placeholder file for testimonial-1-video.mp4
+
+For testing the dynamic media system:
+1. Replace this file with an actual video named testimonial-1-video.mp4
+2. Check if the video plays when clicking the testimonial video preview
+3. The media-updates.log should show a record of this change 

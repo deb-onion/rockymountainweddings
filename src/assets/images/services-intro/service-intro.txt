@@ -1,0 +1,6 @@
+This is a placeholder file for service-intro.jpg
+
+For testing the dynamic media system:
+1. Replace this file with an actual image named service-intro.jpg
+2. Check if the image shows up in the services page intro section
+3. The media-updates.log should show a record of this change 

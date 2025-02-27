@@ -1,0 +1,33 @@
+{
+  "name": "rocky-mountain-weddings",
+  "version": "2.0.0",
+  "description": "Rocky Mountain Weddings Website with Dynamic Media Management",
+  "main": "src/assets/log-api.js",
+  "scripts": {
+    "start": "node src/assets/log-api.js",
+    "watch": "chokidar \"src/assets/images/**/*\" \"src/assets/videos/**/*\" -c \"node src/assets/update-media-timestamp.js {path}\"",
+    "dev": "concurrently \"npm run start\" \"npm run watch\"",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rocky-mountain-weddings.git"
+  },
+  "keywords": [
+    "weddings",
+    "banff",
+    "canadian rockies",
+    "wedding planning"
+  ],
+  "author": "Rocky Mountain Weddings",
+  "license": "UNLICENSED"
+}

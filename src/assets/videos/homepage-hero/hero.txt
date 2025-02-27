@@ -1,0 +1,6 @@
+This is a placeholder file for hero.mp4
+
+For testing the dynamic media system:
+1. Replace this file with an actual video named hero.mp4
+2. Check if the video shows up in the homepage hero section
+3. The media-updates.log should show a record of this change 

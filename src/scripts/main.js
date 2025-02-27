@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initInstagramFeed();
     initVideoModals();
     initCookieBanner();
+    
+    // Initialize the dynamic media manager (must come last to override paths)
+    if (typeof initMediaManager === 'function') {
+        initMediaManager();
+    } else {
+        console.warn('Media Manager not loaded. Some features may not work correctly.');
+    }
 });
 
 // Preloader

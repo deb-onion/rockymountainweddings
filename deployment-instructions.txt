@@ -1,0 +1,39 @@
+DEPLOYMENT INSTRUCTIONS
+=====================
+
+To get your updated image to show on the live site, you need to deploy the changes. 
+Here are the steps to follow:
+
+OPTION 1: Using the update-site.ps1 script
+------------------------------------------
+1. Open a PowerShell window in your project directory (D:\work\rockymountainweddings)
+2. Run this command:
+   .\update-site.ps1 -Description "Updated service-intro.jpg image" -Version "2.0.1"
+
+OPTION 2: Using Git commands directly
+-------------------------------------
+1. Open a command prompt or PowerShell window in your project directory
+2. Run these commands:
+   git add src/assets/images/service-intro.jpg
+   git commit -m "Updated service-intro.jpg image"
+   git push
+
+OPTION 3: Using GitHub Desktop or another Git client
+----------------------------------------------------
+1. Open your Git client
+2. Stage the changed file (src/assets/images/service-intro.jpg)
+3. Commit with a message like "Updated service-intro.jpg image"
+4. Push to your GitHub repository
+
+After Deployment
+---------------
+Once you've pushed the changes to GitHub:
+1. Cloudflare Pages will automatically start a new deployment
+2. This typically takes 1-2 minutes
+3. Once complete, your new image will appear on the live site
+4. You may need to hard-refresh your browser (Ctrl+F5) to see the changes
+
+To check deployment status:
+1. Go to your Cloudflare Pages dashboard
+2. Look for the latest deployment
+3. Wait for it to show "Success" 

@@ -1,0 +1,6 @@
+This is a placeholder file for hero-banner.jpg
+
+For testing the dynamic media system:
+1. Replace this file with an actual image named hero-banner.jpg
+2. Check if the image shows up on the homepage hero section
+3. The media-updates.log should show a record of this change 

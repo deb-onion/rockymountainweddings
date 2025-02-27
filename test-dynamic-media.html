@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Media System Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #336699;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .steps {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #336699;
+        }
+        .note {
+            background-color: #fffde7;
+            padding: 10px;
+            border-left: 4px solid #ffd600;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Media System Test</h1>
+    
+    <p>This page will help you test the dynamic media management system for the Rocky Mountain Weddings website. The system allows you to update images and videos by simply replacing files in the appropriate folders, without needing to modify any code.</p>
+    
+    <div class="note">
+        <strong>Note:</strong> All changes are automatically logged in <code>src/assets/media-updates.log</code>, providing a complete history of media updates.
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 1: Homepage Hero Image</h2>
+        <p>The homepage hero section displays a large banner image at the top of the homepage.</p>
+        
+        <div class="steps">
+            <h3>Steps to Test:</h3>
+            <ol>
+                <li>Find a suitable image for a wedding hero banner</li>
+                <li>Save it as <code>hero-banner.jpg</code> in <code>src/assets/images/homepage-hero/</code></li>
+                <li>Open the homepage (<code>src/index.html</code>) in your browser</li>
+                <li>Verify that your new image appears in the hero section</li>
+                <li>Check <code>src/assets/media-updates.log</code> to see if the update was recorded</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Featured Image</h2>
+        <p>The featured images appear in the homepage featured section.</p>
+        
+        <div class="steps">
+            <h3>Steps to Test:</h3>
+            <ol>
+                <li>Find a suitable image for a featured wedding photo</li>
+                <li>Save it as <code>featured-1.jpg</code> in <code>src/assets/images/homepage-featured/</code></li>
+                <li>Open the homepage (<code>src/index.html</code>) in your browser</li>
+                <li>Verify that your new image appears in the featured section</li>
+                <li>Check <code>src/assets/media-updates.log</code> to see if the update was recorded</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: Services Intro Image</h2>
+        <p>The services intro image appears at the top of the services page.</p>
+        
+        <div class="steps">
+            <h3>Steps to Test:</h3>
+            <ol>
+                <li>Find a suitable image for the services intro</li>
+                <li>Save it as <code>service-intro.jpg</code> in <code>src/assets/images/services-intro/</code></li>
+                <li>Open the services page (<code>src/services.html</code>) in your browser</li>
+                <li>Verify that your new image appears in the intro section</li>
+                <li>Check <code>src/assets/media-updates.log</code> to see if the update was recorded</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 4: Hero Video</h2>
+        <p>The hero video plays in the background of the homepage hero section.</p>
+        
+        <div class="steps">
+            <h3>Steps to Test:</h3>
+            <ol>
+                <li>Find a suitable short video for a wedding hero background</li>
+                <li>Save it as <code>hero.mp4</code> in <code>src/assets/videos/homepage-hero/</code></li>
+                <li>Open the homepage (<code>src/index.html</code>) in your browser</li>
+                <li>Verify that your new video plays in the hero section</li>
+                <li>Check <code>src/assets/media-updates.log</code> to see if the update was recorded</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="note">
+        <h3>Where to Find Test Media Files:</h3>
+        <p>You can download free placeholder images from:</p>
+        <ul>
+            <li><a href="https://picsum.photos/" target="_blank">Lorem Picsum</a> - Random beautiful images</li>
+            <li><a href="https://unsplash.com/" target="_blank">Unsplash</a> - Free high-quality stock photos</li>
+        </ul>
+        <p>You can download free placeholder videos from:</p>
+        <ul>
+            <li><a href="https://samplelib.com/sample-mp4.html" target="_blank">SampleLib</a> - Free sample MP4 videos</li>
+            <li><a href="https://www.pexels.com/videos/" target="_blank">Pexels Videos</a> - Free stock videos</li>
+        </ul>
+    </div>
+    
+    <h2>Development Mode</h2>
+    <p>For the best testing experience, run the website in development mode:</p>
+    <ol>
+        <li>Open a command prompt in the project root</li>
+        <li>Run <code>dev-server.bat</code> to start the development server</li>
+        <li>This will automatically refresh the page when media files are updated</li>
+    </ol>
+    
+    <p>Happy testing!</p>
+</body>
+</html> 

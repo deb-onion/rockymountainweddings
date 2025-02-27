@@ -1,5 +1,8 @@
 ﻿# Rocky Mountain Weddings & Events - Version History
 
+## Version 2.0.1 - 2025-02-27
+- Updated service-intro.jpg image
+
 ## Version 2.0.0 - Major Redesign - 2025-02-26
 - Complete website redesign with enhanced UI/UX and responsive layouts
 - Added interactive map for venue exploration
@@ -40,6 +43,7 @@ Date: 2025-02-26
 - Initial website launch
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
