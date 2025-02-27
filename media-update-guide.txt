@@ -1,0 +1,104 @@
+# ROCKY MOUNTAIN WEDDINGS - MEDIA UPDATE GUIDE
+
+This guide will help you update any image or video on the website without having to touch any code. Just follow these simple steps.
+
+## HOW THE SYSTEM WORKS
+
+1. Each image or video on the website is stored in a specific folder
+2. Each file has a specific name that must be used exactly
+3. When you replace these files, the website automatically updates
+4. All changes are tracked in a log file
+
+## IMAGE LOCATIONS AND NAMES
+
+### HOMEPAGE
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| Hero banner image    | hero-banner.jpg | src/assets/images/homepage-hero/ |
+| Featured images      | featured-1.jpg, featured-2.jpg, etc. | src/assets/images/homepage-featured/ |
+| Hero background video| hero.mp4        | src/assets/videos/homepage-hero/ |
+
+### SERVICES PAGE
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| Services intro image | service-intro.jpg | src/assets/images/ |
+| Service category images | service-1.jpg, service-2.jpg, etc. | src/assets/images/ |
+
+### VENUES PAGE
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| Venues intro image   | venues-intro.jpg | src/assets/images/venues-intro/ |
+| Region images        | region-1.jpg, region-2.jpg, etc. | src/assets/images/venues-regions/ |
+| Venue detail images  | venue-1.jpg, venue-2.jpg, etc. | src/assets/images/venues-details/ |
+
+### TESTIMONIALS
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| Testimonial photos   | testimonial-1.jpg, testimonial-2.jpg, etc. | src/assets/images/testimonials/ |
+| Testimonial videos   | testimonial-1-video.mp4, etc. | src/assets/videos/testimonials/ |
+
+### ABOUT PAGE
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| About us banner      | about-banner.jpg | src/assets/images/about/ |
+| Team member photos   | team-1.jpg, team-2.jpg, etc. | src/assets/images/team/ |
+
+### PORTFOLIO/CASE STUDIES
+
+| What you see on page | File to replace | Where to put it |
+|----------------------|-----------------|-----------------|
+| Portfolio images     | portfolio-1.jpg, portfolio-2.jpg, etc. | src/assets/images/portfolio/ |
+| Case study images    | case-1.jpg, case-2.jpg, etc. | src/assets/images/case-studies/ |
+
+## STEPS TO UPDATE AN IMAGE OR VIDEO
+
+1. Find the image/video you want to replace on the website
+2. Look up its name and location in the tables above
+3. Create your new image/video in the right dimensions
+4. Save it with EXACTLY the same filename (check for typos!)
+5. Put it in the correct folder
+6. Check the page to see if your update worked
+
+### IMPORTANT TIPS
+
+- Names are case-sensitive (hero.jpg is different from Hero.jpg)
+- Don't add extra extensions (.jpg.jpg)
+- Use the exact same dimensions as the original image for best results
+- JPG format works best for photos
+- PNG format works best if you need transparency
+- MP4 format works best for videos
+
+## HOW TO DEPLOY YOUR CHANGES
+
+After updating any images or videos, you need to deploy your changes to the live site:
+
+1. Open PowerShell in your project folder (D:\work\rockymountainweddings)
+2. Run this command:
+   ```
+   .\update-site.ps1 -Description "Updated [what you changed]" -Version "2.0.2"
+   ```
+3. Wait 1-2 minutes for the site to update
+4. Refresh your browser (press Ctrl+F5) to see your changes
+
+## CHECKING IF YOUR UPDATE WORKED
+
+1. All media updates are logged in this file: `src/assets/media-updates.log`
+2. Check this file to see if your update was recorded
+3. If your update isn't showing on the website:
+   - Make sure the filename is exactly correct
+   - Check that you put it in the right folder
+   - Try clearing your browser cache (Ctrl+F5)
+   - Try deploying again
+
+## NEED HELP?
+
+If you're still having trouble updating media:
+1. Double-check the filename and location
+2. Check the size of your image (too large may cause issues)
+3. Try a different image format
+4. Try running the site locally using `dev-server.bat` to test changes 
