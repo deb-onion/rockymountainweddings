@@ -14,6 +14,9 @@
     <!-- Mapbox GL for interactive map -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <!-- Pannellum for 360° tours -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
     <!-- Add smooth scroll polyfill -->
     <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
     <!-- Structured Data for SEO -->
@@ -144,7 +147,7 @@
         </div>
     </section>
 
-    <!-- Interactive Map Section -->
+    <!-- Enhanced Interactive Map Section -->
     <section class="interactive-map-section reveal">
         <div class="container">
             <div class="section-heading">
@@ -170,11 +173,7 @@
                             <p><i class="fas fa-map-marker-alt"></i> Click on a venue marker to view details</p>
                         </div>
                         <div class="venue-preview-content" style="display: none;">
-                            <img src="" alt="" class="preview-image">
-                            <h3 class="preview-title"></h3>
-                            <p class="preview-location"></p>
-                            <p class="preview-description"></p>
-                            <a href="#" class="btn btn-secondary btn-view-venue">View Details</a>
+                            <!-- Will be populated dynamically -->
                         </div>
                     </div>
                 </div>
@@ -182,7 +181,7 @@
         </div>
     </section>
 
-    <!-- Featured Regions Section -->
+    <!-- Enhanced Featured Regions Section -->
     <section class="featured-regions reveal">
         <div class="container">
             <div class="section-heading">
@@ -214,7 +213,7 @@
                         </div>
                     </div>
                     <div class="region-details">
-                        <p>A charming mountain town offering elegant lodges, contemporary spaces, and breathtaking mountain views.</p>
+                        <p>A charming mountain town offering elegant lodges, contemporary spaces, and breathtaking views of the Three Sisters peaks.</p>
                         <a href="#canmore-venues" class="region-link">View Canmore Venues <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
@@ -228,7 +227,7 @@
                         </div>
                     </div>
                     <div class="region-details">
-                        <p>Home to the turquoise blue lake and magnificent Chateau, offering unparalleled natural beauty.</p>
+                        <p>Home to the turquoise blue lake and magnificent Chateau, offering unparalleled natural beauty for your ceremony.</p>
                         <a href="#lake-louise-venues" class="region-link">View Lake Louise Venues <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
@@ -242,7 +241,7 @@
                         </div>
                     </div>
                     <div class="region-details">
-                        <p>A secluded paradise in Yoho National Park with a stunning emerald-colored lake and intimate lodge.</p>
+                        <p>A secluded paradise in Yoho National Park with a stunning emerald-colored lake and intimate lodge for romantic celebrations.</p>
                         <a href="#emerald-lake-venues" class="region-link">View Emerald Lake Venues <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
@@ -256,7 +255,7 @@
                         </div>
                     </div>
                     <div class="region-details">
-                        <p>A wilderness area with luxury resorts and lodges offering privacy in a spectacular mountain setting.</p>
+                        <p>A wilderness area with luxury resorts and lodges offering privacy in a spectacular mountain setting away from the crowds.</p>
                         <a href="#kananaskis-venues" class="region-link">View Kananaskis Venues <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
@@ -264,7 +263,7 @@
         </div>
     </section>
 
-    <!-- Venue Comparison Tool -->
+    <!-- Enhanced Venue Comparison Tool -->
     <section class="venue-comparison reveal">
         <div class="container">
             <div class="section-heading">
@@ -312,69 +311,11 @@
                         <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
                     </div>
                     <div class="comparison-table" style="display: none;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th class="venue-col venue-1">Venue 1</th>
-                                    <th class="venue-col venue-2">Venue 2</th>
-                                    <th class="venue-col venue-3">Venue 3</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Location</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Capacity</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Price Range</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Indoor/Outdoor</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Accommodation</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Catering</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr>
-                                    <td>Seasonal Availability</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                                <tr class="action-row">
-                                    <td>View Details</td>
-                                    <td class="venue-col venue-1"></td>
-                                    <td class="venue-col venue-2"></td>
-                                    <td class="venue-col venue-3"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
+                        <!-- Will be populated with visual comparison cards -->
                     </div>
                 </div>
+                
+                <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
             </div>
         </div>
     </section>
@@ -550,7 +491,68 @@
         </div>
     </section>
 
-    <!-- Venue Inquiry Form -->
+    <!-- Lake Louise Venues -->
+    <section class="regional-venues reveal" id="lake-louise-venues">
+        <div class="container">
+            <div class="region-heading">
+                <h2>Lake Louise Wedding Venues</h2>
+                <p>Stunning lakeside settings with glacier views</p>
+            </div>
+            
+            <!-- Fairmont Chateau Lake Louise -->
+            <div class="venue-item">
+                <div class="venue-gallery">
+                    <div class="gallery-main">
+                        <img src="assets/images/venues/lake-louise-main.jpg" alt="Fairmont Chateau Lake Louise wedding">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <img src="assets/images/venues/lake-louise-1.jpg" alt="Lake Louise ceremony">
+                        <img src="assets/images/venues/lake-louise-2.jpg" alt="Chateau ballroom">
+                        <img src="assets/images/venues/lake-louise-3.jpg" alt="Lake Louise views">
+                    </div>
+                </div>
+                <div class="venue-info">
+                    <h3>Fairmont Chateau Lake Louise</h3>
+                    <p class="venue-tagline">An iconic venue on the shores of the emerald waters of Lake Louise</p>
+                    
+                    <div class="venue-details">
+                        <div class="detail-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Capacity: 10-550 guests</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Price Range: $$$-$$$$</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Available: Year-round</span>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-description">
+                        <p>The Fairmont Chateau Lake Louise offers one of the most spectacular backdrops for a wedding in the Canadian Rockies. Exchange vows on the shores of Lake Louise with the Victoria Glacier as your backdrop, then celebrate in one of the elegant ballrooms inside the historic chateau.</p>
+                        <p>With luxurious accommodations on site, comprehensive wedding packages, and world-class dining, this venue provides everything you need for a destination wedding in the mountains.</p>
+                    </div>
+                    
+                    <div class="venue-features">
+                        <span class="feature-tag">On-site Accommodations</span>
+                        <span class="feature-tag">In-house Catering</span>
+                        <span class="feature-tag">Indoor & Outdoor Options</span>
+                        <span class="feature-tag">Lakeside Ceremony</span>
+                        <span class="feature-tag">Spa Services</span>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <button class="btn btn-secondary view-360" data-venue="chateau-louise"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
+                        <button class="btn-venue-inquiry primary" data-venue="Fairmont Chateau Lake Louise">Schedule a Visit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Inquiry Form Modal -->
     <div class="venue-modal" id="venueModal">
         <div class="modal-content">
             <button class="close-modal" aria-label="Close modal">&times;</button>
@@ -596,6 +598,8 @@
                         <input type="text" id="selectedVenue" name="selectedVenue" readonly>
                     </div>
 
+                    <!-- Venue-specific fields will be added here dynamically -->
+                    
                     <div class="form-group full-width">
                         <label for="message">Additional Details</label>
                         <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
@@ -607,14 +611,12 @@
         </div>
     </div>
 
-    <!-- 360 Virtual Tour Modal -->
+    <!-- 360° Virtual Tour Modal -->
     <div class="tour-modal" id="tourModal">
         <div class="modal-content">
             <button class="close-modal" aria-label="Close modal">&times;</button>
             <h2>Virtual Tour</h2>
-            <div class="tour-container">
-                <iframe id="tourFrame" frameborder="0" allowfullscreen></iframe>
-            </div>
+            <div id="tourContainer" class="tour-container"></div>
         </div>
     </div>
 
