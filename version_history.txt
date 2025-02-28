@@ -4,6 +4,9 @@
 - Updated Mapbox access token
 
 ## Update - 2025-03-01
+- Updated Mapbox access token
+
+## Update - 2025-03-01
 - Updated Mapbox access token and fixed venue map container ID
 
 ## Version 2.0.4 - 2025-03-01
@@ -85,6 +88,7 @@ Date: 2025-02-26
 - Initial website launch
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
