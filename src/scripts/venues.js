@@ -54,9 +54,23 @@ function initInteractiveMap() {
 
         // Add custom marker data
         const venueMarkers = [
+            // BANFF VENUES
+            {
+                id: 'the-gem',
+                name: 'The Gem',
+                location: 'Bighorn No. 8, Alberta',
+                description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
+                coordinates: [-115.3392, 51.0977], // Harvie Heights coordinates
+                image: 'assets/images/venues/the-gem-main.jpg',
+                region: 'banff',
+                url: '#banff-venues',
+                capacity: '20-150 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities']
+            },
             {
                 id: 'banff-springs',
-                name: 'Fairmont Banff Springs',
+                name: 'Fairmont Springs Hotel',
                 location: 'Banff, Alberta',
                 description: 'Known as Canada\'s "Castle in the Rockies," this historic hotel offers luxurious wedding venues with stunning mountain views.',
                 coordinates: [-115.5708, 51.1645],
@@ -68,17 +82,84 @@ function initInteractiveMap() {
                 features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites']
             },
             {
-                id: 'tunnel-mountain',
-                name: 'Tunnel Mountain Reservoir',
+                id: 'sky-bistro',
+                name: 'Sky Bistro, Gondola',
                 location: 'Banff, Alberta',
-                description: 'An outdoor ceremony location with breathtaking panoramic views of the surrounding mountains and Banff townsite.',
-                coordinates: [-115.5420, 51.1789],
-                image: 'assets/images/venues/tunnel-mountain-main.jpg',
+                description: 'A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.',
+                coordinates: [-115.5582, 51.1641],
+                image: 'assets/images/venues/sky-bistro-main.jpg',
                 region: 'banff',
                 url: '#banff-venues',
-                capacity: 'Up to 100 guests',
-                priceRange: '$-$$',
-                features: ['Outdoor Ceremony', 'Mountain Views', 'Natural Setting', 'Photography Paradise']
+                capacity: '20-200 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining']
+            },
+            {
+                id: 'maple-leaf',
+                name: 'The Maple Leaf',
+                location: 'Banff, Alberta',
+                description: 'A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.',
+                coordinates: [-115.5712, 51.1767],
+                image: 'assets/images/venues/maple-leaf-main.jpg',
+                region: 'banff',
+                url: '#banff-venues',
+                capacity: '10-80 guests',
+                priceRange: '$$-$$$',
+                features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine']
+            },
+            {
+                id: 'mt-norquay',
+                name: 'Mt. Norquay',
+                location: 'Banff, Alberta',
+                description: 'A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.',
+                coordinates: [-115.5937, 51.2080],
+                image: 'assets/images/venues/mt-norquay-main.jpg',
+                region: 'banff',
+                url: '#banff-venues',
+                capacity: '50-200 guests',
+                priceRange: '$$-$$$',
+                features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies']
+            },
+            {
+                id: 'three-bears',
+                name: 'Three Bears Brewery',
+                location: 'Banff, Alberta',
+                description: 'A unique brewery venue with rustic-industrial charm in the heart of Banff.',
+                coordinates: [-115.5693, 51.1761],
+                image: 'assets/images/venues/three-bears-main.jpg',
+                region: 'banff',
+                url: '#banff-venues',
+                capacity: '30-150 guests',
+                priceRange: '$$-$$$',
+                features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location']
+            },
+            
+            // CANMORE VENUES
+            {
+                id: 'mainspace-solara',
+                name: 'Mainspace Solara',
+                location: 'Canmore, Alberta',
+                description: 'A contemporary event space with mountain views and flexible layouts for weddings of all sizes.',
+                coordinates: [-115.3472, 51.0895],
+                image: 'assets/images/venues/mainspace-solara-main.jpg',
+                region: 'canmore',
+                url: '#canmore-venues',
+                capacity: '20-250 guests',
+                priceRange: '$$-$$$',
+                features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities']
+            },
+            {
+                id: 'stewart-creek',
+                name: 'Stewart Creek Country Club',
+                location: 'Canmore, Alberta',
+                description: 'An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.',
+                coordinates: [-115.3696, 51.0574],
+                image: 'assets/images/venues/stewart-creek-main.jpg',
+                region: 'canmore',
+                url: '#canmore-venues',
+                capacity: '20-180 guests',
+                priceRange: '$$-$$$',
+                features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace']
             },
             {
                 id: 'silvertip',
@@ -94,8 +175,118 @@ function initInteractiveMap() {
                 features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience']
             },
             {
+                id: 'malcolm-hotel',
+                name: 'The Malcolm Hotel',
+                location: 'Canmore, Alberta',
+                description: 'A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.',
+                coordinates: [-115.3480, 51.0875],
+                image: 'assets/images/venues/malcolm-hotel-main.jpg',
+                region: 'canmore',
+                url: '#canmore-venues',
+                capacity: '30-200 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location']
+            },
+            {
+                id: 'creekside-villa',
+                name: 'Creekside Villa',
+                location: 'Canmore, Alberta',
+                description: 'A charming boutique venue with a picturesque setting along the creek and mountain views.',
+                coordinates: [-115.3578, 51.0816],
+                image: 'assets/images/venues/creekside-villa-main.jpg',
+                region: 'canmore',
+                url: '#canmore-venues',
+                capacity: '10-120 guests',
+                priceRange: '$$-$$$',
+                features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views']
+            },
+            {
+                id: 'finchys',
+                name: 'Finchy\'s @CanGOLF',
+                location: 'Canmore, Alberta',
+                description: 'A unique golf simulator and event space offering a fun, casual setting for wedding events.',
+                coordinates: [-115.3434, 51.0925],
+                image: 'assets/images/venues/finchys-main.jpg',
+                region: 'canmore',
+                url: '#canmore-venues',
+                capacity: '20-100 guests',
+                priceRange: '$$-$$$',
+                features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options']
+            },
+            
+            // GOLDEN, BC VENUES
+            {
+                id: 'kicking-horse',
+                name: 'Kicking Horse Resort',
+                location: 'Golden, British Columbia',
+                description: 'A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.',
+                coordinates: [-117.0475, 51.2980],
+                image: 'assets/images/venues/kicking-horse-main.jpg',
+                region: 'golden',
+                url: '#golden-venues',
+                capacity: '20-200 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience']
+            },
+            {
+                id: 'hillside-lodge',
+                name: 'Hillside Lodge & Chalets',
+                location: 'Golden, British Columbia',
+                description: 'A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.',
+                coordinates: [-116.9722, 51.3194],
+                image: 'assets/images/venues/hillside-lodge-main.jpg',
+                region: 'golden',
+                url: '#golden-venues',
+                capacity: '10-60 guests',
+                priceRange: '$$-$$$',
+                features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings']
+            },
+            {
+                id: 'emerald-lodge',
+                name: 'Emerald Lake Lodge',
+                location: 'Field, British Columbia',
+                description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
+                coordinates: [-116.5285, 51.4429],
+                image: 'assets/images/venues/emerald-lake-main.jpg',
+                region: 'golden',
+                url: '#golden-venues',
+                capacity: '10-88 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop']
+            },
+            
+            // JASPER VENUES
+            {
+                id: 'pyramid-lake',
+                name: 'Pyramid Lake Lodge',
+                location: 'Jasper, Alberta',
+                description: 'A charming lodge on the shores of Pyramid Lake with mountain views and alpine charm.',
+                coordinates: [-118.0955, 52.9301],
+                image: 'assets/images/venues/pyramid-lake-main.jpg',
+                region: 'jasper',
+                url: '#jasper-venues',
+                capacity: '10-80 guests',
+                priceRange: '$$$-$$$$',
+                features: ['Lakeside Setting', 'Mountain Views', 'Lodge Accommodation', 'Natural Beauty']
+            },
+            {
+                id: 'maligne-lake',
+                name: 'Maligne Lake Chalet',
+                location: 'Jasper, Alberta',
+                description: 'A historic chalet in a spectacular setting on the shores of pristine Maligne Lake.',
+                coordinates: [-117.7676, 52.7268],
+                image: 'assets/images/venues/maligne-lake-main.jpg',
+                region: 'jasper',
+                url: '#jasper-venues',
+                capacity: '10-60 guests',
+                priceRange: '$$-$$$',
+                features: ['Historic Chalet', 'Lakeside Views', 'Remote Setting', 'National Park Location']
+            },
+            
+            // LAKE LOUISE VENUES
+            {
                 id: 'chateau-louise',
-                name: 'Chateau Lake Louise',
+                name: 'Fairmont Chateau Lake Louise',
                 location: 'Lake Louise, Alberta',
                 description: 'An iconic venue offering enchanting ceremonies by the emerald waters of Lake Louise with the Victoria Glacier as a backdrop.',
                 coordinates: [-116.2153, 51.4254],
@@ -105,32 +296,6 @@ function initInteractiveMap() {
                 capacity: '10-550 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience']
-            },
-            {
-                id: 'emerald-lodge',
-                name: 'Emerald Lake Lodge',
-                location: 'Yoho National Park, British Columbia',
-                description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
-                coordinates: [-116.5285, 51.4429],
-                image: 'assets/images/venues/emerald-lake-main.jpg',
-                region: 'emerald-lake',
-                url: '#emerald-lake-venues',
-                capacity: '10-88 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop']
-            },
-            {
-                id: 'kananaskis-resort',
-                name: 'Kananaskis Mountain Lodge',
-                location: 'Kananaskis, Alberta',
-                description: 'A luxury mountain resort with versatile venues and spectacular views of the Kananaskis Valley and mountains.',
-                coordinates: [-115.1410, 51.0896],
-                image: 'assets/images/venues/kananaskis-main.jpg',
-                region: 'kananaskis',
-                url: '#kananaskis-venues',
-                capacity: '20-250 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Mountain Resort', 'Valley Views', 'Spa Services', 'Adventure Activities']
             }
         ];
 
@@ -177,8 +342,8 @@ function initInteractiveMap() {
                     'banff', '#E4B7B7', // Your brand color
                     'canmore', '#D8A1A1',
                     'lake-louise', '#C891A0',
-                    'emerald-lake', '#B9807E',
-                    'kananaskis', '#AA7068',
+                    'golden', '#B9807E',
+                    'jasper', '#AA7068',
                     '#E4B7B7' // Default color
                 ],
                 'fill-extrusion-height': ['get', 'height'],
@@ -218,8 +383,8 @@ function initInteractiveMap() {
                         'banff', '#E4B7B7',
                         'canmore', '#D8A1A1',
                         'lake-louise', '#C891A0',
-                        'emerald-lake', '#B9807E',
-                        'kananaskis', '#AA7068',
+                        'golden', '#B9807E',
+                        'jasper', '#AA7068',
                         '#E4B7B7'
                     ]
                 ]);
@@ -240,8 +405,8 @@ function initInteractiveMap() {
                     'banff', '#E4B7B7',
                     'canmore', '#D8A1A1',
                     'lake-louise', '#C891A0',
-                    'emerald-lake', '#B9807E',
-                    'kananaskis', '#AA7068',
+                    'golden', '#B9807E',
+                    'jasper', '#AA7068',
                     '#E4B7B7'
                 ]);
             });
@@ -307,8 +472,8 @@ function initInteractiveMap() {
                 'banff': { center: [-115.5708, 51.1784], zoom: 12, pitch: 60, bearing: -15 },
                 'canmore': { center: [-115.3126, 51.0911], zoom: 12, pitch: 60, bearing: 10 },
                 'lake-louise': { center: [-116.2153, 51.4254], zoom: 12, pitch: 60, bearing: -20 },
-                'emerald-lake': { center: [-116.5285, 51.4429], zoom: 12, pitch: 60, bearing: 0 },
-                'kananaskis': { center: [-115.1410, 51.0896], zoom: 12, pitch: 60, bearing: 15 },
+                'golden': { center: [-117.0475, 51.2980], zoom: 12, pitch: 60, bearing: 0 },
+                'jasper': { center: [-118.0955, 52.9301], zoom: 12, pitch: 60, bearing: 15 },
                 'all': { center: [-116.4817, 51.1784], zoom: 9, pitch: 45, bearing: -17.6 }
             };
             
