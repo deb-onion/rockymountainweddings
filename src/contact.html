@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Rocky Mountain Weddings</title>
-    <meta name="description" content="Start planning your dream wedding in the Canadian Rockies. Contact our team for a free consultation.">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/contact.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Add smooth scroll polyfill -->
-    <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+    <meta name="description" content="Get in touch with our wedding planning team to start planning your dream wedding in the Canadian Rockies.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
 </head>
 <body>
     <!-- Preloader -->
@@ -22,197 +18,259 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <div class="mobile-menu-container">
-            <nav class="mobile-nav">
-                <a href="services.html" class="mobile-link">Services</a>
-                <a href="venues.html" class="mobile-link">Venues</a>
-                <a href="about.html" class="mobile-link">About</a>
-                <a href="portfolio.html" class="mobile-link">Portfolio</a>
-                <a href="blog.html" class="mobile-link">Blog</a>
-                <a href="contact.html" class="mobile-link highlight active">Start Planning</a>
-            </nav>
-            <div class="mobile-menu-footer">
-                <div class="social-links">
-                    <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-            </div>
+        <div class="close-menu">
+            <i class="fas fa-times"></i>
+        </div>
+        <nav class="mobile-nav">
+            <a href="services.html">Services</a>
+            <a href="venues.html">Venues</a>
+            <a href="about.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html" class="active cta-link">Start Planning</a>
+        </nav>
+        <div class="mobile-contact">
+            <a href="tel:+14035551234"><i class="fas fa-phone"></i> (403) 555-1234</a>
+            <a href="mailto:hello@rockymountainweddings.ca"><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</a>
+        </div>
+        <div class="mobile-social">
+            <a href="https://instagram.com/rockymountainweddings" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://pinterest.com/rockymountainweddings" target="_blank"><i class="fab fa-pinterest"></i></a>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="logo-text">Rocky Mountain Weddings</span>
-            </a>
-            <div class="nav-links">
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="venues.html" class="nav-link">Venues</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="portfolio.html" class="nav-link">Portfolio</a>
-                <a href="blog.html" class="nav-link">Blog</a>
-                <a href="contact.html" class="nav-cta active">Start Planning</a>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="Rocky Mountain Weddings">
+                </a>
             </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Contact Hero -->
-    <header class="page-header contact-header">
-        <div class="page-header-content">
-            <h1 class="animate-up">Start Planning Your Dream Wedding</h1>
-            <p class="animate-up delay-1">We'd love to hear about your vision for your special day</p>
+            <nav class="main-nav">
+                <a href="services.html">Services</a>
+                <a href="venues.html">Venues</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html" class="active cta-link">Start Planning</a>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <!-- Contact Form Section -->
-    <section class="contact-section reveal">
+    <!-- Contact Hero -->
+    <section class="page-hero contact-hero">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Let's Connect</h2>
-                    <p>Ready to start planning your Rocky Mountain wedding? Fill out the form or contact us directly. We'll be in touch within 24 hours.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+15551234567">(555) 123-4567</a>
-                        </div>
-                    </div>
-                    
-                    <div class="social-connect">
-                        <h3>Follow Us</h3>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
+            <h1>Let's Plan Your Dream Wedding</h1>
+            <p>Get in touch with our team to start creating your perfect Rocky Mountain celebration</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-layout">
                 <div class="contact-form-container">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-heading">
-                            <h3>Request a Consultation</h3>
-                            <p>Fields marked with * are required</p>
+                    <h2>Tell Us About Your Vision</h2>
+                    <p>Fill out the form below and we'll be in touch within 24 hours to discuss your wedding plans.</p>
+                    
+                    <form id="wedding-inquiry-form" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name*</label>
+                                <input type="text" id="first-name" name="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name*</label>
+                                <input type="text" id="last-name" name="last-name" required>
+                            </div>
                         </div>
                         
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="names">Full Names*</label>
-                                <input type="text" id="names" name="names" required>
-                            </div>
-                            
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="email">Email Address*</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="phone">Phone Number*</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="weddingDate">Wedding Date (if known)</label>
-                                <input type="date" id="weddingDate" name="weddingDate">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="location">Preferred Location</label>
-                                <select id="location" name="location">
-                                    <option value="">Select a location</option>
-                                    <option value="banff">Banff</option>
-                                    <option value="canmore">Canmore</option>
-                                    <option value="lake-louise">Lake Louise</option>
-                                    <option value="emerald-lake">Emerald Lake</option>
-                                    <option value="kananaskis">Kananaskis</option>
-                                    <option value="other">Other/Not Sure</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="budget">Approximate Budget</label>
-                                <select id="budget" name="budget">
-                                    <option value="">Select budget range</option>
-                                    <option value="under-20k">Under $20,000</option>
-                                    <option value="20k-35k">$20,000 - $35,000</option>
-                                    <option value="35k-50k">$35,000 - $50,000</option>
-                                    <option value="50k-75k">$50,000 - $75,000</option>
-                                    <option value="75k-plus">$75,000+</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group full-width">
-                                <label for="services">Services You're Interested In</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="services[]" value="full-planning"> Full Wedding Planning
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="services[]" value="day-coordination"> Day-of Coordination
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="services[]" value="design"> Design & Styling
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" name="services[]" value="venue-selection"> Venue Selection
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group full-width">
-                                <label for="message">Tell Us About Your Vision*</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Share your wedding dreams, important details, guest count, or any questions you have..."></textarea>
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
                             </div>
                         </div>
                         
-                        <div class="form-submit">
-                            <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                        <div class="form-group">
+                            <label for="wedding-date">Wedding Date</label>
+                            <input type="date" id="wedding-date" name="wedding-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Preferred Location</label>
+                            <select id="location" name="location">
+                                <option value="">Select a location</option>
+                                <option value="Banff">Banff</option>
+                                <option value="Canmore">Canmore</option>
+                                <option value="Lake Louise">Lake Louise</option>
+                                <option value="Jasper">Jasper</option>
+                                <option value="Golden">Golden, BC</option>
+                                <option value="Kananaskis">Kananaskis</option>
+                                <option value="Cochrane">Cochrane</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select a budget range</option>
+                                <option value="Under $10,000">Under $10,000</option>
+                                <option value="$10,000 - $20,000">$10,000 - $20,000</option>
+                                <option value="$20,000 - $30,000">$20,000 - $30,000</option>
+                                <option value="$30,000 - $50,000">$30,000 - $50,000</option>
+                                <option value="$50,000+">$50,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Services of Interest (select all that apply)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="full-planning" name="services[]" value="Full Planning">
+                                    <label for="full-planning">Full Planning</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="partial-planning" name="services[]" value="Partial Planning">
+                                    <label for="partial-planning">Partial Planning</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="month-of" name="services[]" value="Month-of Coordination">
+                                    <label for="month-of">Month-of Coordination</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="venue-selection" name="services[]" value="Venue Selection">
+                                    <label for="venue-selection">Venue Selection</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="vendor-referrals" name="services[]" value="Vendor Referrals">
+                                    <label for="vendor-referrals">Vendor Referrals</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="elopement" name="services[]" value="Elopement Package">
+                                    <label for="elopement">Elopement Package</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your wedding vision</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Share your ideas, questions, or any details about your dream wedding..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn-primary">Send Inquiry</button>
                         </div>
                     </form>
+                </div>
+                
+                <div class="contact-info-container">
+                    <div class="contact-info-card">
+                        <h3>Contact Information</h3>
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Our Office</h4>
+                                    <p>123 Mountain View Drive<br>Banff, Alberta T1L 1B1<br>Canada</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:+14035551234">(403) 555-1234</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:hello@rockymountainweddings.ca">hello@rockymountainweddings.ca</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Office Hours</h4>
+                                    <p>Monday - Friday: 9am - 5pm<br>Weekends: By appointment</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons">
+                                <a href="https://instagram.com/rockymountainweddings" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://pinterest.com/rockymountainweddings" target="_blank"><i class="fab fa-pinterest"></i></a>
+                                <a href="https://facebook.com/rockymountainweddings" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote>
+                            "Working with Rocky Mountain Weddings was the best decision we made. They turned our dream mountain wedding into reality, handling every detail with professionalism and creativity."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonial-1.jpg" alt="Sarah & Michael">
+                            <div>
+                                <p class="author-name">Sarah & Michael</p>
+                                <p class="wedding-location">Banff Springs Hotel</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section reveal">
+    <section class="faq-section">
         <div class="container">
-            <div class="section-heading">
-                <h2>Frequently Asked Questions</h2>
-                <p>Common questions about our wedding planning services</p>
-            </div>
+            <h2>Frequently Asked Questions</h2>
             
             <div class="faq-grid">
                 <div class="faq-item">
-                    <h3>When should we start planning our wedding?</h3>
-                    <p>For Rocky Mountain weddings, we recommend starting the planning process 12-18 months before your desired date, especially if you're considering popular venues which book up quickly.</p>
+                    <h3>How far in advance should I book your services?</h3>
+                    <p>We recommend booking 12-18 months in advance for full planning services, especially if you're planning a wedding during peak season (June-September). For month-of coordination, 6-8 months in advance is ideal.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3>Do you offer customized planning packages?</h3>
-                    <p>Absolutely! While we have standard packages to meet common needs, we understand every wedding is unique. We can create a custom package tailored specifically to your requirements.</p>
+                    <h3>Do you only work in the Canadian Rockies?</h3>
+                    <p>While we specialize in the Canadian Rockies (Banff, Canmore, Lake Louise, Jasper, etc.), we occasionally take on weddings in other scenic locations. Contact us to discuss your specific location needs.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3>What's your typical process for working with couples?</h3>
-                    <p>We start with a free consultation to understand your vision, followed by a customized proposal. Once we begin working together, we'll guide you through each phase of planning with regular check-ins.</p>
+                    <h3>What's the difference between full planning and month-of coordination?</h3>
+                    <p>Full planning includes everything from venue selection and vendor management to design concepts and day-of coordination. Month-of coordination focuses on finalizing details, creating timelines, and managing your wedding day, assuming you've done most of the planning yourself.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3>Do you work with couples from outside the area?</h3>
-                    <p>Yes! We specialize in helping couples plan destination weddings in the Canadian Rockies, using a combination of virtual meetings and in-person sessions when possible.</p>
+                    <h3>Can you help with obtaining permits for outdoor ceremonies?</h3>
+                    <p>Yes! Many locations in the Canadian Rockies require special permits for ceremonies. We're familiar with the requirements and can handle the permit application process for you.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you offer elopement packages?</h3>
+                    <p>Absolutely! We offer specialized elopement packages for couples seeking an intimate celebration in the mountains, including location scouting, permit acquisition, and coordination of essential vendors.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What happens if there's bad weather on our wedding day?</h3>
+                    <p>We always create detailed weather contingency plans for every wedding we coordinate. This includes securing backup indoor locations or tent options, and having a clear timeline for making weather-related decisions.</p>
                 </div>
             </div>
         </div>
@@ -223,51 +281,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>Rocky Mountain Weddings</h3>
-                    <p>Creating unforgettable celebrations in the Canadian Rockies</p>
+                    <img src="assets/images/logo-white.png" alt="Rocky Mountain Weddings">
+                    <p>Creating unforgettable wedding experiences in the Canadian Rockies</p>
                 </div>
                 <div class="footer-links">
-                    <div class="footer-nav">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="venues.html">Venues</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-contact">
-                        <h4>Contact Us</h4>
-                        <ul>
-                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@rockymountainweddings.com">info@rockymountainweddings.com</a></li>
-                            <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-social">
-                        <h4>Follow Us</h4>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/rockymountainweddings" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/rockymountainweddings/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.pinterest.com/rockymountainweddings" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        </div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Banff, Alberta, Canada</p>
+                    <p><i class="fas fa-phone"></i> (403) 555-1234</p>
+                    <p><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/rockymountainweddings" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pinterest.com/rockymountainweddings" target="_blank"><i class="fab fa-pinterest"></i></a>
+                        <a href="https://facebook.com/rockymountainweddings" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="scripts/media-manager.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/contact.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
