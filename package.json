@@ -5,8 +5,12 @@
   "main": "src/assets/log-api.js",
   "scripts": {
     "start": "node src/assets/log-api.js",
-    "watch": "chokidar \"src/assets/images/**/*\" \"src/assets/videos/**/*\" -c \"node src/assets/update-media-timestamp.js {path}\"",
+    "watch": "chokidar \"src/assets/images/**/*\" \"src/assets/videos/**/*\" -c \"powershell -ExecutionPolicy Bypass -File scripts/log-media-changes.ps1 -MediaPath {path}\"",
     "dev": "concurrently \"npm run start\" \"npm run watch\"",
+    "update-version": "powershell -ExecutionPolicy Bypass -File scripts/update-version.ps1",
+    "update-patch": "powershell -ExecutionPolicy Bypass -File scripts/update-version.ps1 -Patch",
+    "update-minor": "powershell -ExecutionPolicy Bypass -File scripts/update-version.ps1 -Minor",
+    "update-major": "powershell -ExecutionPolicy Bypass -File scripts/update-version.ps1 -Major",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
