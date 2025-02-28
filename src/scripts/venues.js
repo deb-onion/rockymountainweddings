@@ -15,7 +15,7 @@ function initInteractiveMap() {
     if (!mapContainer) return;
 
     // Initialize the map with 3D capabilities
-    mapboxgl.accessToken = 'pk.eyJ1Ijoicm9ja3ltb3VudGFpbndlZGRpbmdzIiwiYSI6ImNsbjV2Z2FudjBhMXIycW1ydzZ3cW5meWIifQ.vPZJ0o9Q0ulU6x-aLZVSKQ';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGQzZ3RyMGp2djJqcXRlMno0dmh3ZyJ9.T0KdhzJgUv7MfalaNCWYQQ';
     
     const map = new mapboxgl.Map({
         container: 'venuesMap',
