@@ -24,7 +24,7 @@ function initInteractiveMap() {
     }
 
     // Initialize the map with 3D capabilities and error handling
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGQzZ3RyMGp2djJqcXRlMno0dmh3ZyJ9.T0KdhzJgUv7MfalaNCWYQQ';
+    mapboxgl.accessToken = 'sk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGV5NmFiMGQwNDJsc2U4aDl3OW8zNSJ9.V_XAloTgbF0Kz3Asvx1wBQ';
     
     // Add error handling for Mapbox initialization
     try {
