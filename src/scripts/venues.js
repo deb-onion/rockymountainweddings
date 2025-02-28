@@ -12,372 +12,413 @@ document.addEventListener('DOMContentLoaded', () => {
 // Mapbox interactive map with 3D features
 function initInteractiveMap() {
     const mapContainer = document.getElementById('venuesMap');
-    if (!mapContainer) return;
+    if (!mapContainer) {
+        console.error('Map container not found. Ensure there is an element with id "venuesMap" on the page.');
+        return;
+    }
 
-    // Initialize the map with 3D capabilities
+    // Check if mapContainer has dimensions
+    if (mapContainer.offsetWidth === 0 || mapContainer.offsetHeight === 0) {
+        console.error('Map container has zero width or height. Ensure the container has proper dimensions.');
+        mapContainer.style.minHeight = '500px'; // Apply a default height
+    }
+
+    // Initialize the map with 3D capabilities and error handling
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGQzZ3RyMGp2djJqcXRlMno0dmh3ZyJ9.T0KdhzJgUv7MfalaNCWYQQ';
     
-    const map = new mapboxgl.Map({
-        container: 'venuesMap',
-        style: 'mapbox://styles/mapbox/outdoors-v12',
-        center: [-116.4817, 51.1784], // Centered on the Canadian Rockies
-        zoom: 9,
-        scrollZoom: true,
-        pitch: 45, // Add 3D perspective
-        bearing: -17.6
-    });
-
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    // Add 3D terrain
-    map.on('load', () => {
-        map.addSource('mapbox-dem', {
-            'type': 'raster-dem',
-            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-            'tileSize': 512,
-            'maxzoom': 14
-        });
-        
-        // Add 3D terrain
-        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-        
-        // Add sky layer for realism
-        map.addLayer({
-            'id': 'sky',
-            'type': 'sky',
-            'paint': {
-                'sky-type': 'atmosphere',
-                'sky-atmosphere-sun': [0.0, 0.0],
-                'sky-atmosphere-sun-intensity': 15
-            }
+    // Add error handling for Mapbox initialization
+    try {
+        const map = new mapboxgl.Map({
+            container: 'venuesMap',
+            style: 'mapbox://styles/mapbox/outdoors-v12',
+            center: [-115.5708, 51.1645], // Banff area
+            zoom: 8,
+            scrollZoom: true,
+            pitch: 45, // Add 3D perspective
+            bearing: -10,
+            failIfMajorPerformanceCaveat: false // Less strict performance requirements
         });
 
-        // Add custom marker data
-        const venueMarkers = [
-            // BANFF VENUES
-            {
-                id: 'the-gem',
-                name: 'The Gem',
-                location: 'Bighorn No. 8, Alberta',
-                description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
-                coordinates: [-115.3392, 51.0977], // Harvie Heights coordinates
-                image: 'assets/images/venues/the-gem-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '20-150 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities']
-            },
-            {
-                id: 'banff-springs',
-                name: 'Fairmont Springs Hotel',
-                location: 'Banff, Alberta',
-                description: 'Known as Canada\'s "Castle in the Rockies," this historic hotel offers luxurious wedding venues with stunning mountain views.',
-                coordinates: [-115.5708, 51.1645],
-                image: 'assets/images/venues/banff-springs-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '10-800 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites']
-            },
-            {
-                id: 'sky-bistro',
-                name: 'Sky Bistro, Gondola',
-                location: 'Banff, Alberta',
-                description: 'A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.',
-                coordinates: [-115.5582, 51.1641],
-                image: 'assets/images/venues/sky-bistro-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '20-200 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining']
-            },
-            {
-                id: 'maple-leaf',
-                name: 'The Maple Leaf',
-                location: 'Banff, Alberta',
-                description: 'A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.',
-                coordinates: [-115.5712, 51.1767],
-                image: 'assets/images/venues/maple-leaf-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '10-80 guests',
-                priceRange: '$$-$$$',
-                features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine']
-            },
-            {
-                id: 'mt-norquay',
-                name: 'Mt. Norquay',
-                location: 'Banff, Alberta',
-                description: 'A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.',
-                coordinates: [-115.5937, 51.2080],
-                image: 'assets/images/venues/mt-norquay-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '50-200 guests',
-                priceRange: '$$-$$$',
-                features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies']
-            },
-            {
-                id: 'three-bears',
-                name: 'Three Bears Brewery',
-                location: 'Banff, Alberta',
-                description: 'A unique brewery venue with rustic-industrial charm in the heart of Banff.',
-                coordinates: [-115.5693, 51.1761],
-                image: 'assets/images/venues/three-bears-main.jpg',
-                region: 'banff',
-                url: '#banff-venues',
-                capacity: '30-150 guests',
-                priceRange: '$$-$$$',
-                features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location']
-            },
-            
-            // CANMORE VENUES
-            {
-                id: 'mainspace-solara',
-                name: 'Mainspace Solara',
-                location: 'Canmore, Alberta',
-                description: 'A contemporary event space with mountain views and flexible layouts for weddings of all sizes.',
-                coordinates: [-115.3472, 51.0895],
-                image: 'assets/images/venues/mainspace-solara-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '20-250 guests',
-                priceRange: '$$-$$$',
-                features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities']
-            },
-            {
-                id: 'stewart-creek',
-                name: 'Stewart Creek Country Club',
-                location: 'Canmore, Alberta',
-                description: 'An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.',
-                coordinates: [-115.3696, 51.0574],
-                image: 'assets/images/venues/stewart-creek-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '20-180 guests',
-                priceRange: '$$-$$$',
-                features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace']
-            },
-            {
-                id: 'silvertip',
-                name: 'Silvertip Resort',
-                location: 'Canmore, Alberta',
-                description: 'A mountain golf resort offering stunning views of the Three Sisters peaks with beautiful indoor and outdoor ceremony spaces.',
-                coordinates: [-115.3126, 51.0911],
-                image: 'assets/images/venues/silvertip-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '20-250 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience']
-            },
-            {
-                id: 'malcolm-hotel',
-                name: 'The Malcolm Hotel',
-                location: 'Canmore, Alberta',
-                description: 'A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.',
-                coordinates: [-115.3480, 51.0875],
-                image: 'assets/images/venues/malcolm-hotel-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '30-200 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location']
-            },
-            {
-                id: 'creekside-villa',
-                name: 'Creekside Villa',
-                location: 'Canmore, Alberta',
-                description: 'A charming boutique venue with a picturesque setting along the creek and mountain views.',
-                coordinates: [-115.3578, 51.0816],
-                image: 'assets/images/venues/creekside-villa-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '10-120 guests',
-                priceRange: '$$-$$$',
-                features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views']
-            },
-            {
-                id: 'finchys',
-                name: 'Finchy\'s @CanGOLF',
-                location: 'Canmore, Alberta',
-                description: 'A unique golf simulator and event space offering a fun, casual setting for wedding events.',
-                coordinates: [-115.3434, 51.0925],
-                image: 'assets/images/venues/finchys-main.jpg',
-                region: 'canmore',
-                url: '#canmore-venues',
-                capacity: '20-100 guests',
-                priceRange: '$$-$$$',
-                features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options']
-            },
-            
-            // GOLDEN, BC VENUES
-            {
-                id: 'kicking-horse',
-                name: 'Kicking Horse Resort',
-                location: 'Golden, British Columbia',
-                description: 'A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.',
-                coordinates: [-117.0475, 51.2980],
-                image: 'assets/images/venues/kicking-horse-main.jpg',
-                region: 'golden',
-                url: '#golden-venues',
-                capacity: '20-200 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience']
-            },
-            {
-                id: 'hillside-lodge',
-                name: 'Hillside Lodge & Chalets',
-                location: 'Golden, British Columbia',
-                description: 'A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.',
-                coordinates: [-116.9722, 51.3194],
-                image: 'assets/images/venues/hillside-lodge-main.jpg',
-                region: 'golden',
-                url: '#golden-venues',
-                capacity: '10-60 guests',
-                priceRange: '$$-$$$',
-                features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings']
-            },
-            {
-                id: 'emerald-lodge',
-                name: 'Emerald Lake Lodge',
-                location: 'Field, British Columbia',
-                description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
-                coordinates: [-116.5285, 51.4429],
-                image: 'assets/images/venues/emerald-lake-main.jpg',
-                region: 'golden',
-                url: '#golden-venues',
-                capacity: '10-88 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop']
-            },
-            
-            // JASPER VENUES
-            {
-                id: 'pyramid-lake',
-                name: 'Pyramid Lake Lodge',
-                location: 'Jasper, Alberta',
-                description: 'A charming lodge on the shores of Pyramid Lake with mountain views and alpine charm.',
-                coordinates: [-118.0955, 52.9301],
-                image: 'assets/images/venues/pyramid-lake-main.jpg',
-                region: 'jasper',
-                url: '#jasper-venues',
-                capacity: '10-80 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Lakeside Setting', 'Mountain Views', 'Lodge Accommodation', 'Natural Beauty']
-            },
-            {
-                id: 'maligne-lake',
-                name: 'Maligne Lake Chalet',
-                location: 'Jasper, Alberta',
-                description: 'A historic chalet in a spectacular setting on the shores of pristine Maligne Lake.',
-                coordinates: [-117.7676, 52.7268],
-                image: 'assets/images/venues/maligne-lake-main.jpg',
-                region: 'jasper',
-                url: '#jasper-venues',
-                capacity: '10-60 guests',
-                priceRange: '$$-$$$',
-                features: ['Historic Chalet', 'Lakeside Views', 'Remote Setting', 'National Park Location']
-            },
-            
-            // LAKE LOUISE VENUES
-            {
-                id: 'chateau-louise',
-                name: 'Fairmont Chateau Lake Louise',
-                location: 'Lake Louise, Alberta',
-                description: 'An iconic venue offering enchanting ceremonies by the emerald waters of Lake Louise with the Victoria Glacier as a backdrop.',
-                coordinates: [-116.2153, 51.4254],
-                image: 'assets/images/venues/lake-louise-main.jpg',
-                region: 'lake-louise',
-                url: '#lake-louise-venues',
-                capacity: '10-550 guests',
-                priceRange: '$$$-$$$$',
-                features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience']
-            }
-        ];
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-        // Create and add 3D building extrusions for major venues
-        const buildings = {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': venueMarkers.map(venue => ({
-                    'type': 'Feature',
-                    'geometry': {
-                        'type': 'Polygon',
-                        'coordinates': [
-                            [
-                                [venue.coordinates[0] - 0.001, venue.coordinates[1] - 0.001],
-                                [venue.coordinates[0] + 0.001, venue.coordinates[1] - 0.001],
-                                [venue.coordinates[0] + 0.001, venue.coordinates[1] + 0.001],
-                                [venue.coordinates[0] - 0.001, venue.coordinates[1] + 0.001],
-                                [venue.coordinates[0] - 0.001, venue.coordinates[1] - 0.001]
-                            ]
-                        ]
-                    },
-                    'properties': {
-                        'name': venue.name,
-                        'height': 100, // Building height
-                        'base': 0,
-                        'id': venue.id,
-                        'region': venue.region
-                    }
-                }))
-            }
-        };
-
-        map.addSource('buildings', buildings);
-
-        map.addLayer({
-            'id': 'building-extrusions',
-            'type': 'fill-extrusion',
-            'source': 'buildings',
-            'paint': {
-                'fill-extrusion-color': [
-                    'match',
-                    ['get', 'region'],
-                    'banff', '#E4B7B7', // Your brand color
-                    'canmore', '#D8A1A1',
-                    'lake-louise', '#C891A0',
-                    'golden', '#B9807E',
-                    'jasper', '#AA7068',
-                    '#E4B7B7' // Default color
-                ],
-                'fill-extrusion-height': ['get', 'height'],
-                'fill-extrusion-base': ['get', 'base'],
-                'fill-extrusion-opacity': 0.7
-            }
+        // Add event listener for map load errors
+        map.on('error', (e) => {
+            console.error('Mapbox error:', e.error);
         });
 
-        // Create and add markers to the map
-        venueMarkers.forEach(venue => {
-            // Create marker element
-            const markerElement = document.createElement('div');
-            markerElement.className = 'venue-marker';
-            markerElement.dataset.region = venue.region;
-            markerElement.dataset.venueId = venue.id;
-            markerElement.innerHTML = `<i class="fas fa-map-marker-alt"></i>`;
+        // Check if map loads successfully
+        map.on('load', () => {
+            console.log('Map loaded successfully');
+            // Add 3D terrain
+            map.addSource('mapbox-dem', {
+                'type': 'raster-dem',
+                'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                'tileSize': 512,
+                'maxzoom': 14
+            });
             
-            // Create a marker
-            const marker = new mapboxgl.Marker(markerElement)
-                .setLngLat(venue.coordinates)
-                .addTo(map);
+            // Add 3D terrain
+            map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
             
-            // Enhanced hover effect
-            markerElement.addEventListener('mouseenter', () => {
-                // Scale up the marker with a 3D effect
-                markerElement.style.transform = 'scale(1.5) translateY(-10px)';
-                markerElement.style.filter = 'drop-shadow(0 10px 8px rgba(0, 0, 0, 0.3))';
+            // Add sky layer for realism
+            map.addLayer({
+                'id': 'sky',
+                'type': 'sky',
+                'paint': {
+                    'sky-type': 'atmosphere',
+                    'sky-atmosphere-sun': [0.0, 0.0],
+                    'sky-atmosphere-sun-intensity': 15
+                }
+            });
+
+            // Add custom marker data
+            const venueMarkers = [
+                // BANFF VENUES
+                {
+                    id: 'the-gem',
+                    name: 'The Gem',
+                    location: 'Bighorn No. 8, Alberta',
+                    description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
+                    coordinates: [-115.3392, 51.0977], // Harvie Heights coordinates
+                    image: 'assets/images/venues/the-gem-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '20-150 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities']
+                },
+                {
+                    id: 'banff-springs',
+                    name: 'Fairmont Springs Hotel',
+                    location: 'Banff, Alberta',
+                    description: 'Known as Canada\'s "Castle in the Rockies," this historic hotel offers luxurious wedding venues with stunning mountain views.',
+                    coordinates: [-115.5708, 51.1645],
+                    image: 'assets/images/venues/banff-springs-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '10-800 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites']
+                },
+                {
+                    id: 'sky-bistro',
+                    name: 'Sky Bistro, Gondola',
+                    location: 'Banff, Alberta',
+                    description: 'A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.',
+                    coordinates: [-115.5582, 51.1641],
+                    image: 'assets/images/venues/sky-bistro-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '20-200 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining']
+                },
+                {
+                    id: 'maple-leaf',
+                    name: 'The Maple Leaf',
+                    location: 'Banff, Alberta',
+                    description: 'A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.',
+                    coordinates: [-115.5712, 51.1767],
+                    image: 'assets/images/venues/maple-leaf-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '10-80 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine']
+                },
+                {
+                    id: 'mt-norquay',
+                    name: 'Mt. Norquay',
+                    location: 'Banff, Alberta',
+                    description: 'A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.',
+                    coordinates: [-115.5937, 51.2080],
+                    image: 'assets/images/venues/mt-norquay-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '50-200 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies']
+                },
+                {
+                    id: 'three-bears',
+                    name: 'Three Bears Brewery',
+                    location: 'Banff, Alberta',
+                    description: 'A unique brewery venue with rustic-industrial charm in the heart of Banff.',
+                    coordinates: [-115.5693, 51.1761],
+                    image: 'assets/images/venues/three-bears-main.jpg',
+                    region: 'banff',
+                    url: '#banff-venues',
+                    capacity: '30-150 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location']
+                },
                 
-                // Highlight corresponding building
-                map.setPaintProperty('building-extrusions', 'fill-extrusion-color', [
-                    'case',
-                    ['==', ['get', 'id'], venue.id],
-                    '#FFD700', // Gold color for highlighted venue
-                    [
+                // CANMORE VENUES
+                {
+                    id: 'mainspace-solara',
+                    name: 'Mainspace Solara',
+                    location: 'Canmore, Alberta',
+                    description: 'A contemporary event space with mountain views and flexible layouts for weddings of all sizes.',
+                    coordinates: [-115.3472, 51.0895],
+                    image: 'assets/images/venues/mainspace-solara-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '20-250 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities']
+                },
+                {
+                    id: 'stewart-creek',
+                    name: 'Stewart Creek Country Club',
+                    location: 'Canmore, Alberta',
+                    description: 'An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.',
+                    coordinates: [-115.3696, 51.0574],
+                    image: 'assets/images/venues/stewart-creek-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '20-180 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace']
+                },
+                {
+                    id: 'silvertip',
+                    name: 'Silvertip Resort',
+                    location: 'Canmore, Alberta',
+                    description: 'A mountain golf resort offering stunning views of the Three Sisters peaks with beautiful indoor and outdoor ceremony spaces.',
+                    coordinates: [-115.3126, 51.0911],
+                    image: 'assets/images/venues/silvertip-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '20-250 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience']
+                },
+                {
+                    id: 'malcolm-hotel',
+                    name: 'The Malcolm Hotel',
+                    location: 'Canmore, Alberta',
+                    description: 'A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.',
+                    coordinates: [-115.3480, 51.0875],
+                    image: 'assets/images/venues/malcolm-hotel-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '30-200 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location']
+                },
+                {
+                    id: 'creekside-villa',
+                    name: 'Creekside Villa',
+                    location: 'Canmore, Alberta',
+                    description: 'A charming boutique venue with a picturesque setting along the creek and mountain views.',
+                    coordinates: [-115.3578, 51.0816],
+                    image: 'assets/images/venues/creekside-villa-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '10-120 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views']
+                },
+                {
+                    id: 'finchys',
+                    name: 'Finchy\'s @CanGOLF',
+                    location: 'Canmore, Alberta',
+                    description: 'A unique golf simulator and event space offering a fun, casual setting for wedding events.',
+                    coordinates: [-115.3434, 51.0925],
+                    image: 'assets/images/venues/finchys-main.jpg',
+                    region: 'canmore',
+                    url: '#canmore-venues',
+                    capacity: '20-100 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options']
+                },
+                
+                // GOLDEN, BC VENUES
+                {
+                    id: 'kicking-horse',
+                    name: 'Kicking Horse Resort',
+                    location: 'Golden, British Columbia',
+                    description: 'A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.',
+                    coordinates: [-117.0475, 51.2980],
+                    image: 'assets/images/venues/kicking-horse-main.jpg',
+                    region: 'golden',
+                    url: '#golden-venues',
+                    capacity: '20-200 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience']
+                },
+                {
+                    id: 'hillside-lodge',
+                    name: 'Hillside Lodge & Chalets',
+                    location: 'Golden, British Columbia',
+                    description: 'A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.',
+                    coordinates: [-116.9722, 51.3194],
+                    image: 'assets/images/venues/hillside-lodge-main.jpg',
+                    region: 'golden',
+                    url: '#golden-venues',
+                    capacity: '10-60 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings']
+                },
+                {
+                    id: 'emerald-lodge',
+                    name: 'Emerald Lake Lodge',
+                    location: 'Field, British Columbia',
+                    description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
+                    coordinates: [-116.5285, 51.4429],
+                    image: 'assets/images/venues/emerald-lake-main.jpg',
+                    region: 'golden',
+                    url: '#golden-venues',
+                    capacity: '10-88 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop']
+                },
+                
+                // JASPER VENUES
+                {
+                    id: 'pyramid-lake',
+                    name: 'Pyramid Lake Lodge',
+                    location: 'Jasper, Alberta',
+                    description: 'A charming lodge on the shores of Pyramid Lake with mountain views and alpine charm.',
+                    coordinates: [-118.0955, 52.9301],
+                    image: 'assets/images/venues/pyramid-lake-main.jpg',
+                    region: 'jasper',
+                    url: '#jasper-venues',
+                    capacity: '10-80 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Lakeside Setting', 'Mountain Views', 'Lodge Accommodation', 'Natural Beauty']
+                },
+                {
+                    id: 'maligne-lake',
+                    name: 'Maligne Lake Chalet',
+                    location: 'Jasper, Alberta',
+                    description: 'A historic chalet in a spectacular setting on the shores of pristine Maligne Lake.',
+                    coordinates: [-117.7676, 52.7268],
+                    image: 'assets/images/venues/maligne-lake-main.jpg',
+                    region: 'jasper',
+                    url: '#jasper-venues',
+                    capacity: '10-60 guests',
+                    priceRange: '$$-$$$',
+                    features: ['Historic Chalet', 'Lakeside Views', 'Remote Setting', 'National Park Location']
+                },
+                
+                // LAKE LOUISE VENUES
+                {
+                    id: 'chateau-louise',
+                    name: 'Fairmont Chateau Lake Louise',
+                    location: 'Lake Louise, Alberta',
+                    description: 'An iconic venue offering enchanting ceremonies by the emerald waters of Lake Louise with the Victoria Glacier as a backdrop.',
+                    coordinates: [-116.2153, 51.4254],
+                    image: 'assets/images/venues/lake-louise-main.jpg',
+                    region: 'lake-louise',
+                    url: '#lake-louise-venues',
+                    capacity: '10-550 guests',
+                    priceRange: '$$$-$$$$',
+                    features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience']
+                }
+            ];
+
+            // Create and add 3D building extrusions for major venues
+            const buildings = {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': venueMarkers.map(venue => ({
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [venue.coordinates[0] - 0.001, venue.coordinates[1] - 0.001],
+                                    [venue.coordinates[0] + 0.001, venue.coordinates[1] - 0.001],
+                                    [venue.coordinates[0] + 0.001, venue.coordinates[1] + 0.001],
+                                    [venue.coordinates[0] - 0.001, venue.coordinates[1] + 0.001],
+                                    [venue.coordinates[0] - 0.001, venue.coordinates[1] - 0.001]
+                                ]
+                            ]
+                        },
+                        'properties': {
+                            'name': venue.name,
+                            'height': 100, // Building height
+                            'base': 0,
+                            'id': venue.id,
+                            'region': venue.region
+                        }
+                    }))
+                }
+            };
+
+            map.addSource('buildings', buildings);
+
+            map.addLayer({
+                'id': 'building-extrusions',
+                'type': 'fill-extrusion',
+                'source': 'buildings',
+                'paint': {
+                    'fill-extrusion-color': [
+                        'match',
+                        ['get', 'region'],
+                        'banff', '#E4B7B7', // Your brand color
+                        'canmore', '#D8A1A1',
+                        'lake-louise', '#C891A0',
+                        'golden', '#B9807E',
+                        'jasper', '#AA7068',
+                        '#E4B7B7' // Default color
+                    ],
+                    'fill-extrusion-height': ['get', 'height'],
+                    'fill-extrusion-base': ['get', 'base'],
+                    'fill-extrusion-opacity': 0.7
+                }
+            });
+
+            // Create and add markers to the map
+            venueMarkers.forEach(venue => {
+                // Create marker element
+                const markerElement = document.createElement('div');
+                markerElement.className = 'venue-marker';
+                markerElement.dataset.region = venue.region;
+                markerElement.dataset.venueId = venue.id;
+                markerElement.innerHTML = `<i class="fas fa-map-marker-alt"></i>`;
+                
+                // Create a marker
+                const marker = new mapboxgl.Marker(markerElement)
+                    .setLngLat(venue.coordinates)
+                    .addTo(map);
+                
+                // Enhanced hover effect
+                markerElement.addEventListener('mouseenter', () => {
+                    // Scale up the marker with a 3D effect
+                    markerElement.style.transform = 'scale(1.5) translateY(-10px)';
+                    markerElement.style.filter = 'drop-shadow(0 10px 8px rgba(0, 0, 0, 0.3))';
+                    
+                    // Highlight corresponding building
+                    map.setPaintProperty('building-extrusions', 'fill-extrusion-color', [
+                        'case',
+                        ['==', ['get', 'id'], venue.id],
+                        '#FFD700', // Gold color for highlighted venue
+                        [
+                            'match',
+                            ['get', 'region'],
+                            'banff', '#E4B7B7',
+                            'canmore', '#D8A1A1',
+                            'lake-louise', '#C891A0',
+                            'golden', '#B9807E',
+                            'jasper', '#AA7068',
+                            '#E4B7B7'
+                        ]
+                    ]);
+                    
+                    // Show enhanced venue preview
+                    showEnhancedVenuePreview(venue);
+                });
+
+                markerElement.addEventListener('mouseleave', () => {
+                    // Reset marker style
+                    markerElement.style.transform = '';
+                    markerElement.style.filter = '';
+                    
+                    // Reset building colors
+                    map.setPaintProperty('building-extrusions', 'fill-extrusion-color', [
                         'match',
                         ['get', 'region'],
                         'banff', '#E4B7B7',
@@ -386,109 +427,90 @@ function initInteractiveMap() {
                         'golden', '#B9807E',
                         'jasper', '#AA7068',
                         '#E4B7B7'
-                    ]
-                ]);
+                    ]);
+                });
                 
-                // Show enhanced venue preview
-                showEnhancedVenuePreview(venue);
-            });
-
-            markerElement.addEventListener('mouseleave', () => {
-                // Reset marker style
-                markerElement.style.transform = '';
-                markerElement.style.filter = '';
-                
-                // Reset building colors
-                map.setPaintProperty('building-extrusions', 'fill-extrusion-color', [
-                    'match',
-                    ['get', 'region'],
-                    'banff', '#E4B7B7',
-                    'canmore', '#D8A1A1',
-                    'lake-louise', '#C891A0',
-                    'golden', '#B9807E',
-                    'jasper', '#AA7068',
-                    '#E4B7B7'
-                ]);
+                // Add click event to each marker
+                markerElement.addEventListener('click', () => {
+                    showEnhancedVenuePreview(venue);
+                    
+                    // Move map to marker with a dramatic 3D flyover effect
+                    map.flyTo({
+                        center: venue.coordinates,
+                        zoom: 14,
+                        pitch: 60,
+                        bearing: Math.random() * 60 - 30, // Random angle for interest
+                        essential: true,
+                        duration: 2000
+                    });
+                });
             });
             
-            // Add click event to each marker
-            markerElement.addEventListener('click', () => {
-                showEnhancedVenuePreview(venue);
+            // Add event listener for region filters
+            document.querySelectorAll('.region-filter').forEach(button => {
+                button.addEventListener('click', () => {
+                    const region = button.getAttribute('data-region');
+                    
+                    // Update active state of filter buttons
+                    document.querySelectorAll('.region-filter').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    
+                    // Filter markers
+                    filterMarkers(region);
+                    
+                    // Adjust map view based on selected region
+                    adjustMapView(region);
+                });
+            });
+            
+            // Function to filter markers by region
+            function filterMarkers(region) {
+                const markers = document.querySelectorAll('.venue-marker');
                 
-                // Move map to marker with a dramatic 3D flyover effect
+                markers.forEach(marker => {
+                    if (region === 'all' || marker.dataset.region === region) {
+                        marker.style.display = 'block';
+                    } else {
+                        marker.style.display = 'none';
+                    }
+                });
+
+                // Also filter building extrusions
+                if (region === 'all') {
+                    map.setFilter('building-extrusions', null);
+                } else {
+                    map.setFilter('building-extrusions', ['==', ['get', 'region'], region]);
+                }
+            }
+            
+            // Function to adjust map view based on region
+            function adjustMapView(region) {
+                const regionCoordinates = {
+                    'banff': { center: [-115.5708, 51.1784], zoom: 12, pitch: 60, bearing: -15 },
+                    'canmore': { center: [-115.3126, 51.0911], zoom: 12, pitch: 60, bearing: 10 },
+                    'lake-louise': { center: [-116.2153, 51.4254], zoom: 12, pitch: 60, bearing: -20 },
+                    'golden': { center: [-117.0475, 51.2980], zoom: 12, pitch: 60, bearing: 0 },
+                    'jasper': { center: [-118.0955, 52.9301], zoom: 12, pitch: 60, bearing: 15 },
+                    'all': { center: [-116.4817, 51.1784], zoom: 9, pitch: 45, bearing: -17.6 }
+                };
+                
+                const settings = regionCoordinates[region] || regionCoordinates['all'];
+                
                 map.flyTo({
-                    center: venue.coordinates,
-                    zoom: 14,
-                    pitch: 60,
-                    bearing: Math.random() * 60 - 30, // Random angle for interest
+                    center: settings.center,
+                    zoom: settings.zoom,
+                    pitch: settings.pitch,
+                    bearing: settings.bearing,
                     essential: true,
                     duration: 2000
                 });
-            });
-        });
-        
-        // Add event listener for region filters
-        document.querySelectorAll('.region-filter').forEach(button => {
-            button.addEventListener('click', () => {
-                const region = button.getAttribute('data-region');
-                
-                // Update active state of filter buttons
-                document.querySelectorAll('.region-filter').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                button.classList.add('active');
-                
-                // Filter markers
-                filterMarkers(region);
-                
-                // Adjust map view based on selected region
-                adjustMapView(region);
-            });
-        });
-        
-        // Function to filter markers by region
-        function filterMarkers(region) {
-            const markers = document.querySelectorAll('.venue-marker');
-            
-            markers.forEach(marker => {
-                if (region === 'all' || marker.dataset.region === region) {
-                    marker.style.display = 'block';
-                } else {
-                    marker.style.display = 'none';
-                }
-            });
-
-            // Also filter building extrusions
-            if (region === 'all') {
-                map.setFilter('building-extrusions', null);
-            } else {
-                map.setFilter('building-extrusions', ['==', ['get', 'region'], region]);
             }
-        }
-        
-        // Function to adjust map view based on region
-        function adjustMapView(region) {
-            const regionCoordinates = {
-                'banff': { center: [-115.5708, 51.1784], zoom: 12, pitch: 60, bearing: -15 },
-                'canmore': { center: [-115.3126, 51.0911], zoom: 12, pitch: 60, bearing: 10 },
-                'lake-louise': { center: [-116.2153, 51.4254], zoom: 12, pitch: 60, bearing: -20 },
-                'golden': { center: [-117.0475, 51.2980], zoom: 12, pitch: 60, bearing: 0 },
-                'jasper': { center: [-118.0955, 52.9301], zoom: 12, pitch: 60, bearing: 15 },
-                'all': { center: [-116.4817, 51.1784], zoom: 9, pitch: 45, bearing: -17.6 }
-            };
-            
-            const settings = regionCoordinates[region] || regionCoordinates['all'];
-            
-            map.flyTo({
-                center: settings.center,
-                zoom: settings.zoom,
-                pitch: settings.pitch,
-                bearing: settings.bearing,
-                essential: true,
-                duration: 2000
-            });
-        }
-    });
+        });
+    } catch (e) {
+        console.error('Error initializing map:', e);
+    }
     
     // Add map styling
     const style = document.createElement('style');

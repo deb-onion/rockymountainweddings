@@ -14,11 +14,11 @@ function initInteractiveMap() {
     // Check if mapboxgl is defined
     if (typeof mapboxgl !== 'undefined') {
         // Set your Mapbox access token
-        mapboxgl.accessToken = 'pk.eyJ1Ijoicm9ja3ltb3VudGFpbndlZGRpbmdzIiwiYSI6ImNscWw5YWJ2ejRsYXkybG1tNWJmY3QwZXkifQ.dtDa5Gw_apKU_HMti5xnmw';
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGQzZ3RyMGp2djJqcXRlMno0dmh3ZyJ9.T0KdhzJgUv7MfalaNCWYQQ';
 
         // Create a new map instance
         const map = new mapboxgl.Map({
-            container: 'venues-map',
+            container: 'venuesMap', // Match the actual HTML container ID
             style: 'mapbox://styles/mapbox/outdoors-v12', // Use a style that shows terrain
             center: [-115.5708, 51.1645], // Center on the Canadian Rockies (Banff area)
             zoom: 8,
