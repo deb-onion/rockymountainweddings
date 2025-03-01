@@ -1,5 +1,5 @@
 # Rocky Mountain Weddings Website
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
 ## What This Project Is
@@ -31,20 +31,19 @@ This is a dynamic wedding service website with automated media management. The s
   - `assets/`: Media and backend files
     - `images/`: Website images (automatically tracked)
     - `videos/`: Website videos (automatically tracked) 
-    - `log-api.js`: Main API entry point
-    - `update-media-timestamp.js`: Handles media file changes
-    - `media-updates.log`: Automated log of all media changes
+    - `log-api.js`: Main API entry point for media tracking
+    - `media-updates.log`: Automatically generated log of all media changes
   - `scripts/`: Frontend JavaScript 
   - `styles/`: CSS stylesheets
   - HTML pages (index.html, about.html, venues.html, blog.html, contact.html)
 - `scripts/`: Helper PowerShell scripts for development
-  - `update-version.ps1`: Automated version update script
-  - `log-media-changes.ps1`: Media change logger
+  - `log-media-changes.ps1`: Automatic media change logger
   - Other helper scripts
-- `node_modules/`: Node.js dependencies
-- Package configuration files (package.json)
+- `update-version.ps1`: Script for updating version numbers and logs
+- `update-site.ps1`: Main deployment script for pushing updates
 - `version_history.txt`: Automatically updated version history
-- `update-log.txt`: Logs of major updates
+- `CHANGELOG.md`: Master changelog with comprehensive version history
+- Other configuration files (package.json, etc.)
 
 ## Key Features
 - **Dynamic Media Management**: Automatically detects when images or videos are added or modified
@@ -132,67 +131,119 @@ Opens commonly accessed files:
 
 ## Automated Version Management
 
-The project includes a comprehensive version management system that automates updating version numbers, history files, and logs.
+The project includes a comprehensive version management system that works with an automated media tracking system. Here's how everything fits together:
+
+### How Our Version System Works
+
+We have two separate but integrated systems:
+
+1. **Automated Media Tracking** - Continuously runs in the background:
+   - Automatically watches for any changes to images and videos
+   - When media files are added/modified, immediately logs them to `media-updates.log`
+   - Runs independently through the file watcher (`npm run watch`)
+
+2. **Version Management and Deployment** - Run manually when deploying updates:
+   - Updates version numbers and documentation
+   - Commits and deploys all changes, including any media changes that were tracked
+
+### Version Files
+
+The project maintains three log files, each with a specific purpose:
+
+1. **CHANGELOG.md** - The master changelog that provides comprehensive documentation of all changes, including:
+   - Feature additions and improvements
+   - Bug fixes and optimizations 
+   - Deployment and configuration changes
+   - Significant media updates and asset changes (high-level summary only)
+   
+2. **version_history.txt** - A simplified version history with basic entries for each update.
+
+3. **media-updates.log** - Automatically tracks detailed media asset changes (images, videos, etc.), including:
+   - Individual file additions and modifications (automatically generated)
+   - Timestamp and size information
+   - Technical metadata
+
+### Semantic Versioning
+
+We follow [Semantic Versioning](https://semver.org/) principles:
+
+- **Major version** (X.0.0): Breaking changes, significant redesigns, major feature overhauls
+- **Minor version** (X.Y.0): New features without breaking existing functionality
+- **Patch version** (X.Y.Z): Bug fixes, small updates, content changes
 
 ### One-Step Site Update
 
-Need to update everything at once? Just use this simple command:
+To update and deploy the site with all changes (including media):
 
 ```
-.\scripts\update-version.ps1 -Description "What you changed" -CommitChanges
+.\update-site.ps1 -Description "What you changed" -VersionType "[major|minor|patch|auto]"
 ```
 
 This single command will:
-- Update the version number in your project
-- Record what you changed in the history files
-- Update all necessary logs
-- Save everything to Git automatically
+1. Update version numbers in relevant files
+2. Add your description to CHANGELOG.md and version_history.txt
+3. Commit ALL tracked changes including:
+   - Code changes you've made
+   - Documentation updates
+   - Any media changes that have been automatically logged
+4. Push to GitHub and trigger deployment
 
-It's like pressing a "Save and Publish" button for your entire project!
+**Examples:**
+```powershell
+# Major update (3.0.0)
+.\update-site.ps1 -Description "Complete website redesign with new color scheme" -VersionType "major"
 
-**Example:**
-```
-.\scripts\update-version.ps1 -Description "Added new wedding package pricing" -CommitChanges
-```
+# Minor update (2.1.0)
+.\update-site.ps1 -Description "Added new venue filtering feature" -VersionType "minor"
 
-That's it! No need to update multiple files or run several commands.
+# Patch update (2.0.1)
+.\update-site.ps1 -Description "Fixed broken links in footer" -VersionType "patch"
 
-### How to Update Versions
-
-#### Simple Version Updates
-To update the version with npm scripts:
-```
-npm run update-patch -- -Description "Fixed navigation menu bug"
-npm run update-minor -- -Description "Added photo gallery feature"
-npm run update-major -- -Description "Complete redesign of website"
+# Auto-detect version type
+.\update-site.ps1 -Description "Fixed Mapbox token issue"
 ```
 
-#### Advanced Version Control
-For more control, use the PowerShell script directly:
+### Automatic Version Detection
+
+The auto-detection determines version type based on keywords in your description:
+
+- **Major**: Contains "BREAKING CHANGE", "MAJOR", "redesign", "complete overhaul"
+- **Minor**: Contains "feat", "feature", "add", "new", "enhance"
+- **Patch**: Any other description (default for fixes, updates, etc.)
+
+### Development vs Deployment Commands
+
+We have two sets of commands for different purposes:
+
+#### 1. Development Commands (for local work)
 ```
-.\scripts\update-version.ps1 -Description "Your change description" -Version "2.3.4"
-.\scripts\update-version.ps1 -Description "Your change description" -Minor
-.\scripts\update-version.ps1 -Description "Your change description" -CommitChanges
+npm start         # Start the API server
+npm run watch     # Watch for media file changes (runs automatically in background)
+npm run dev       # Run both server and file watcher together
 ```
+
+#### 2. Deployment Command (for publishing changes)
+```
+.\update-site.ps1 -Description "Your change description" -VersionType "auto"
+```
+
+The npm commands in package.json that reference `update-version.ps1` are legacy commands that have been replaced by the more comprehensive `update-site.ps1` script. For all site updates, use `update-site.ps1`.
 
 ### What Gets Updated
-When you run a version update:
-1. **package.json version** is automatically incremented
-2. **version_history.txt** gets a new entry with the current date
-3. **update-log.txt** is updated with your description
-4. Changes can be automatically committed to git with the `-CommitChanges` flag
 
-### Automatic Media Logging
-The system automatically logs all media file changes:
-- Tracks when files are added, modified, or deleted
-- Records image and video metadata
-- Stores logs in `src/assets/media-updates.log`
-- Provides clear timestamps for all changes
+When media files change:
+- Changes are **automatically** logged to `media-updates.log` by the file watcher
+
+When you run update-site.ps1:
+1. **CHANGELOG.md** gets a detailed new entry with the current date and version
+2. **version_history.txt** gets a simplified entry with the current date and version
+3. ALL changes (code, media, etc.) are committed to git with a versioned message
+4. The site is automatically deployed
 
 ### Log File Locations
-- **Version History**: `version_history.txt` in project root
-- **Update Log**: `update-log.txt` in project root
-- **Media Changes**: `src/assets/media-updates.log`
+- **CHANGELOG.md**: Project root - Master changelog with comprehensive version history
+- **version_history.txt**: Project root - Simplified version history with basic entries
+- **media-updates.log**: `src/assets/` - Detailed tracking of individual media file changes
 
 ## How It Works
 

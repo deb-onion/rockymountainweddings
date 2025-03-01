@@ -1,4 +1,6 @@
-﻿# Rocky Mountain Weddings & Events - Version History
+## Version 2.0.5 - 2025-03-01
+- Fixed update logic
+# Rocky Mountain Weddings & Events - Version History
 
 ## Update - 2025-03-01
 - Fix  Mapbox
