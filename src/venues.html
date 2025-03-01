@@ -23,33 +23,9 @@
                 `;
             });
         }
-        
-        // Initialize the Google Maps API with all required libraries
-        async function initGoogleMapsAPI() {
-            try {
-                // Load the Google Maps JavaScript API
-                const { Map } = await google.maps.importLibrary("maps");
-                const { StreetViewService } = await google.maps.importLibrary("streetView");
-                const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-                const { PlacesService } = await google.maps.importLibrary("places");
-                const { Geocoder } = await google.maps.importLibrary("geocoding");
-                
-                console.log("Google Maps libraries loaded successfully");
-            } catch (error) {
-                console.error("Error loading Google Maps libraries:", error);
-            }
-        }
-
-        // Load the Google Maps API
-        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries","places,marker,streetView,maps,geocoding");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-            key: "AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE", // Original API key restored
-            v: "weekly",
-            // Add other necessary parameters here
-        });
-
-        // Initialize Google Maps when libraries are loaded
-        document.addEventListener('DOMContentLoaded', initGoogleMapsAPI);
     </script>
+    <!-- Simple Google Maps script loading -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,marker,streetView,geometry&callback=Function.prototype"></script>
     <!-- Pannellum for 360° tours (for venue interiors) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>

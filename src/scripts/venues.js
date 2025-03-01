@@ -67,10 +67,17 @@ function initInteractiveMap() {
 
     // Initialize the map with 3D capabilities and error handling
     try {
+        // Ensure Google Maps API is completely loaded before accessing MapTypeId
+        let mapTypeId = 'roadmap'; // Default fallback
+        if (google.maps && google.maps.MapTypeId) {
+            // Check if TERRAIN is available
+            mapTypeId = google.maps.MapTypeId.TERRAIN || google.maps.MapTypeId.ROADMAP;
+        }
+
         const mapOptions = {
             center: { lat: 51.1645, lng: -115.5708 }, // Banff area
             zoom: 8,
-            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            mapTypeId: mapTypeId,
             styles: mapStyles,
             mapTypeControl: true,
             mapTypeControlOptions: {
@@ -961,6 +968,33 @@ async function initVirtualTours() {
         const closeButton = tourModal.querySelector('.close-modal');
         const tourContainer = document.getElementById('tourContainer');
         
+        // Get venueMarkers from global scope or define a local array if not available
+        let venueMarkersData = [];
+        
+        // Check if venueMarkers is defined in outer scope
+        if (typeof venueMarkers !== 'undefined') {
+            venueMarkersData = venueMarkers;
+        } else {
+            // Backup for when venueMarkers is not defined in this scope
+            // This could happen due to scoping issues with the map function
+            // Locate venues data from a data attribute or another source
+            try {
+                const venuesDataElement = document.getElementById('venues-data');
+                if (venuesDataElement && venuesDataElement.dataset.venues) {
+                    venueMarkersData = JSON.parse(venuesDataElement.dataset.venues);
+                }
+            } catch (error) {
+                console.error("Error loading venue data:", error);
+            }
+            
+            // If still no data, attempt to fetch venue data
+            if (venueMarkersData.length === 0) {
+                console.warn("Venue markers not available, using fallback data");
+                // Emergency fallback with minimal basic data for testing
+                venueMarkersData = window.venueData || [];
+            }
+        }
+        
         // Function to open virtual tour
         function openVirtualTour(venueId) {
             // Show loading indicator
@@ -976,7 +1010,7 @@ async function initVirtualTours() {
             console.log(`Opening virtual tour for venue ID: ${venueId}`);
             
             // Find the venue data from our venues array
-            const venueData = venueMarkers.find(venue => venue.id === venueId);
+            const venueData = venueMarkersData.find(venue => venue.id === venueId);
             
             if (!venueData) {
                 console.error(`Could not find venue data for ID: ${venueId}`);
@@ -1027,7 +1061,7 @@ async function initVirtualTours() {
                         const view = button.dataset.view;
                         
                         // Find venue data again to get place ID
-                        const venueData = venueMarkers.find(venue => venue.id === venueId);
+                        const venueData = venueMarkersData.find(venue => venue.id === venueId);
                         if (!venueData) return;
                         
                         if (view === 'exterior') {
@@ -1083,7 +1117,7 @@ async function initVirtualTours() {
                 } else {
                     console.error(`Error getting place details for ${venueName}: ${status}`);
                     // Fall back to venue marker data
-                    const venueData = venueMarkers.find(venue => venue.name === venueName);
+                    const venueData = venueMarkersData.find(venue => venue.name === venueName);
                     if (venueData && venueData.coordinates) {
                         checkStreetViewAndInitialize({
                             geometry: {
@@ -1169,11 +1203,23 @@ async function initVirtualTours() {
                 const streetViewService = new StreetViewService();
                 
                 return new Promise((resolve) => {
+                    // First check if we have a valid location to use
+                    if (!placeDetails || !placeDetails.geometry || !placeDetails.geometry.location) {
+                        console.error("Invalid place details for Street View check");
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Now check exterior panoramas
                     streetViewService.getPanorama({
                         location: placeDetails.geometry.location,
                         radius: 50,
                         source: google.maps.StreetViewSource.OUTDOOR // Start with outdoor
                     }, (outdoorData, outdoorStatus) => {
+                        // Verify the StreetViewStatus enum is available
+                        const okStatus = google.maps.StreetViewStatus ? 
+                            google.maps.StreetViewStatus.OK : 'OK';
+                        
                         // Now check for indoor panoramas
                         streetViewService.getPanorama({
                             location: placeDetails.geometry.location,
@@ -1183,9 +1229,11 @@ async function initVirtualTours() {
                             // If there are more panoramas in DEFAULT than in OUTDOOR,
                             // it likely means there are indoor panoramas
                             const hasInterior = 
-                                defaultStatus === google.maps.StreetViewStatus.OK && 
-                                (outdoorStatus !== google.maps.StreetViewStatus.OK || 
-                                defaultData.links.length > (outdoorData?.links?.length || 0));
+                                defaultStatus === okStatus && 
+                                (outdoorStatus !== okStatus || 
+                                (defaultData && outdoorData && 
+                                defaultData.links && outdoorData.links &&
+                                defaultData.links.length > outdoorData.links.length));
                             
                             resolve(hasInterior);
                         });
@@ -1200,6 +1248,20 @@ async function initVirtualTours() {
         // Initialize Street View for interiors
         async function initInteriorStreetView(placeDetails) {
             try {
+                // Safety check for required objects
+                if (!placeDetails || !placeDetails.geometry || !placeDetails.geometry.location) {
+                    console.error("Invalid place details for interior Street View");
+                    showInteriorUnavailableMessage(placeDetails?.name || "this venue");
+                    return;
+                }
+                
+                // Safety check for StreetViewPanorama constructor
+                if (typeof StreetViewPanorama !== 'function') {
+                    console.error("StreetViewPanorama is not available");
+                    showInteriorUnavailableMessage(placeDetails.name);
+                    return;
+                }
+                
                 const panorama = new StreetViewPanorama(
                     tourContainer,
                     {
@@ -1229,13 +1291,19 @@ async function initVirtualTours() {
                 
             } catch (error) {
                 console.error("Error initializing interior Street View:", error);
-                showInteriorUnavailableMessage(placeDetails.name);
+                showInteriorUnavailableMessage(placeDetails?.name || "this venue");
             }
         }
         
         // Find the first interior panorama from the given location
         async function findFirstInteriorPanorama(panorama, location) {
             try {
+                // Safety check
+                if (!panorama || !location || !StreetViewService) {
+                    console.error("Missing required parameters for finding interior panorama");
+                    return;
+                }
+                
                 const streetViewService = new StreetViewService();
                 
                 streetViewService.getPanorama({
@@ -1243,15 +1311,20 @@ async function initVirtualTours() {
                     radius: 50,
                     source: google.maps.StreetViewSource.DEFAULT // This includes indoor panoramas
                 }, (data, status) => {
-                    if (status === google.maps.StreetViewStatus.OK) {
+                    // Verify status enum is available
+                    const okStatus = google.maps.StreetViewStatus ? 
+                        google.maps.StreetViewStatus.OK : 'OK';
+                        
+                    if (status === okStatus && data && data.links && data.links.length > 0) {
                         // Find links that are likely indoor (usually have different pano IDs pattern)
                         const indoorLinks = data.links.filter(link => {
                             // Indoor panoramas often have specific pattern or different road names
                             // This is a heuristic and may need adjustment
-                            return link.description.includes('Indoor') || 
+                            return link.description &&
+                                  (link.description.includes('Indoor') || 
                                   link.description.includes('inside') || 
                                   link.description.includes('Interior') ||
-                                  !link.description.includes('Street');
+                                  !link.description.includes('Street'));
                         });
                         
                         if (indoorLinks.length > 0) {
@@ -1388,7 +1461,7 @@ async function initVirtualTours() {
         // Function to get fallback coordinates for venues
         function getVenueFallbackCoordinates(venueId) {
             // Find the venue in our venue markers
-            const venue = venueMarkers.find(v => v.id === venueId);
+            const venue = venueMarkersData.find(v => v.id === venueId);
             if (venue && venue.coordinates) {
                 return venue.coordinates;
             }
@@ -1483,122 +1556,142 @@ async function initVirtualTours() {
         
         // Check if Street View is available and initialize
         function checkStreetViewAndInitialize(place) {
-            console.log(`Checking Street View availability for:`, place);
+            if (!place || !place.geometry || !place.geometry.location) {
+                showErrorMessage("Could not find venue location data.");
+                return;
+            }
+            
+            console.log(`Checking Street View for ${place.name || 'venue'}`);
             
             try {
+                // Safety check for required constructor
+                if (typeof StreetViewService !== 'function') {
+                    console.error("StreetViewService is not available");
+                    initSimplifiedMapView(place);
+                    return;
+                }
+                
                 const streetViewService = new StreetViewService();
+                const location = place.geometry.location;
                 
                 streetViewService.getPanorama({
-                    location: place.geometry.location,
-                    radius: 50, // Look within 50 meters
-                    preference: google.maps.StreetViewPreference.NEAREST
+                    location: location,
+                    radius: 100,
+                    source: google.maps.StreetViewSource.OUTDOOR
                 }, (data, status) => {
-                    console.log(`Street View check (50m):`, status);
+                    // Verify status enum is available
+                    const okStatus = google.maps.StreetViewStatus ? 
+                        google.maps.StreetViewStatus.OK : 'OK';
                     
-                    if (status === google.maps.StreetViewStatus.OK) {
-                        // Street View available
+                    if (status === okStatus && data) {
+                        console.log("Street View panorama found:", data);
                         initStreetViewPanorama(place, data);
                     } else {
-                        // Try with a larger radius
-                        console.log("No Street View within 50m, trying larger radius...");
-                        streetViewService.getPanorama({
-                            location: place.geometry.location,
-                            radius: 200, // Look within 200 meters
-                            preference: google.maps.StreetViewPreference.NEAREST
-                        }, (data, status) => {
-                            console.log(`Street View check (200m):`, status);
-                            
-                            if (status === google.maps.StreetViewStatus.OK) {
-                                // Street View available within 200m
-                                initStreetViewPanorama(place, data);
-                            } else {
-                                // No Street View available - show simplified view
-                                console.log("No Street View available within 200m, showing simplified map view");
-                                initSimplifiedMapView(place);
-                            }
-                        });
+                        console.log("No Street View found, falling back to map view");
+                        initSimplifiedMapView(place);
                     }
                 });
             } catch (error) {
-                console.error("Error checking Street View availability:", error);
-                showErrorMessage("There was an error loading the virtual tour. Please try again later.");
+                console.error("Error checking for Street View:", error);
+                initSimplifiedMapView(place);
             }
         }
         
-        // Initialize Street View panorama
         function initStreetViewPanorama(place, streetViewData) {
-            console.log(`Initializing Street View panorama:`, place, streetViewData);
-            
             try {
-                // Calculate heading towards the venue
-                const heading = google.maps.geometry.spherical.computeHeading(
-                    streetViewData.location.latLng,
-                    place.geometry.location
-                );
+                // Safety check for required constructor
+                if (typeof StreetViewPanorama !== 'function') {
+                    console.error("StreetViewPanorama is not available");
+                    initSimplifiedMapView(place);
+                    return;
+                }
                 
-                // Create panorama
+                // Clear previous content
+                tourContainer.innerHTML = '';
+                
                 const panorama = new StreetViewPanorama(
                     tourContainer,
                     {
                         position: streetViewData.location.latLng,
                         pov: {
-                            heading: heading,
+                            heading: streetViewData.tiles.centerHeading,
                             pitch: 0
                         },
                         zoom: 1,
                         addressControl: false,
                         linksControl: true,
                         panControl: true,
+                        enableCloseButton: false,
                         fullscreenControl: true,
-                        zoomControl: true,
-                        motionTracking: false,
-                        visible: true // Ensure panorama is visible
+                        visible: true
                     }
                 );
                 
-                // Add tour info panel
-                addInfoPanel(place.name, 'exterior');
+                // Add info panel with proper attribution
+                addInfoPanel(place.name, 'exterior', 'Google Street View. You can drag to look around and click arrows to move.');
                 
+                console.log("Street View panorama initialized");
             } catch (error) {
                 console.error("Error initializing Street View:", error);
-                showErrorMessage("There was an error loading the virtual tour. Please try again later.");
+                initSimplifiedMapView(place);
             }
         }
         
         // Initialize simplified map view when Street View is not available
         async function initSimplifiedMapView(place) {
             try {
-                console.log("Initializing simplified map view for:", place);
+                // Safety check
+                if (!place || !place.geometry || !place.geometry.location) {
+                    showErrorMessage("Could not find venue location data.");
+                    return;
+                }
                 
-                // Create a map instead of a panorama
-                const map = new Map(tourContainer, {
-                    center: place.geometry.location,
-                    zoom: 17,
-                    mapTypeId: google.maps.MapTypeId.HYBRID,
-                    streetViewControl: true
-                });
+                // Clear previous content
+                tourContainer.innerHTML = '';
                 
-                // Add a marker for the venue using AdvancedMarkerElement
-                new AdvancedMarkerElement({
-                    position: place.geometry.location,
-                    map: map,
-                    title: place.name
-                });
+                if (typeof Map !== 'function') {
+                    // If Map constructor is not available
+                    showErrorMessage("Map view is not available. Please try again later.");
+                    return;
+                }
                 
-                // Add a note about Street View not being available
-                const infoPanel = document.createElement('div');
-                infoPanel.className = 'tour-info map-notice';
-                infoPanel.innerHTML = `
-                    <h4>${place.name}</h4>
-                    <p>Street View imagery is not available for this exact location.</p>
-                    <p>We're showing you an aerial view instead.</p>
-                    <p>Try the Street View icon to explore nearby areas.</p>
-                `;
-                tourContainer.appendChild(infoPanel);
+                const map = new Map(
+                    tourContainer,
+                    {
+                        center: place.geometry.location,
+                        zoom: 17,
+                        mapTypeId: google.maps.MapTypeId ? 
+                            (google.maps.MapTypeId.SATELLITE || 'satellite') : 'satellite',
+                        mapTypeControl: false,
+                        streetViewControl: false,
+                        fullscreenControl: true,
+                        zoomControl: true
+                    }
+                );
                 
+                // Add a marker at the venue location if marker library is available
+                if (typeof AdvancedMarkerElement === 'function') {
+                    const marker = new AdvancedMarkerElement({
+                        map: map,
+                        position: place.geometry.location,
+                        title: place.name
+                    });
+                } else if (typeof google.maps.Marker === 'function') {
+                    // Fallback to regular marker
+                    new google.maps.Marker({
+                        map: map,
+                        position: place.geometry.location,
+                        title: place.name
+                    });
+                }
+                
+                // Add info panel with proper attribution
+                addInfoPanel(place.name, 'map', 'Satellite map view. Street View is not available for this location.');
+                
+                console.log("Simplified map view initialized");
             } catch (error) {
                 console.error("Error initializing simplified map view:", error);
-                showErrorMessage("There was an error loading the venue view. Please try again later.");
+                showErrorMessage("Could not load map view. Please try again later.");
             }
         }
         
@@ -1675,36 +1768,37 @@ async function initVirtualTours() {
             });
         }
         
-        // Attach event listeners to tour buttons
+        // Set up event listeners for all tour buttons
         tourButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault();
-                const venueId = button.dataset.venue;
-                openVirtualTour(venueId);
+            button.addEventListener('click', function() {
+                const venueId = this.dataset.venueId;
+                if (venueId) {
+                    openVirtualTour(venueId);
+                } else {
+                    console.error('No venue ID specified for tour button');
+                    showErrorMessage('Could not determine which venue to show.');
+                }
             });
         });
         
-        // Close modal functions
+        // Set up close button functionality
         if (closeButton) {
             closeButton.addEventListener('click', closeTourModal);
         }
         
-        tourModal.addEventListener('click', (event) => {
-            if (event.target === tourModal) {
+        // Close tour modal when clicking outside of it or with ESC key
+        tourModal.addEventListener('click', function(e) {
+            // Only close if clicking directly on the background modal element
+            if (e.target === tourModal) {
                 closeTourModal();
             }
         });
         
-        function closeTourModal() {
-            tourModal.querySelector('.modal-content').classList.remove('modal-animate');
-            setTimeout(() => {
-                tourModal.classList.remove('active');
-                document.body.style.overflow = '';
-                tourContainer.innerHTML = '';
-                
-                // Remove tabs container if it exists
-            }, 300);
-        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && tourModal.classList.contains('active')) {
+                closeTourModal();
+            }
+        });
     } catch (error) {
         console.error("Error initializing virtual tours:", error);
         // Handle the error gracefully
@@ -2541,3 +2635,49 @@ function initSmoothScrolling() {
         });
     });
 }
+
+        function closeTourModal() {
+            // Animate modal out
+            const modalContent = tourModal.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.classList.remove('modal-animate');
+            }
+            
+            // Hide modal after animation completes
+            setTimeout(() => {
+                tourModal.classList.remove('active');
+                document.body.style.overflow = '';
+                tourContainer.innerHTML = '';
+                
+                // Remove tabs if they exist
+                const tabsContainer = tourModal.querySelector('.tour-tabs');
+                if (tabsContainer) {
+                    tabsContainer.remove();
+                }
+                
+                // Reset title
+                const modalTitle = tourModal.querySelector('h2');
+                if (modalTitle) {
+                    modalTitle.textContent = 'Virtual Tour';
+                }
+            }, 300);
+        }
+        
+        // Show error message in the tour container
+        function showErrorMessage(message) {
+            if (!tourContainer) return;
+            
+            tourContainer.innerHTML = `
+                <div class="tour-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                    <button class="retry-btn">Try Again Later</button>
+                </div>
+            `;
+            
+            // Add event listener to retry button
+            const retryBtn = tourContainer.querySelector('.retry-btn');
+            if (retryBtn) {
+                retryBtn.addEventListener('click', closeTourModal);
+            }
+        }

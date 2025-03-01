@@ -1,3 +1,5 @@
+## Version 2.4.5 - 2025-03-01
+- Fix map and virtual tour functionality - Fix Google Maps TERRAIN reference, improve virtual tour handling for both exterior and interior views, and resolve venue markers scope issues
 ## Version 2.4.4 - 2025-03-01
 - Fixed virtual tours with correct venue data and place IDs
 ## Version 2.4.3 - 2025-03-01
