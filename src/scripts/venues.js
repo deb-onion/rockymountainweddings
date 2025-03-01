@@ -904,98 +904,182 @@ function initVirtualTours() {
         }, 100);
         document.body.style.overflow = 'hidden';
         
+        console.log(`Opening virtual tour for venue ID: ${venueId}`);
+        
         // Get venue details from the DOM
         const venueElement = document.querySelector(`.venue-item:has(.view-360[data-venue="${venueId}"])`);
         
         if (!venueElement) {
+            console.error(`Could not find venue element for ID: ${venueId}`);
             showErrorMessage("Could not find venue information.");
             return;
         }
         
         // Get venue name and address
         const venueName = venueElement.querySelector('h3').textContent;
-        const venueAddress = venueElement.querySelector('.venue-address').textContent.replace(/^\s*\S+\s+/, ''); // Remove icon
+        const venueAddress = venueElement.querySelector('.venue-address') ? 
+            venueElement.querySelector('.venue-address').textContent.replace(/^\s*\S+\s+/, '') : // Remove icon
+            ''; 
+            
+        console.log(`Venue Name: ${venueName}, Address: ${venueAddress}`);
         
         // Update modal title
         tourModal.querySelector('h2').textContent = `${venueName} Virtual Tour`;
         
-        // Use Places API to find the venue location
-        findVenueLocation(venueName, venueAddress);
+        // TESTING: Check if Google APIs are loaded
+        if (!window.google || !google.maps || !google.maps.places) {
+            console.error("Google Maps API not fully loaded");
+            showErrorMessage("Google Maps APIs are not fully loaded. Please refresh the page and try again.");
+            return;
+        }
+        
+        // Use hardcoded coordinates as fallback
+        const fallbackCoordinates = getVenueFallbackCoordinates(venueId);
+        if (fallbackCoordinates) {
+            console.log(`Using fallback coordinates for ${venueName}`, fallbackCoordinates);
+            // Use fallback coordinates directly
+            checkStreetViewAndInitialize({
+                geometry: {
+                    location: new google.maps.LatLng(fallbackCoordinates.lat, fallbackCoordinates.lng)
+                },
+                name: venueName,
+                formatted_address: venueAddress || "Rocky Mountains, Canada"
+            });
+        } else {
+            // Try to find venue location using Places API
+            findVenueLocation(venueName, venueAddress);
+        }
+    }
+    
+    // Function to get fallback coordinates for venues
+    function getVenueFallbackCoordinates(venueId) {
+        const fallbackCoords = {
+            'banff-springs': { lat: 51.1644, lng: -115.5619 },
+            'silvertip': { lat: 51.0777, lng: -115.3359 },
+            'chateau-louise': { lat: 51.4163, lng: -116.2162 },
+            'the-gem': { lat: 51.1720, lng: -115.5940 },
+            'sky-bistro': { lat: 51.1644, lng: -115.5574 },
+            'mt-norquay': { lat: 51.1985, lng: -115.5944 },
+            'kicking-horse': { lat: 51.2980, lng: -117.0475 },
+            'emerald-lake': { lat: 51.4429, lng: -116.5285 },
+            'pyramid-lake': { lat: 52.9310, lng: -118.0945 },
+            'mainspace-solara': { lat: 51.0899, lng: -115.3487 },
+            'stewart-creek': { lat: 51.0574, lng: -115.3696 },
+            'malcolm-hotel': { lat: 51.0875, lng: -115.3480 },
+            'cochrane-ranchehouse': { lat: 51.1945, lng: -114.4669 }
+        };
+        
+        return fallbackCoords[venueId] || null;
     }
     
     // Function to find venue location using Places API
     function findVenueLocation(venueName, venueAddress) {
-        // Create a PlacesService object
-        const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+        console.log(`Searching for venue location: ${venueName}, ${venueAddress}`);
         
-        // Search for the venue by name and address
-        placesService.findPlaceFromQuery({
-            query: `${venueName} ${venueAddress}`,
-            fields: ['name', 'geometry', 'formatted_address', 'place_id']
-        }, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
-                // Successfully found the venue
-                const place = results[0];
-                checkStreetViewAndInitialize(place);
-        } else {
-                // Try geocoding the address as fallback
-                geocodeAddress(venueAddress, venueName);
-            }
-        });
+        try {
+            // Create a PlacesService object
+            const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+            
+            // Search for the venue by name and address
+            placesService.findPlaceFromQuery({
+                query: `${venueName} ${venueAddress}`,
+                fields: ['name', 'geometry', 'formatted_address', 'place_id']
+            }, (results, status) => {
+                console.log(`Places API response for ${venueName}:`, status, results);
+                
+                if (status === google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+                    // Successfully found the venue
+                    const place = results[0];
+                    checkStreetViewAndInitialize(place);
+                } else {
+                    // Try geocoding the address as fallback
+                    console.log(`Places search failed for ${venueName}, trying geocoding...`);
+                    geocodeAddress(venueAddress, venueName);
+                }
+            });
+        } catch (error) {
+            console.error("Error in Places API call:", error);
+            showErrorMessage("There was an error finding the venue location. Please try again later.");
+        }
     }
     
     // Geocode address as fallback
     function geocodeAddress(address, venueName) {
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ address: address }, (results, status) => {
-            if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
-                const location = {
-                    geometry: {
-                        location: results[0].geometry.location
-                    },
-                    name: venueName,
-                    formatted_address: results[0].formatted_address
-                };
-                checkStreetViewAndInitialize(location);
-            } else {
-                showErrorMessage("We couldn't find this venue's location. We're working on adding a custom virtual tour soon.");
-            }
-        });
+        console.log(`Geocoding address: ${address}`);
+        
+        try {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: address }, (results, status) => {
+                console.log(`Geocoding response:`, status, results);
+                
+                if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
+                    const location = {
+                        geometry: {
+                            location: results[0].geometry.location
+                        },
+                        name: venueName,
+                        formatted_address: results[0].formatted_address
+                    };
+                    checkStreetViewAndInitialize(location);
+                } else {
+                    console.error(`Geocoding failed for ${address}`);
+                    showErrorMessage(`We couldn't find this venue's location. Please try viewing our interactive map for more information.`);
+                }
+            });
+        } catch (error) {
+            console.error("Error in Geocoding API call:", error);
+            showErrorMessage("There was an error finding the venue location. Please try again later.");
+        }
     }
     
     // Check if Street View is available and initialize
     function checkStreetViewAndInitialize(place) {
-        const streetViewService = new google.maps.StreetViewService();
+        console.log(`Checking Street View availability for:`, place);
         
-        streetViewService.getPanorama({
-            location: place.geometry.location,
-            radius: 50, // Look within 50 meters
-            preference: google.maps.StreetViewPreference.NEAREST
-        }, (data, status) => {
-            if (status === google.maps.StreetViewStatus.OK) {
-                // Street View available
-                initStreetViewPanorama(place, data);
-            } else {
-                // Try with a larger radius
-                streetViewService.getPanorama({
-                    location: place.geometry.location,
-                    radius: 200, // Look within 200 meters
-                    preference: google.maps.StreetViewPreference.NEAREST
-                }, (data, status) => {
-                    if (status === google.maps.StreetViewStatus.OK) {
-                        // Street View available within 200m
-                        initStreetViewPanorama(place, data);
-                    } else {
-                        // No Street View available
-                        showErrorMessage("Google Street View is not available for this venue. We're working on adding a custom 360° tour soon.");
-                    }
-                });
-            }
-        });
+        try {
+            const streetViewService = new google.maps.StreetViewService();
+            
+            streetViewService.getPanorama({
+                location: place.geometry.location,
+                radius: 50, // Look within 50 meters
+                preference: google.maps.StreetViewPreference.NEAREST
+            }, (data, status) => {
+                console.log(`Street View check (50m):`, status);
+                
+                if (status === google.maps.StreetViewStatus.OK) {
+                    // Street View available
+                    initStreetViewPanorama(place, data);
+                } else {
+                    // Try with a larger radius
+                    console.log("No Street View within 50m, trying larger radius...");
+                    streetViewService.getPanorama({
+                        location: place.geometry.location,
+                        radius: 200, // Look within 200 meters
+                        preference: google.maps.StreetViewPreference.NEAREST
+                    }, (data, status) => {
+                        console.log(`Street View check (200m):`, status);
+                        
+                        if (status === google.maps.StreetViewStatus.OK) {
+                            // Street View available within 200m
+                            initStreetViewPanorama(place, data);
+                        } else {
+                            // No Street View available - show simplified view
+                            console.log("No Street View available within 200m, showing simplified map view");
+                            initSimplifiedMapView(place);
+                        }
+                    });
+                }
+            });
+        } catch (error) {
+            console.error("Error checking Street View availability:", error);
+            showErrorMessage("There was an error loading the virtual tour. Please try again later.");
+        }
     }
     
     // Initialize Street View panorama
     function initStreetViewPanorama(place, streetViewData) {
+        console.log(`Initializing Street View panorama:`, place, streetViewData);
+        
         try {
             // Calculate heading towards the venue
             const heading = google.maps.geometry.spherical.computeHeading(
@@ -1017,7 +1101,9 @@ function initVirtualTours() {
                     linksControl: true,
                     panControl: true,
                     fullscreenControl: true,
-                    zoomControl: true
+                    zoomControl: true,
+                    motionTracking: false,
+                    visible: true // Ensure panorama is visible
                 }
             );
             
@@ -1027,6 +1113,44 @@ function initVirtualTours() {
         } catch (error) {
             console.error("Error initializing Street View:", error);
             showErrorMessage("There was an error loading the virtual tour. Please try again later.");
+        }
+    }
+    
+    // Initialize simplified map view when Street View is not available
+    function initSimplifiedMapView(place) {
+        try {
+            console.log("Initializing simplified map view for:", place);
+            
+            // Create a map instead of a panorama
+            const map = new google.maps.Map(tourContainer, {
+                center: place.geometry.location,
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                streetViewControl: true
+            });
+            
+            // Add a marker for the venue
+            new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: place.name,
+                animation: google.maps.Animation.DROP
+            });
+            
+            // Add a note about Street View not being available
+            const infoPanel = document.createElement('div');
+            infoPanel.className = 'tour-info map-notice';
+            infoPanel.innerHTML = `
+                <h4>${place.name}</h4>
+                <p>Street View imagery is not available for this exact location.</p>
+                <p>We're showing you an aerial view instead.</p>
+                <p>Try the Street View icon to explore nearby areas.</p>
+            `;
+            tourContainer.appendChild(infoPanel);
+            
+        } catch (error) {
+            console.error("Error initializing simplified map view:", error);
+            showErrorMessage("There was an error loading the venue view. Please try again later.");
         }
     }
     
@@ -1047,6 +1171,8 @@ function initVirtualTours() {
     
     // Show error message
     function showErrorMessage(message) {
+        console.log(`Showing error message: ${message}`);
+        
         tourContainer.innerHTML = `
             <div class="tour-error">
                 <p>${message}</p>

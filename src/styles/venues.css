@@ -2136,6 +2136,12 @@
     font-size: 14px;
 }
 
+/* Special styling for map notice */
+.tour-info.map-notice {
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 4px solid #5d8aa8;
+}
+
 .tour-info h4 {
     margin-top: 0;
     margin-bottom: 8px;
@@ -2150,6 +2156,30 @@
 .tour-info .btn {
     padding: 6px 12px;
     font-size: 13px;
+}
+
+/* Map Error Message */
+.map-error {
+    padding: 30px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-error h3 {
+    margin-bottom: 10px;
+    color: #d9534f;
+}
+
+.map-error p {
+    color: #555;
+    max-width: 500px;
+    margin: 0 auto 15px;
 }
 
 /* Responsive styles */

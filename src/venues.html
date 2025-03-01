@@ -8,8 +8,23 @@
     <link rel="stylesheet" href="styles/venues.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Google Maps API with all necessary libraries -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,streetview,geometry&callback=Function.prototype"></script>
+    <!-- Google Maps API with all necessary libraries and error handling -->
+    <script>
+        // Error handler for Google Maps
+        function gm_authFailure() {
+            console.error('Google Maps authentication error - check API key and restrictions');
+            const mapContainers = document.querySelectorAll('.venues-map');
+            mapContainers.forEach(container => {
+                container.innerHTML = `
+                    <div class="map-error">
+                        <h3>Map Loading Error</h3>
+                        <p>We're experiencing technical difficulties with our map. Please refresh the page or try again later.</p>
+                    </div>
+                `;
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,streetview,geometry&callback=Function.prototype" onerror="console.error('Failed to load Google Maps API')"></script>
     <!-- Pannellum for 360° tours (fallback) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
