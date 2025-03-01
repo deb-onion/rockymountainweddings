@@ -136,7 +136,9 @@ function initInteractiveMap() {
                 capacity: '20-150 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities'],
-                featured: true // Featured venue
+                featured: true, // Featured venue,
+                placeId: 'ChIJW6XUmrEYcFMRaEOtOYjqH3g', // From the Google Maps link
+                address: '900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada'
             },
             {
                 id: 'banff-springs',
@@ -149,7 +151,9 @@ function initInteractiveMap() {
                 url: '#banff-venues',
                 capacity: '10-800 guests',
                 priceRange: '$$$-$$$$',
-                features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites']
+                features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites'],
+                placeId: 'ChIJn8hUfMIQcFMRf95C1DrfPiI', // From the Google Maps link
+                address: '405 Spray Ave, Banff, AB T1L 1J4, Canada'
             },
             {
                 id: 'sky-bistro',
@@ -162,7 +166,9 @@ function initInteractiveMap() {
                 url: '#banff-venues',
                 capacity: '20-200 guests',
                 priceRange: '$$$-$$$$',
-                features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining']
+                features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
+                placeId: 'ChIJbfpqSksVcFMRBOUNLXJ-0Xo', // From the Google Maps link
+                address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
             },
             {
                 id: 'maple-leaf',
@@ -175,7 +181,9 @@ function initInteractiveMap() {
                 url: '#banff-venues',
                 capacity: '10-80 guests',
                 priceRange: '$$-$$$',
-                features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine']
+                features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine'],
+                placeId: 'ChIJO_yxGUMVcFMR3IbpFZPcLII', // From the Google Maps link
+                address: '137 Banff Ave, Banff, AB T1L 1C8, Canada'
             },
             {
                 id: 'mt-norquay',
@@ -188,7 +196,9 @@ function initInteractiveMap() {
                 url: '#banff-venues',
                 capacity: '50-200 guests',
                 priceRange: '$$-$$$',
-                features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies']
+                features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies'],
+                placeId: 'ChIJM8_Ru_IVcFMRFsNu0E_ZxO0', // From the Google Maps link
+                address: 'Improvement District No. 9, AB T0L 1E0, Canada'
             },
             {
                 id: 'three-bears',
@@ -201,7 +211,9 @@ function initInteractiveMap() {
                 url: '#banff-venues',
                 capacity: '30-150 guests',
                 priceRange: '$$-$$$',
-                features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location']
+                features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location'],
+                placeId: 'ChIJBQX2tUIVcFMRH9sxg9m5_2g', // From the Google Maps link
+                address: '205 Bear St, Banff, AB T1L 1A1, Canada'
             },
             
             // CANMORE VENUES
@@ -217,7 +229,9 @@ function initInteractiveMap() {
                 capacity: '20-250 guests',
                 priceRange: '$$-$$$',
                 features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities'],
-                featured: true // Featured venue
+                featured: true, // Featured venue,
+                placeId: 'ChIJs2Jfy-EbcFMRiB7lSe8UeVY', // From the Google Maps link
+                address: '187 Kananaskis Way, Canmore, AB T1W 2A3, Canada'
             },
             {
                 id: 'stewart-creek',
@@ -230,7 +244,9 @@ function initInteractiveMap() {
                 url: '#canmore-venues',
                 capacity: '20-180 guests',
                 priceRange: '$$-$$$',
-                features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace']
+                features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace'],
+                placeId: 'ChIJbT1EzP4bcFMRNNbzC6_wMxA', // From the Google Maps link
+                address: '4100 Stewart Creek Dr, Canmore, AB T1W 2V3, Canada'
             },
             {
                 id: 'silvertip',
@@ -243,7 +259,9 @@ function initInteractiveMap() {
                 url: '#canmore-venues',
                 capacity: '20-250 guests',
                 priceRange: '$$$-$$$$',
-                features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience']
+                features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience'],
+                placeId: 'ChIJs37VYz0ccFMRf_X0FnYlXac', // From the Google Maps link
+                address: '2000 Silvertip Trail, Canmore, AB T1W 3J4, Canada'
             },
             {
                 id: 'malcolm-hotel',
@@ -256,7 +274,9 @@ function initInteractiveMap() {
                 url: '#canmore-venues',
                 capacity: '30-200 guests',
                 priceRange: '$$$-$$$$',
-                features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location']
+                features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location'],
+                placeId: 'ChIJtb0FwvEbcFMRYHOI7A9aNKo', // From the Google Maps link
+                address: '321 Spring Creek Dr, Canmore, AB T1W 2G2, Canada'
             },
             {
                 id: 'creekside-villa',
@@ -269,7 +289,9 @@ function initInteractiveMap() {
                 url: '#canmore-venues',
                 capacity: '10-120 guests',
                 priceRange: '$$-$$$',
-                features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views']
+                features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views'],
+                placeId: 'ChIJAQybYwsccFMRPw-B4NRzvFs', // From the Google Maps link
+                address: '709 Benchlands Trail, Canmore, AB T1W 3G9, Canada'
             },
             {
                 id: 'finchys',
@@ -282,7 +304,9 @@ function initInteractiveMap() {
                 url: '#canmore-venues',
                 capacity: '20-100 guests',
                 priceRange: '$$-$$$',
-                features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options']
+                features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options'],
+                placeId: 'ChIJy8D3-uQbcFMRkpHGEgUV9FY', // From the Google Maps link
+                address: '306 Bow Valley Trail #125B, Canmore, AB T1W 0N2, Canada'
             },
             
             // LAKE LOUISE VENUES
@@ -298,7 +322,9 @@ function initInteractiveMap() {
                 capacity: '10-550 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience'],
-                featured: true // Featured venue
+                featured: true, // Featured venue,
+                placeId: 'ChIJcz_cTlQtcVMR_yC4zJNM_xc', // From the Google Maps link
+                address: '111 Lake Louise Dr, Lake Louise, AB T0L 1E0, Canada'
             },
             
             // GOLDEN, BC VENUES
@@ -314,7 +340,9 @@ function initInteractiveMap() {
                 capacity: '20-200 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience'],
-                featured: true // Featured venue
+                featured: true, // Featured venue,
+                placeId: 'ChIJSzU4uuiDcVMRb8JlhC_mD2A', // From the Google Maps link
+                address: '1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada'
             },
             {
                 id: 'hillside-lodge',
@@ -327,7 +355,9 @@ function initInteractiveMap() {
                 url: '#golden-venues',
                 capacity: '10-60 guests',
                 priceRange: '$$-$$$',
-                features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings']
+                features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings'],
+                placeId: 'ChIJUb96hNiFcVMRe_8-uZj9HuQ', // From the Google Maps link
+                address: '1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada'
             },
             {
                 id: 'emerald-lodge',
@@ -340,7 +370,9 @@ function initInteractiveMap() {
                 url: '#emerald-lake-venues',
                 capacity: '10-88 guests',
                 priceRange: '$$$-$$$$',
-                features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop']
+                features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop'],
+                placeId: 'ChIJexU-W6pkcVMRHQs6PaTI17k', // From the Google Maps link
+                address: '1 Emerald Lake Rd, Field, BC V0A 1G0, Canada'
             },
             
             // JASPER VENUES
@@ -356,7 +388,9 @@ function initInteractiveMap() {
                 capacity: '10-120 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Lakeside Setting', 'Private Island', 'Mountain Views', 'Intimate Setting'],
-                featured: true // Featured venue
+                featured: true, // Featured venue,
+                placeId: 'ChIJ7ZWCwJtRdFMRJvS7Vt7W_vA', // From the Google Maps link
+                address: 'Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada'
             },
             {
                 id: 'maligne-lake',
@@ -369,7 +403,25 @@ function initInteractiveMap() {
                 url: '#jasper-venues',
                 capacity: '10-80 guests',
                 priceRange: '$$$',
-                features: ['Historic Property', 'Lakeside Setting', 'Wilderness Experience', 'Exclusive Use']
+                features: ['Historic Property', 'Lakeside Setting', 'Wilderness Experience', 'Exclusive Use'],
+                placeId: 'ChIJyxxJZcwtc1MROk-0fdW7mI0', // From the Google Maps link
+                address: 'Maligne Lake Rd, Jasper, AB T0E 1E0, Canada'
+            },
+            // COCHRANE VENUES
+            {
+                id: 'cochrane-ranchehouse',
+                name: 'Cochrane RancheHouse',
+                location: 'Cochrane, Alberta',
+                description: 'A charming venue with rustic elegance and panoramic views of the Rocky Mountains and Bow River Valley.',
+                coordinates: { lat: 51.1945, lng: -114.4669 },
+                image: 'assets/images/venues/cochrane-ranchehouse-main.jpg',
+                region: 'cochrane',
+                url: '#cochrane-venues',
+                capacity: '20-320 guests',
+                priceRange: '$$-$$$',
+                features: ['Mountain Views', 'Rustic Elegance', 'Indoor & Outdoor Options', 'Historical Setting'],
+                placeId: 'ChIJZftOi0EtcVMRk3p9D9URcAw', // From the Google Maps link
+                address: '101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada'
             }
         ];
 
@@ -890,6 +942,7 @@ async function initVirtualTours() {
         const mapsLib = await google.maps.importLibrary("maps");
         const streetViewLib = await google.maps.importLibrary("streetView");
         const markerLib = await google.maps.importLibrary("marker");
+        const placesLib = await google.maps.importLibrary("places");
         
         // Store the necessary objects from the libraries
         const Map = mapsLib.Map;
@@ -897,6 +950,7 @@ async function initVirtualTours() {
         const StreetViewService = streetViewLib.StreetViewService;
         const StreetViewPanorama = streetViewLib.StreetViewPanorama;
         const AdvancedMarkerElement = markerLib.AdvancedMarkerElement;
+        const PlacesService = placesLib.PlacesService;
     
         console.log("Google Maps libraries loaded successfully");
         
@@ -921,22 +975,20 @@ async function initVirtualTours() {
             
             console.log(`Opening virtual tour for venue ID: ${venueId}`);
             
-            // Get venue details from the DOM
-            const venueElement = document.querySelector(`.venue-item:has(.view-360[data-venue="${venueId}"])`);
+            // Find the venue data from our venues array
+            const venueData = venueMarkers.find(venue => venue.id === venueId);
             
-            if (!venueElement) {
-                console.error(`Could not find venue element for ID: ${venueId}`);
+            if (!venueData) {
+                console.error(`Could not find venue data for ID: ${venueId}`);
                 showErrorMessage("Could not find venue information.");
                 return;
             }
             
-            // Get venue name and address
-            const venueName = venueElement.querySelector('h3').textContent;
-            const venueAddress = venueElement.querySelector('.venue-address') ? 
-                venueElement.querySelector('.venue-address').textContent.replace(/^\s*\S+\s+/, '') : // Remove icon
-                ''; 
+            const venueName = venueData.name;
+            const venueAddress = venueData.address;
+            const venuePlaceId = venueData.placeId;
                 
-            console.log(`Venue Name: ${venueName}, Address: ${venueAddress}`);
+            console.log(`Venue Name: ${venueName}, Address: ${venueAddress}, Place ID: ${venuePlaceId}`);
             
             // Update modal title
             tourModal.querySelector('h2').textContent = `${venueName} Virtual Tour`;
@@ -944,11 +996,8 @@ async function initVirtualTours() {
             // Create tour tabs container
             createTourTabs(venueId, venueName);
             
-            // Check for custom interior panorama
-            const interiorPanorama = getVenueInteriorPanorama(venueId);
-            
             // Default to showing Street View first
-            showStreetView(venueId, venueName, venueAddress);
+            showStreetView(venueId, venueName, venueAddress, venuePlaceId);
         }
         
         // Create tour tabs for switching between views
@@ -976,10 +1025,15 @@ async function initVirtualTours() {
                         
                         // Show the selected view
                         const view = button.dataset.view;
+                        
+                        // Find venue data again to get place ID
+                        const venueData = venueMarkers.find(venue => venue.id === venueId);
+                        if (!venueData) return;
+                        
                         if (view === 'exterior') {
-                            showStreetView(venueId, venueName, getVenueAddress(venueId));
+                            showStreetView(venueId, venueData.name, venueData.address, venueData.placeId);
                         } else {
-                            showInteriorView(venueId, venueName);
+                            showInteriorView(venueId, venueData.name, venueData.placeId);
                         }
                     });
                 });
@@ -987,39 +1041,73 @@ async function initVirtualTours() {
         }
         
         // Show Street View (exterior/surroundings)
-        function showStreetView(venueId, venueName, venueAddress) {
+        function showStreetView(venueId, venueName, venueAddress, placeId) {
             // Show loading indicator
             tourContainer.innerHTML = '<div class="tour-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading street view...</p></div>';
             
-            // Use hardcoded coordinates as fallback
-            const fallbackCoordinates = getVenueFallbackCoordinates(venueId);
-            if (fallbackCoordinates) {
-                console.log(`Using fallback coordinates for ${venueName}`, fallbackCoordinates);
-                // Use fallback coordinates directly - ensure LatLng is properly created
-                checkStreetViewAndInitialize({
-                    geometry: {
-                        location: new LatLng(fallbackCoordinates.lat, fallbackCoordinates.lng)
-                    },
-                    name: venueName,
-                    formatted_address: venueAddress || "Rocky Mountains, Canada"
-                });
+            console.log(`Showing street view for venue: ${venueName}, Place ID: ${placeId}`);
+            
+            // First try to use the place ID for direct location
+            if (placeId) {
+                getPlaceDetailsAndInitializeStreetView(placeId, venueName);
             } else {
-                // Try to find venue location using Places API
-                findVenueLocation(venueName, venueAddress);
+                // Use coordinates as fallback
+                const fallbackCoordinates = getVenueFallbackCoordinates(venueId);
+                if (fallbackCoordinates) {
+                    console.log(`Using fallback coordinates for ${venueName}`, fallbackCoordinates);
+                    checkStreetViewAndInitialize({
+                        geometry: {
+                            location: new LatLng(fallbackCoordinates.lat, fallbackCoordinates.lng)
+                        },
+                        name: venueName,
+                        formatted_address: venueAddress || "Rocky Mountains, Canada"
+                    });
+                } else {
+                    // Last resort: try to find venue location using Places API
+                    findVenueLocation(venueName, venueAddress);
+                }
             }
         }
         
+        // Get place details using place ID and initialize Street View
+        function getPlaceDetailsAndInitializeStreetView(placeId, venueName) {
+            const placesService = new PlacesService(document.createElement('div'));
+            
+            placesService.getDetails({
+                placeId: placeId,
+                fields: ['name', 'geometry', 'formatted_address']
+            }, (place, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+                    console.log(`Successfully retrieved place details for ${venueName}:`, place);
+                    checkStreetViewAndInitialize(place);
+                } else {
+                    console.error(`Error getting place details for ${venueName}: ${status}`);
+                    // Fall back to venue marker data
+                    const venueData = venueMarkers.find(venue => venue.name === venueName);
+                    if (venueData && venueData.coordinates) {
+                        checkStreetViewAndInitialize({
+                            geometry: {
+                                location: new LatLng(venueData.coordinates.lat, venueData.coordinates.lng)
+                            },
+                            name: venueName,
+                            formatted_address: venueData.address || "Rocky Mountains, Canada"
+                        });
+                    } else {
+                        showErrorMessage(`We couldn't find ${venueName}'s location. Please try viewing our interactive map for more information.`);
+                    }
+                }
+            });
+        }
+        
         // Show interior virtual tour
-        async function showInteriorView(venueId, venueName) {
+        async function showInteriorView(venueId, venueName, placeId) {
             // Show loading indicator
             tourContainer.innerHTML = '<div class="tour-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading interior tour...</p></div>';
             
+            console.log(`Showing interior view for venue: ${venueName}, Place ID: ${placeId}`);
+            
             try {
-                // First check if the venue has a placeId (needed for Place Details)
-                const placeId = await findVenuePlaceId(venueName);
-                
                 if (placeId) {
-                    console.log(`Found placeId for ${venueName}: ${placeId}`);
                     // Get place details including photos
                     const placeDetails = await getPlaceDetails(placeId);
                     
@@ -1039,49 +1127,17 @@ async function initVirtualTours() {
                     showInteriorUnavailableMessage(venueName);
                 }
             } catch (error) {
-                console.error("Error loading interior view:", error);
+                console.error(`Error loading interior view for ${venueName}:`, error);
                 showInteriorUnavailableMessage(venueName);
-            }
-        }
-        
-        // Find Google Place ID for a venue
-        async function findVenuePlaceId(venueName) {
-            try {
-                // Load Places library if not already loaded
-                const placesLib = await google.maps.importLibrary("places");
-                const PlacesService = placesLib.PlacesService;
-                
-                return new Promise((resolve) => {
-                    const placesService = new PlacesService(document.createElement('div'));
-                    
-                    placesService.findPlaceFromQuery({
-                        query: venueName,
-                        fields: ['place_id']
-                    }, (results, status) => {
-                        if (status === google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
-                            resolve(results[0].place_id);
-                        } else {
-                            console.log(`No place ID found for ${venueName}`);
-                            resolve(null);
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error("Error finding place ID:", error);
-                return null;
             }
         }
         
         // Get place details including photos
         async function getPlaceDetails(placeId) {
             try {
-                // Load Places library if not already loaded
-                const placesLib = await google.maps.importLibrary("places");
-                const PlacesService = placesLib.PlacesService;
+                const placesService = new PlacesService(document.createElement('div'));
                 
                 return new Promise((resolve, reject) => {
-                    const placesService = new PlacesService(document.createElement('div'));
-                    
                     placesService.getDetails({
                         placeId: placeId,
                         fields: [
@@ -1093,6 +1149,7 @@ async function initVirtualTours() {
                         ]
                     }, (place, status) => {
                         if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+                            console.log('Retrieved place details:', place);
                             resolve(place);
                         } else {
                             console.error(`Error getting place details: ${status}`);
@@ -1330,6 +1387,13 @@ async function initVirtualTours() {
         
         // Function to get fallback coordinates for venues
         function getVenueFallbackCoordinates(venueId) {
+            // Find the venue in our venue markers
+            const venue = venueMarkers.find(v => v.id === venueId);
+            if (venue && venue.coordinates) {
+                return venue.coordinates;
+            }
+            
+            // If not found, use hardcoded fallbacks
             const fallbackCoords = {
                 'banff-springs': { lat: 51.1644, lng: -115.5619 },
                 'silvertip': { lat: 51.0777, lng: -115.3359 },
