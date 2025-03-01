@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loading="lazy"
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/streetview?key=YOUR_API_KEY&location=51.1761,-115.5693&heading=210&pitch=10&fov=80">
+            src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBQKjiWf6OucG1IHIvF93QjaxGM7rwb7Ww&location=51.1761,-115.5693&heading=210&pitch=10&fov=80">
           </iframe>
         `;
       }, 1200);
