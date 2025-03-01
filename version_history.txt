@@ -1,3 +1,5 @@
+## Version 2.7.0 - 2025-03-02
+- venues page fixed , Virtual tour working correctlyd
 ## Version 2.6.5 - 2025-03-02
 - neverending venue virtual tour fix tried
 ## Version 2.6.4 - 2025-03-02
