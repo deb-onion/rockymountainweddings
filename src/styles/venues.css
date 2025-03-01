@@ -165,37 +165,109 @@
     position: relative;
 }
 
-/* Custom Map Styles */
-.mapboxgl-popup {
-    z-index: 5;
+/* Custom Google Maps Markers */
+.venue-marker {
+    background: none;
+    cursor: pointer;
 }
 
-.mapboxgl-popup-content {
+.venue-marker i {
+    font-size: 24px;
+    color: #e74c3c;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Region-specific marker colors */
+.venue-marker[data-region="banff"] i {
+    color: #e74c3c; /* Red */
+}
+
+.venue-marker[data-region="canmore"] i {
+    color: #3498db; /* Blue */
+}
+
+.venue-marker[data-region="lake-louise"] i {
+    color: #2ecc71; /* Green */
+}
+
+.venue-marker[data-region="emerald-lake"] i {
+    color: #27ae60; /* Darker Green */
+}
+
+.venue-marker[data-region="kananaskis"] i {
+    color: #f39c12; /* Orange */
+}
+
+.venue-marker[data-region="jasper"] i {
+    color: #9b59b6; /* Purple */
+}
+
+/* Google Maps Info Window Styles */
+.gm-style .gm-style-iw-c {
+    padding: 0 !important;
+    border-radius: 8px !important;
+    max-width: 300px !important;
+}
+
+.venue-info-window {
     padding: 0;
-    overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
 }
 
-.mapboxgl-popup-close-button {
-    right: 5px;
-    top: 5px;
-    font-size: 18px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 24px;
-    z-index: 10;
+.venue-info-header {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
 }
 
-.mapboxgl-popup-close-button:hover {
-    background: rgba(0, 0, 0, 0.5);
+.venue-info-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.venue-info-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 15px;
+}
+
+.venue-info-content {
+    padding: 15px;
+}
+
+.venue-info-detail {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.venue-info-detail i {
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+.venue-info-link {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.venue-info-link:hover {
+    background: #c0392b;
 }
 
 /* Sidebar Filters */

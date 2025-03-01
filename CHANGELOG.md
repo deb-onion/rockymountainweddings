@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.1.0 - 2025-03-01
+
+### Changes
+- Updated venue listings with correct order and locations for all regions. Replaced Mapbox with Google Maps API for better map functionality.
+
+
 ## Version 2.0.5 - 2025-03-01
 
 ### Changes
@@ -120,3 +126,4 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
