@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.4.2 - 2025-03-01
+
+### Changes
+- Enhanced virtual tours with Google Business listings for interior views and improved error handling
+
+
 ## Version 2.4.1 - 2025-03-01
 
 ### Changes
@@ -150,6 +156,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
