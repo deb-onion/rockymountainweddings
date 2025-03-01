@@ -1771,7 +1771,7 @@ async function initVirtualTours() {
         // Set up event listeners for all tour buttons
         tourButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const venueId = this.dataset.venueId;
+                const venueId = this.dataset.venue || this.getAttribute('data-venue');
                 if (venueId) {
                     openVirtualTour(venueId);
                 } else {

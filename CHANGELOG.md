@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.4.6 - 2025-03-01
+
+### Changes
+- Fix virtual tour button functionality - Update button event handler to correctly access venue IDs from data-venue attribute instead of data-venue-id
+
+
 ## Version 2.4.5 - 2025-03-01
 
 ### Changes
@@ -174,6 +180,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
