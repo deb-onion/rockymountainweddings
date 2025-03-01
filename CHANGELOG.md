@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.3.0 - 2025-03-01
+
+### Changes
+- Implemented Google Maps API integration for virtual tours
+
+
 ## Version 2.2.0 - 2025-03-01
 
 ### Changes
@@ -132,5 +138,6 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 

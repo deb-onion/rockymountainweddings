@@ -892,112 +892,10 @@ function initVirtualTours() {
     const closeButton = tourModal.querySelector('.close-modal');
     const tourContainer = document.getElementById('tourContainer');
     
-    // Tour configuration data with hotspots
-    const tourConfig = {
-        'banff-springs': {
-            title: 'Fairmont Banff Springs Virtual Tour',
-            panorama: 'assets/360-tours/banff-springs-main.jpg',
-            hotSpots: [
-                {
-                    pitch: 10,
-                    yaw: 30,
-                    text: "Main Ceremony Area",
-                    id: "ceremony"
-                },
-                {
-                    pitch: -10,
-                    yaw: 130,
-                    text: "Reception Hall",
-                    id: "reception"
-                },
-                {
-                    pitch: 15,
-                    yaw: 230,
-                    text: "Mountain View",
-                    id: "mountain-view"
-                }
-            ]
-        },
-        'silvertip': {
-            title: 'Silvertip Resort Virtual Tour',
-            panorama: 'assets/360-tours/silvertip-main.jpg',
-            hotSpots: [
-                {
-                    pitch: 5,
-                    yaw: 20,
-                    text: "Outdoor Pavilion",
-                    id: "pavilion"
-                },
-                {
-                    pitch: -5,
-                    yaw: 100,
-                    text: "Indoor Ballroom",
-                    id: "ballroom"
-                },
-                {
-                    pitch: 10,
-                    yaw: 200,
-                    text: "Three Sisters View",
-                    id: "three-sisters"
-                }
-            ]
-        },
-        'chateau-louise': {
-            title: 'Chateau Lake Louise Virtual Tour',
-            panorama: 'assets/360-tours/lake-louise-main.jpg',
-            hotSpots: [
-                {
-                    pitch: 0,
-                    yaw: 15,
-                    text: "Lakefront Ceremony",
-                    id: "lakefront"
-                },
-                {
-                    pitch: -10,
-                    yaw: 110,
-                    text: "Victoria Ballroom",
-                    id: "ballroom"
-                },
-                {
-                    pitch: 5,
-                    yaw: 230,
-                    text: "Glacier View",
-                    id: "glacier"
-                }
-            ]
-        }
-    };
-    
     // Function to open virtual tour
     function openVirtualTour(venueId) {
-        if (!tourConfig[venueId]) {
-            alert('Virtual tour coming soon!');
-            return;
-        }
-        
-        const config = tourConfig[venueId];
-        
-        // Update modal title
-        tourModal.querySelector('h2').textContent = config.title;
-        
-        // Initialize Pannellum viewer
-        if (!window.pannellum) {
-            // Load Pannellum if not already loaded
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js';
-            document.head.appendChild(script);
-            
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css';
-            document.head.appendChild(link);
-            
-            script.onload = () => {
-                initViewer(config);
-            };
-        } else {
-            initViewer(config);
-        }
+        // Show loading indicator
+        tourContainer.innerHTML = '<div class="tour-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading virtual tour...</p></div>';
         
         // Show modal
         tourModal.classList.add('active');
@@ -1005,73 +903,180 @@ function initVirtualTours() {
             tourModal.querySelector('.modal-content').classList.add('modal-animate');
         }, 100);
         document.body.style.overflow = 'hidden';
+        
+        // Get venue details from the DOM
+        const venueElement = document.querySelector(`.venue-item:has(.view-360[data-venue="${venueId}"])`);
+        
+        if (!venueElement) {
+            showErrorMessage("Could not find venue information.");
+            return;
+        }
+        
+        // Get venue name and address
+        const venueName = venueElement.querySelector('h3').textContent;
+        const venueAddress = venueElement.querySelector('.venue-address').textContent.replace(/^\s*\S+\s+/, ''); // Remove icon
+        
+        // Update modal title
+        tourModal.querySelector('h2').textContent = `${venueName} Virtual Tour`;
+        
+        // Use Places API to find the venue location
+        findVenueLocation(venueName, venueAddress);
     }
     
-    function initViewer(config) {
-        tourContainer.innerHTML = '';
+    // Function to find venue location using Places API
+    function findVenueLocation(venueName, venueAddress) {
+        // Create a PlacesService object
+        const placesService = new google.maps.places.PlacesService(document.createElement('div'));
         
-        window.pannellum.viewer('tourContainer', {
-            type: 'equirectangular',
-            panorama: config.panorama,
-            autoLoad: true,
-            autoRotate: -2,
-            hotSpots: config.hotSpots,
-            hotSpotDebug: false
+        // Search for the venue by name and address
+        placesService.findPlaceFromQuery({
+            query: `${venueName} ${venueAddress}`,
+            fields: ['name', 'geometry', 'formatted_address', 'place_id']
+        }, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+                // Successfully found the venue
+                const place = results[0];
+                checkStreetViewAndInitialize(place);
+        } else {
+                // Try geocoding the address as fallback
+                geocodeAddress(venueAddress, venueName);
+            }
         });
+    }
+    
+    // Geocode address as fallback
+    function geocodeAddress(address, venueName) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: address }, (results, status) => {
+            if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
+                const location = {
+                    geometry: {
+                        location: results[0].geometry.location
+                    },
+                    name: venueName,
+                    formatted_address: results[0].formatted_address
+                };
+                checkStreetViewAndInitialize(location);
+            } else {
+                showErrorMessage("We couldn't find this venue's location. We're working on adding a custom virtual tour soon.");
+            }
+        });
+    }
+    
+    // Check if Street View is available and initialize
+    function checkStreetViewAndInitialize(place) {
+        const streetViewService = new google.maps.StreetViewService();
         
-        // Add tour controls
-        const controls = document.createElement('div');
-        controls.className = 'tour-controls';
-        controls.innerHTML = `
-            <button class="tour-control" data-action="zoom-in"><i class="fas fa-search-plus"></i></button>
-            <button class="tour-control" data-action="zoom-out"><i class="fas fa-search-minus"></i></button>
-            <button class="tour-control" data-action="fullscreen"><i class="fas fa-expand"></i></button>
+        streetViewService.getPanorama({
+            location: place.geometry.location,
+            radius: 50, // Look within 50 meters
+            preference: google.maps.StreetViewPreference.NEAREST
+        }, (data, status) => {
+            if (status === google.maps.StreetViewStatus.OK) {
+                // Street View available
+                initStreetViewPanorama(place, data);
+            } else {
+                // Try with a larger radius
+                streetViewService.getPanorama({
+                    location: place.geometry.location,
+                    radius: 200, // Look within 200 meters
+                    preference: google.maps.StreetViewPreference.NEAREST
+                }, (data, status) => {
+                    if (status === google.maps.StreetViewStatus.OK) {
+                        // Street View available within 200m
+                        initStreetViewPanorama(place, data);
+                    } else {
+                        // No Street View available
+                        showErrorMessage("Google Street View is not available for this venue. We're working on adding a custom 360° tour soon.");
+                    }
+                });
+            }
+        });
+    }
+    
+    // Initialize Street View panorama
+    function initStreetViewPanorama(place, streetViewData) {
+        try {
+            // Calculate heading towards the venue
+            const heading = google.maps.geometry.spherical.computeHeading(
+                streetViewData.location.latLng,
+                place.geometry.location
+            );
+            
+            // Create panorama
+            const panorama = new google.maps.StreetViewPanorama(
+                tourContainer,
+                {
+                    position: streetViewData.location.latLng,
+                    pov: {
+                        heading: heading,
+                        pitch: 0
+                    },
+                    zoom: 1,
+                    addressControl: false,
+                    linksControl: true,
+                    panControl: true,
+                    fullscreenControl: true,
+                    zoomControl: true
+                }
+            );
+            
+            // Add tour info panel
+            addInfoPanel(place.name);
+            
+        } catch (error) {
+            console.error("Error initializing Street View:", error);
+            showErrorMessage("There was an error loading the virtual tour. Please try again later.");
+        }
+    }
+    
+    // Add info panel to the tour
+    function addInfoPanel(venueName) {
+        // Create info panel element
+        const infoPanel = document.createElement('div');
+        infoPanel.className = 'tour-info';
+        infoPanel.innerHTML = `
+            <h4>${venueName}</h4>
+            <p>Use your mouse or touch to look around. Click on arrows to navigate.</p>
+            <p>Click the fullscreen button for the best experience.</p>
         `;
-        tourContainer.appendChild(controls);
         
-        // Add control functionality
-        controls.querySelector('[data-action="zoom-in"]').addEventListener('click', () => {
-            const viewer = window.pannellum.getViewer('tourContainer');
-            viewer.zoom(viewer.getHfov() - 10);
-        });
+        // Add to container
+        tourContainer.appendChild(infoPanel);
+    }
+    
+    // Show error message
+    function showErrorMessage(message) {
+        tourContainer.innerHTML = `
+            <div class="tour-error">
+                <p>${message}</p>
+                <button class="btn btn-primary" id="viewOnMap">View on Google Maps</button>
+            </div>
+        `;
         
-        controls.querySelector('[data-action="zoom-out"]').addEventListener('click', () => {
-            const viewer = window.pannellum.getViewer('tourContainer');
-            viewer.zoom(viewer.getHfov() + 10);
-        });
-        
-        controls.querySelector('[data-action="fullscreen"]').addEventListener('click', () => {
-            const viewer = window.pannellum.getViewer('tourContainer');
-            viewer.toggleFullscreen();
+        // Add button to view on Google Maps
+        document.getElementById('viewOnMap').addEventListener('click', () => {
+            const venueName = tourModal.querySelector('h2').textContent.replace(' Virtual Tour', '');
+            window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueName)}`, '_blank');
         });
     }
     
-    // Open tour on button click
+    // Attach event listeners to tour buttons
     tourButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const venueId = button.getAttribute('data-venue');
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const venueId = button.dataset.venue;
             openVirtualTour(venueId);
         });
     });
     
-    // Make the openVirtualTour function available globally
-    window.openVirtualTour = openVirtualTour;
-    
-    // Close modal on X button click
+    // Close modal functions
     if (closeButton) {
         closeButton.addEventListener('click', closeTourModal);
     }
     
-    // Close modal on outside click
-    tourModal.addEventListener('click', (e) => {
-        if (e.target === tourModal) {
-            closeTourModal();
-        }
-    });
-    
-    // Close modal on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && tourModal.classList.contains('active')) {
+    tourModal.addEventListener('click', (event) => {
+        if (event.target === tourModal) {
             closeTourModal();
         }
     });
@@ -1081,6 +1086,7 @@ function initVirtualTours() {
         setTimeout(() => {
             tourModal.classList.remove('active');
             document.body.style.overflow = '';
+            tourContainer.innerHTML = '';
         }, 300);
     }
 }
