@@ -23,6 +23,16 @@ function initInteractiveMap() {
         mapContainer.style.minHeight = '500px'; // Apply a default height
     }
 
+    // Add additional debugging
+    console.log('Initializing Mapbox map with token:', mapboxgl.accessToken);
+    console.log('Map container dimensions:', mapContainer.offsetWidth, 'x', mapContainer.offsetHeight);
+    
+    // Check if mapboxgl is defined
+    if (typeof mapboxgl === 'undefined') {
+        console.error('Mapbox GL JS library is not loaded!');
+        return;
+    }
+
     // Initialize the map with 3D capabilities and error handling
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGViLXJtd2MiLCJhIjoiY203cGQzZ3RyMGp2djJqcXRlMno0dmh3ZyJ9.T0KdhzJgUv7MfalaNCWYQQ';
     
@@ -39,6 +49,9 @@ function initInteractiveMap() {
             failIfMajorPerformanceCaveat: false // Less strict performance requirements
         });
 
+        // Log successful map creation
+        console.log('Mapbox map created successfully');
+        
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
         // Add event listener for map load errors
