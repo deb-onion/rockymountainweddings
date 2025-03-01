@@ -1,0 +1,1307 @@
+/* 
+=====================================
+  venues.css
+  Advanced Venues Page Styles
+=====================================
+*/
+
+/* Import main styles (if you have main.css in the same folder) */
+@import 'main.css';
+
+/* Page Header / Hero (Optional) */
+.venues-hero {
+  position: relative;
+  background: url('../assets/images/venues-hero-bg.jpg') center center / cover no-repeat;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+.venues-hero .hero-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+}
+.venues-hero .hero-content p {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+/* Venues Introduction */
+.venues-intro {
+  padding: 5rem 0;
+  background-color: #f9f9f9;
+  position: relative;
+}
+.intro-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.intro-text {
+  flex: 1;
+  padding-right: 3rem;
+  min-width: 300px;
+}
+.intro-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  color: #333;
+}
+.intro-text h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: #d4af37;
+  transition: width 0.3s ease;
+}
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 2rem;
+}
+.intro-image {
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.intro-image:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+.intro-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+  transform-origin: center center;
+}
+.intro-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Region Filters Section */
+.region-filters-section {
+  padding: 4rem 0;
+  background-color: #fff;
+}
+.region-filters-section .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.filter-btn {
+  padding: 0.8rem 1.6rem;
+  border: 1px solid #d4af37;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #d4af37;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background-color: #d4af37;
+  color: #fff;
+}
+
+/* Enhanced Interactive Map Section */
+.interactive-map-section {
+  padding: 5rem 0;
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 4rem;
+}
+.section-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.section-heading h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #d4af37;
+  transition: width 0.3s ease;
+}
+.section-heading p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+.map-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto 3rem auto;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.venues-map {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Map Sidebar */
+.map-sidebar {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.region-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.region-filter {
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+.region-filter:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  border-color: #d4af37;
+}
+.region-filter.active {
+  background-color: #d4af37;
+  color: #fff;
+  border-color: #d4af37;
+  font-weight: 600;
+  box-shadow: 0 3px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Venue Preview in Sidebar (optional) */
+.venue-preview {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  margin-top: auto;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+}
+.venue-preview:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+.venue-preview-placeholder {
+  height: 150px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+.venue-preview-placeholder p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.venue-preview-content {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Featured Regions Grid */
+.featured-regions {
+  padding: 5rem 0;
+  position: relative;
+  background-color: #f9f9f9;
+}
+.featured-regions::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/images/abstract-bg.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+.region-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.region-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.region-image {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.region-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  transform-origin: center center;
+}
+.region-card:hover .region-image img {
+  transform: scale(1.1);
+}
+.region-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.region-card:hover .region-name {
+  padding-bottom: 1.5rem;
+}
+.region-name h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+.region-details {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.region-details p {
+  margin: 0 0 1.5rem 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+.region-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #d4af37;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+  gap: 5px;
+}
+.region-link:hover {
+  color: #b28e1e;
+  gap: 10px;
+}
+.region-link i {
+  font-size: 0.8rem;
+}
+.region-link:hover i {
+  transform: translateX(2px);
+}
+
+/* Venue Comparison Tool */
+.venue-comparison {
+  background-color: var(--color-light, #f9f9f9);
+  padding: 100px 0;
+  position: relative;
+}
+.comparison-container {
+  margin-top: 50px;
+}
+.venue-selector {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+.selector-intro {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-right: 20px;
+}
+.selector-input {
+  display: flex;
+  gap: 15px;
+  flex-grow: 1;
+}
+.venue-select {
+  flex-grow: 1;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+.venue-select:focus {
+  border-color: #d4af37;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+.btn-add-venue {
+  background-color: #d4af37;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 500;
+}
+.btn-add-venue:hover {
+  background-color: #c49b2f;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+}
+.comparison-table-container {
+  position: relative;
+}
+.comparison-placeholder {
+  background-color: white;
+  border-radius: 15px;
+  padding: 80px 30px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  color: #999;
+}
+.comparison-placeholder p {
+  margin-top: 30px;
+  font-size: 1.8rem;
+}
+.comparison-placeholder i {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: #d4af37;
+  opacity: 0.7;
+}
+.comparison-table {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+.comparison-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.comparison-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+.comparison-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-color: #d4af37;
+}
+.card-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+.card-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.comparison-card:hover .card-image img {
+  transform: scale(1.1);
+}
+.card-header h3 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+.venue-rating {
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.rating-value {
+  color: #333;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.venue-location {
+  color: #666;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.comparison-features {
+  padding: 20px;
+}
+.feature {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+.feature:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.feature-name {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #666;
+  font-size: 1.4rem;
+}
+.feature-value {
+  font-size: 1.6rem;
+  color: #333;
+}
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+}
+.feature-tag {
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  color: #666;
+}
+.card-actions {
+  padding: 0 20px 20px;
+  display: flex;
+  gap: 10px;
+}
+.card-actions .btn {
+  flex: 1;
+}
+.btn-reset-compare {
+  display: block;
+  margin: 20px auto 0;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+.btn-reset-compare:hover {
+  background-color: #e0e0e0;
+}
+
+/* Regional Venues */
+.regional-venues {
+  padding: 5rem 0;
+  position: relative;
+  scroll-margin-top: 100px;
+}
+.regional-venues::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(45deg, rgba(212, 175, 55, 0.03) 0%, rgba(212, 175, 55, 0.08) 100%);
+  z-index: 0;
+}
+.region-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+.region-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.region-heading h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #d4af37;
+  transition: width 0.3s ease;
+}
+.region-heading p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 1rem auto 0;
+  padding-top: 1rem;
+}
+.venue-item {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+}
+.venue-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.venue-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Enhanced Venue Gallery with Auto-Rotation */
+.venue-gallery {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+.gallery-main {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  transform-origin: center center;
+}
+.gallery-main:hover img {
+  transform: scale(1.05);
+}
+.gallery-thumbs {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+.gallery-thumbs img {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.gallery-thumbs img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.gallery-progress {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #f9f9f9;
+}
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.progress-dot.active {
+  background-color: #d4af37;
+  transform: scale(1.3);
+}
+
+/* Enhanced Venue Info */
+.venue-info {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.featured-badge {
+  background-color: #d4af37;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.venue-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin: 0 0 1.5rem;
+  position: relative;
+  color: #333;
+}
+.venue-info h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #d4af37;
+  transition: width 0.3s ease;
+}
+.venue-tagline {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+.venue-address {
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 1rem;
+}
+.venue-address i {
+  color: #d4af37;
+  margin-right: 5px;
+}
+.venue-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.detail-item:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+.detail-item i {
+  color: #d4af37;
+}
+.venue-description {
+  margin-bottom: 1.5rem;
+}
+.venue-description p {
+  margin: 0;
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+.venue-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.venue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+.view-360 {
+  margin-left: 10px;
+  background-color: #5d8aa8;
+  color: white;
+  font-size: 14px;
+}
+.view-360:hover {
+  background-color: #406882;
+}
+.btn-venue-inquiry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #d4af37;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-venue-inquiry:hover {
+  background-color: #c49b2f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+.btn-venue-inquiry.primary {
+  background-color: #3498db;
+}
+
+/* Enhanced Modal Styles (Venue Inquiry & Virtual Tour) */
+.venue-modal,
+.tour-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+.venue-modal.active,
+.tour-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+}
+.modal-content.modal-animate {
+  transform: translateY(0);
+}
+.modal-content h2 {
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+  position: relative;
+}
+.modal-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #d4af37;
+}
+.modal-intro {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 1.7rem;
+}
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.4rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.close-modal:hover {
+  color: #000;
+  background-color: #eee;
+  transform: rotate(90deg);
+}
+
+/* Enhanced Form Styles (Inquiry) */
+.venue-form {
+  width: 100%;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #333;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #d4af37;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.3);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #f44336;
+}
+.error-message {
+  color: #f44336;
+  font-size: 1.4rem;
+  margin-top: 5px;
+  display: block;
+}
+.venue-specific-fields {
+  grid-column: 1 / -1;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.btn-submit {
+  background-color: #d4af37;
+  color: white;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-submit:hover {
+  background-color: #c49b2f;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+}
+.success-message {
+  text-align: center;
+  padding: 40px 20px;
+}
+.success-message i {
+  font-size: 6rem;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+.success-message h3 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+.success-message p {
+  font-size: 1.8rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* 360 Virtual Tour Modal & Container */
+.tour-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.tour-modal.active {
+  display: flex;
+}
+.tour-modal .modal-content {
+  width: 90%;
+  max-width: 1200px;
+  height: 80vh;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+.tour-modal .modal-content.modal-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+.tour-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.tour-modal .modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+}
+#tourContainer {
+  width: 100%;
+  height: calc(80vh - 107px);
+  position: relative;
+}
+
+/* Tour Loading Indicator */
+.tour-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f8f9fa;
+  padding: 30px;
+}
+.tour-loading i {
+  font-size: 36px;
+  color: #5d8aa8;
+  margin-bottom: 15px;
+  animation: spin 1.5s linear infinite;
+}
+.tour-loading p {
+  font-size: 18px;
+  color: #555;
+}
+@keyframes spin {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+/* Tour Error Message (if fallback) */
+.tour-error {
+  padding: 30px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+.tour-error p {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #555;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.toast {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.6rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 400px;
+  animation: toast-in 0.3s forwards;
+}
+.toast.success {
+  background-color: #4CAF50;
+}
+.toast.warning {
+  background-color: #ff9800;
+}
+.toast.error {
+  background-color: #f44336;
+}
+.toast.info {
+  background-color: #2196F3;
+}
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 15px;
+}
+@keyframes toast-in {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes toast-out {
+  from {opacity: 1; transform: translateY(0);}
+  to {opacity: 0; transform: translateY(-20px);}
+}
+
+/* Planning CTA Section */
+.venues-cta {
+  background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('../assets/images/venues-cta-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 120px 0;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+.venues-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100px;
+  background: linear-gradient(to bottom, white, transparent);
+}
+.venues-cta .cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.venues-cta h2 {
+  font-size: 4.2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.venues-cta p {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .regions-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .venue-item {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .venue-gallery, .venue-info {
+    flex: 100%;
+  }
+  .comparison-cards {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .gallery-main {
+    height: 300px;
+  }
+}
+@media (max-width: 992px) {
+  .map-container {
+    flex-direction: column;
+  }
+  .venues-map {
+    height: 50vh;
+    min-height: 400px;
+  }
+  .selector-input {
+    flex-direction: column;
+  }
+  .venue-details {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .intro-content {
+    flex-direction: column;
+  }
+  .intro-text {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .regions-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    padding: 0 20px;
+  }
+  .venue-actions {
+    flex-direction: column;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  .venues-cta h2 {
+    font-size: 2rem;
+  }
+  .venues-cta p {
+    font-size: 1rem;
+  }
+  .venue-checklist {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 576px) {
+  .modal-content h2 {
+    font-size: 1.8rem;
+  }
+  .gallery-main {
+    height: 250px;
+  }
+  .gallery-thumbs img {
+    width: 60px;
+    height: 40px;
+  }
+  .toast {
+    width: 90%;
+  }
+}
+
+/* Additional Keyframes or Overwrites */
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Map Error Fallback */
+.map-error {
+  padding: 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.map-error h3 {
+  margin-bottom: 10px;
+  color: #d9534f;
+}
+.map-error p {
+  color: #555;
+  max-width: 500px;
+  margin: 0 auto 15px;
+}
