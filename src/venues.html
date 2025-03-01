@@ -25,7 +25,15 @@
         }
     </script>
     <!-- Simple Google Maps script loading -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,marker,streetView,geometry&callback=Function.prototype"></script>
+    <script>
+        // Initialize function for Google Maps API
+        function initGoogleMapsAPI() {
+            console.log("Google Maps API loaded successfully");
+            // You can add any global initialization code here if needed
+            // This ensures the API is properly initialized before being used
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,marker,streetView,geometry&callback=initGoogleMapsAPI"></script>
     <!-- Pannellum for 360° tours (for venue interiors) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>

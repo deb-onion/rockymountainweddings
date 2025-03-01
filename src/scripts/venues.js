@@ -971,8 +971,10 @@ async function initVirtualTours() {
         // Get venueMarkers from global scope or define a local array if not available
         let venueMarkersData = [];
         
-        // Check if venueMarkers is defined in outer scope
-        if (typeof venueMarkers !== 'undefined') {
+        // Check if venueMarkers is defined in outer scope - access it correctly from the global scope
+        if (typeof window.venueMarkers !== 'undefined') {
+            venueMarkersData = window.venueMarkers;
+        } else if (typeof venueMarkers !== 'undefined') {
             venueMarkersData = venueMarkers;
         } else {
             // Backup for when venueMarkers is not defined in this scope
@@ -987,14 +989,49 @@ async function initVirtualTours() {
                 console.error("Error loading venue data:", error);
             }
             
-            // If still no data, attempt to fetch venue data
+            // If still no data, use the hardcoded venue data
             if (venueMarkersData.length === 0) {
-                console.warn("Venue markers not available, using fallback data");
-                // Emergency fallback with minimal basic data for testing
-                venueMarkersData = window.venueData || [];
+                console.warn("Venue markers not available, using hardcoded data");
+                // Use hardcoded venue data from this file
+                venueMarkersData = [
+                    {
+                        id: 'mt-norquay',
+                        name: 'Mt. Norquay',
+                        location: 'Banff, Alberta',
+                        description: 'A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.',
+                        coordinates: { lat: 51.2080, lng: -115.5937 },
+                        image: 'assets/images/venues/mt-norquay-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '50-200 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies'],
+                        placeId: 'ChIJM8_Ru_IVcFMRFsNu0E_ZxO0',
+                        address: 'Improvement District No. 9, AB T0L 1E0, Canada'
+                    },
+                    {
+                        id: 'sky-bistro',
+                        name: 'Sky Bistro, Gondola',
+                        location: 'Banff, Alberta',
+                        description: 'A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.',
+                        coordinates: { lat: 51.1493, lng: -115.5731 },
+                        image: 'assets/images/venues/sky-bistro-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '20-200 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
+                        placeId: 'ChIJbfpqSksVcFMRBOUNLXJ-0Xo',
+                        address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
+                    }
+                    // Additional venues would be defined here
+                ];
             }
         }
         
+        // Make venueMarkersData available globally in case it's needed by other functions
+        window.venueData = venueMarkersData;
+
         // Function to open virtual tour
         function openVirtualTour(venueId) {
             // Show loading indicator
