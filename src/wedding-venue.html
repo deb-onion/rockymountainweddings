@@ -384,7 +384,7 @@
                 <option value="cochrane-ranchehouse">Cochrane RancheHouse</option>
               </optgroup>
             </select>
-            <button id="addVenueBtn" class="btn-add-venue">
+            <button id="addVenueBtn" class="btn-add-venue" aria-label="Add venue to comparison">
               <i class="fas fa-plus"></i> Add to Compare
             </button>
           </div>
@@ -396,11 +396,11 @@
             <p>Add venues above to start comparing</p>
           </div>
           <div class="comparison-table" style="display: none;">
-            <!-- Populated dynamically by venues.js -->
+            <!-- Populated dynamically by wedding-venue.js -->
           </div>
         </div>
 
-        <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
+        <button id="resetCompareBtn" class="btn-reset-compare" aria-label="Reset Venue Comparison">Reset Comparison</button>
       </div>
     </div>
   </section>
@@ -462,10 +462,10 @@
           </div>
 
           <div class="venue-actions">
-            <button class="btn btn-secondary view-360" data-venue="the-gem">
+            <button class="btn btn-secondary view-360" data-venue="the-gem" aria-label="View 360° Virtual Tour of The Gem">
               <i class="fas fa-vr-cardboard"></i> Virtual Tour
             </button>
-            <button class="btn-venue-inquiry primary" data-venue="The Gem">
+            <button class="btn-venue-inquiry primary" data-venue="The Gem" aria-label="Schedule a visit to The Gem">
               Schedule a Visit
             </button>
           </div>
@@ -510,7 +510,7 @@
 
           <div class="form-group">
             <label for="guestCount">Estimated Guest Count</label>
-            <select id="guestCount" name="guestCount">
+            <select id="guestCount" name="guestCount" aria-label="Estimated Guest Count">
               <option value="">Select guest count</option>
               <option value="10-50">10-50 guests</option>
               <option value="51-100">51-100 guests</option>
