@@ -995,6 +995,36 @@ async function initVirtualTours() {
                 // Use hardcoded venue data from this file
                 venueMarkersData = [
                     {
+                        id: 'the-gem',
+                        name: 'The Gem',
+                        location: 'Bighorn No. 8, Alberta',
+                        description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
+                        coordinates: { lat: 51.0977, lng: -115.3392 },
+                        image: 'assets/images/venues/the-gem-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '20-150 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities'],
+                        placeId: 'ChIJW6XUmrEYcFMRaEOtOYjqH3g',
+                        address: '900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada'
+                    },
+                    {
+                        id: 'banff-springs',
+                        name: 'Fairmont Springs Hotel',
+                        location: 'Banff, Alberta',
+                        description: 'Known as Canada\'s "Castle in the Rockies," this historic hotel offers luxurious wedding venues with stunning mountain views.',
+                        coordinates: { lat: 51.1645, lng: -115.5708 },
+                        image: 'assets/images/venues/banff-springs-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '10-800 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites'],
+                        placeId: 'ChIJn8hUfMIQcFMRf95C1DrfPiI',
+                        address: '405 Spray Ave, Banff, AB T1L 1J4, Canada'
+                    },
+                    {
                         id: 'mt-norquay',
                         name: 'Mt. Norquay',
                         location: 'Banff, Alberta',
@@ -1023,8 +1053,67 @@ async function initVirtualTours() {
                         features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
                         placeId: 'ChIJbfpqSksVcFMRBOUNLXJ-0Xo',
                         address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
+                    },
+                    {
+                        id: 'chateau-louise',
+                        name: 'Fairmont Chateau Lake Louise',
+                        location: 'Lake Louise, Alberta',
+                        description: 'An iconic venue on the shores of the emerald waters of Lake Louise with glacier views.',
+                        coordinates: { lat: 51.4168, lng: -116.2175 },
+                        image: 'assets/images/venues/lake-louise-main.jpg',
+                        region: 'lake-louise',
+                        url: '#lake-louise-venues',
+                        capacity: '10-550 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience'],
+                        placeId: 'ChIJcz_cTlQtcVMR_yC4zJNM_xc',
+                        address: '111 Lake Louise Dr, Lake Louise, AB T0L 1E0, Canada'
+                    },
+                    {
+                        id: 'kicking-horse',
+                        name: 'Kicking Horse Resort',
+                        location: 'Golden, British Columbia',
+                        description: 'A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.',
+                        coordinates: { lat: 51.2980, lng: -117.0475 },
+                        image: 'assets/images/venues/kicking-horse-main.jpg',
+                        region: 'golden',
+                        url: '#golden-venues',
+                        capacity: '20-200 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience'],
+                        placeId: 'ChIJSzU4uuiDcVMRb8JlhC_mD2A',
+                        address: '1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada'
+                    },
+                    {
+                        id: 'pyramid-lake',
+                        name: 'Pyramid Lake Lodge',
+                        location: 'Jasper, Alberta',
+                        description: 'Charming lakeside lodge with mountain views and private island for ceremonies.',
+                        coordinates: { lat: 52.9310, lng: -118.0945 },
+                        image: 'assets/images/venues/pyramid-lake-main.jpg',
+                        region: 'jasper',
+                        url: '#jasper-venues',
+                        capacity: '10-120 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Lakeside Setting', 'Private Island', 'Mountain Views', 'Intimate Setting'],
+                        placeId: 'ChIJ7ZWCwJtRdFMRJvS7Vt7W_vA',
+                        address: 'Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada'
+                    },
+                    {
+                        id: 'cochrane-ranchehouse',
+                        name: 'Cochrane RancheHouse',
+                        location: 'Cochrane, Alberta',
+                        description: 'A charming venue with rustic elegance and panoramic views of the Rocky Mountains and Bow River Valley.',
+                        coordinates: { lat: 51.1945, lng: -114.4669 },
+                        image: 'assets/images/venues/cochrane-ranchehouse-main.jpg',
+                        region: 'cochrane',
+                        url: '#cochrane-venues',
+                        capacity: '20-320 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Mountain Views', 'Rustic Elegance', 'Indoor & Outdoor Options', 'Historical Setting'],
+                        placeId: 'ChIJZftOi0EtcVMRk3p9D9URcAw',
+                        address: '101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada'
                     }
-                    // Additional venues would be defined here
                 ];
             }
         }
