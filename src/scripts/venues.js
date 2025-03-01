@@ -136,15 +136,14 @@ function initInteractiveMap() {
                 name: 'The Gem',
                 location: 'Bighorn No. 8, Alberta',
                 description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
-                coordinates: { lat: 51.0977, lng: -115.3392 }, // Harvie Heights coordinates
+                coordinates: { lat: 51.0977, lng: -115.3392 },
                 image: 'assets/images/venues/the-gem-main.jpg',
                 region: 'banff',
                 url: '#banff-venues',
                 capacity: '20-150 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities'],
-                featured: true, // Featured venue,
-                placeId: 'ChIJW6XUmrEYcFMRaEOtOYjqH3g', // From the Google Maps link
+                placeId: 'ChIJXdYXc8PPcFMR2FLpubbFK70',
                 address: '900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada'
             },
             {
@@ -159,7 +158,7 @@ function initInteractiveMap() {
                 capacity: '10-800 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites'],
-                placeId: 'ChIJn8hUfMIQcFMRf95C1DrfPiI', // From the Google Maps link
+                placeId: 'ChIJv7gvLjvKcFMRzvb0LKnpmQA',
                 address: '405 Spray Ave, Banff, AB T1L 1J4, Canada'
             },
             {
@@ -174,7 +173,7 @@ function initInteractiveMap() {
                 capacity: '20-200 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
-                placeId: 'ChIJbfpqSksVcFMRBOUNLXJ-0Xo', // From the Google Maps link
+                placeId: 'ChIJ9S3E0PnJcFMR8dn8aW1SQns', // From the Google Maps link
                 address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
             },
             {
@@ -189,7 +188,7 @@ function initInteractiveMap() {
                 capacity: '10-80 guests',
                 priceRange: '$$-$$$',
                 features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine'],
-                placeId: 'ChIJO_yxGUMVcFMR3IbpFZPcLII', // From the Google Maps link
+                placeId: 'ChIJJ8_i30XKcFMRX4-EqsUwfec', // From the Google Maps link
                 address: '137 Banff Ave, Banff, AB T1L 1C8, Canada'
             },
             {
@@ -204,7 +203,7 @@ function initInteractiveMap() {
                 capacity: '50-200 guests',
                 priceRange: '$$-$$$',
                 features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies'],
-                placeId: 'ChIJM8_Ru_IVcFMRFsNu0E_ZxO0', // From the Google Maps link
+                placeId: 'ChIJPe5LM-_KcFMRj5sq8kzdj38', // From the Google Maps link
                 address: 'Improvement District No. 9, AB T0L 1E0, Canada'
             },
             {
@@ -219,7 +218,7 @@ function initInteractiveMap() {
                 capacity: '30-150 guests',
                 priceRange: '$$-$$$',
                 features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location'],
-                placeId: 'ChIJBQX2tUIVcFMRH9sxg9m5_2g', // From the Google Maps link
+                placeId: 'ChIJ0cdeKZvLcFMR0jSmXX0uyAI', // From the Google Maps link
                 address: '205 Bear St, Banff, AB T1L 1A1, Canada'
             },
             
@@ -237,7 +236,7 @@ function initInteractiveMap() {
                 priceRange: '$$-$$$',
                 features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities'],
                 featured: true, // Featured venue,
-                placeId: 'ChIJs2Jfy-EbcFMRiB7lSe8UeVY', // From the Google Maps link
+                placeId: 'ChIJB9obQr3FcFMRV5tPjm8UHow', // From the Google Maps link
                 address: '187 Kananaskis Way, Canmore, AB T1W 2A3, Canada'
             },
             {
@@ -252,7 +251,7 @@ function initInteractiveMap() {
                 capacity: '20-180 guests',
                 priceRange: '$$-$$$',
                 features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace'],
-                placeId: 'ChIJbT1EzP4bcFMRNNbzC6_wMxA', // From the Google Maps link
+                placeId: 'ChIJq8NNqcLFcFMRsFwhjZDQI-8', // From the Google Maps link
                 address: '4100 Stewart Creek Dr, Canmore, AB T1W 2V3, Canada'
             },
             {
@@ -267,7 +266,7 @@ function initInteractiveMap() {
                 capacity: '20-250 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience'],
-                placeId: 'ChIJs37VYz0ccFMRf_X0FnYlXac', // From the Google Maps link
+                placeId: 'ChIJRbfHuJnFcFMRHo1burdyy9w', // From the Google Maps link
                 address: '2000 Silvertip Trail, Canmore, AB T1W 3J4, Canada'
             },
             {
@@ -282,7 +281,7 @@ function initInteractiveMap() {
                 capacity: '30-200 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location'],
-                placeId: 'ChIJtb0FwvEbcFMRYHOI7A9aNKo', // From the Google Maps link
+                placeId: 'ChIJCWB_67_FcFMRbSV-ZuLW46E', // From the Google Maps link
                 address: '321 Spring Creek Dr, Canmore, AB T1W 2G2, Canada'
             },
             {
@@ -297,7 +296,7 @@ function initInteractiveMap() {
                 capacity: '10-120 guests',
                 priceRange: '$$-$$$',
                 features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views'],
-                placeId: 'ChIJAQybYwsccFMRPw-B4NRzvFs', // From the Google Maps link
+                placeId: 'ChIJNRHJp6bFcFMRC7Askc-fjPM', // From the Google Maps link
                 address: '709 Benchlands Trail, Canmore, AB T1W 3G9, Canada'
             },
             {
@@ -312,7 +311,7 @@ function initInteractiveMap() {
                 capacity: '20-100 guests',
                 priceRange: '$$-$$$',
                 features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options'],
-                placeId: 'ChIJy8D3-uQbcFMRkpHGEgUV9FY', // From the Google Maps link
+                placeId: 'ChIJWdSpew7FcFMRNeLYTIEUp_U', // From the Google Maps link
                 address: '306 Bow Valley Trail #125B, Canmore, AB T1W 0N2, Canada'
             },
             
@@ -330,7 +329,7 @@ function initInteractiveMap() {
                 priceRange: '$$$-$$$$',
                 features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience'],
                 featured: true, // Featured venue,
-                placeId: 'ChIJcz_cTlQtcVMR_yC4zJNM_xc', // From the Google Maps link
+                placeId: 'ChIJNZqvCRJdd1MRBBS7Nem5IEQ', // From the Google Maps link
                 address: '111 Lake Louise Dr, Lake Louise, AB T0L 1E0, Canada'
             },
             
@@ -348,7 +347,7 @@ function initInteractiveMap() {
                 priceRange: '$$$-$$$$',
                 features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience'],
                 featured: true, // Featured venue,
-                placeId: 'ChIJSzU4uuiDcVMRb8JlhC_mD2A', // From the Google Maps link
+                placeId: 'ChIJSV7VHe2-eVMRaeruFCGNjys', // From the Google Maps link
                 address: '1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada'
             },
             {
@@ -363,7 +362,7 @@ function initInteractiveMap() {
                 capacity: '10-60 guests',
                 priceRange: '$$-$$$',
                 features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings'],
-                placeId: 'ChIJUb96hNiFcVMRe_8-uZj9HuQ', // From the Google Maps link
+                placeId: 'ChIJ1S0CAQXIeVMRPoV7JAGqCfk', // From the Google Maps link
                 address: '1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada'
             },
             {
@@ -378,7 +377,7 @@ function initInteractiveMap() {
                 capacity: '10-88 guests',
                 priceRange: '$$$-$$$$',
                 features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop'],
-                placeId: 'ChIJexU-W6pkcVMRHQs6PaTI17k', // From the Google Maps link
+                placeId: 'ChIJ4f_____YeVMRKF7Aq3XdVWA', // From the Google Maps link
                 address: '1 Emerald Lake Rd, Field, BC V0A 1G0, Canada'
             },
             
@@ -396,7 +395,7 @@ function initInteractiveMap() {
                 priceRange: '$$$-$$$$',
                 features: ['Lakeside Setting', 'Private Island', 'Mountain Views', 'Intimate Setting'],
                 featured: true, // Featured venue,
-                placeId: 'ChIJ7ZWCwJtRdFMRJvS7Vt7W_vA', // From the Google Maps link
+                placeId: 'ChIJNdqht7Asg1MRD2BtHQ5gK14', // From the Google Maps link
                 address: 'Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada'
             },
             {
@@ -411,7 +410,7 @@ function initInteractiveMap() {
                 capacity: '10-80 guests',
                 priceRange: '$$$',
                 features: ['Historic Property', 'Lakeside Setting', 'Wilderness Experience', 'Exclusive Use'],
-                placeId: 'ChIJyxxJZcwtc1MROk-0fdW7mI0', // From the Google Maps link
+                placeId: 'ChIJUQutQugpnVMR9MUUneTFKiU', // From the Google Maps link
                 address: 'Maligne Lake Rd, Jasper, AB T0E 1E0, Canada'
             },
             // COCHRANE VENUES
@@ -427,7 +426,7 @@ function initInteractiveMap() {
                 capacity: '20-320 guests',
                 priceRange: '$$-$$$',
                 features: ['Mountain Views', 'Rustic Elegance', 'Indoor & Outdoor Options', 'Historical Setting'],
-                placeId: 'ChIJZftOi0EtcVMRk3p9D9URcAw', // From the Google Maps link
+                placeId: 'ChIJqc_3Qnm-cUERNkoe0vmMnJI', // From the Google Maps link
                 address: '101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada'
             }
         ];
@@ -1006,7 +1005,7 @@ async function initVirtualTours() {
                         capacity: '20-150 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities'],
-                        placeId: 'ChIJW6XUmrEYcFMRaEOtOYjqH3g',
+                        placeId: 'ChIJXdYXc8PPcFMR2FLpubbFK70',
                         address: '900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada'
                     },
                     {
@@ -1021,7 +1020,7 @@ async function initVirtualTours() {
                         capacity: '10-800 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites'],
-                        placeId: 'ChIJn8hUfMIQcFMRf95C1DrfPiI',
+                        placeId: 'ChIJv7gvLjvKcFMRzvb0LKnpmQA',
                         address: '405 Spray Ave, Banff, AB T1L 1J4, Canada'
                     },
                     {
@@ -1036,7 +1035,7 @@ async function initVirtualTours() {
                         capacity: '50-200 guests',
                         priceRange: '$$-$$$',
                         features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies'],
-                        placeId: 'ChIJM8_Ru_IVcFMRFsNu0E_ZxO0',
+                        placeId: 'ChIJPe5LM-_KcFMRj5sq8kzdj38',
                         address: 'Improvement District No. 9, AB T0L 1E0, Canada'
                     },
                     {
@@ -1051,7 +1050,7 @@ async function initVirtualTours() {
                         capacity: '20-200 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
-                        placeId: 'ChIJbfpqSksVcFMRBOUNLXJ-0Xo',
+                        placeId: 'ChIJ9S3E0PnJcFMR8dn8aW1SQns',
                         address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
                     },
                     {
@@ -1066,7 +1065,7 @@ async function initVirtualTours() {
                         capacity: '10-550 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience'],
-                        placeId: 'ChIJcz_cTlQtcVMR_yC4zJNM_xc',
+                        placeId: 'ChIJNZqvCRJdd1MRBBS7Nem5IEQ',
                         address: '111 Lake Louise Dr, Lake Louise, AB T0L 1E0, Canada'
                     },
                     {
@@ -1081,7 +1080,7 @@ async function initVirtualTours() {
                         capacity: '20-200 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience'],
-                        placeId: 'ChIJSzU4uuiDcVMRb8JlhC_mD2A',
+                        placeId: 'ChIJSV7VHe2-eVMRaeruFCGNjys',
                         address: '1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada'
                     },
                     {
@@ -1096,7 +1095,7 @@ async function initVirtualTours() {
                         capacity: '10-120 guests',
                         priceRange: '$$$-$$$$',
                         features: ['Lakeside Setting', 'Private Island', 'Mountain Views', 'Intimate Setting'],
-                        placeId: 'ChIJ7ZWCwJtRdFMRJvS7Vt7W_vA',
+                        placeId: 'ChIJNdqht7Asg1MRD2BtHQ5gK14',
                         address: 'Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada'
                     },
                     {
@@ -1111,8 +1110,173 @@ async function initVirtualTours() {
                         capacity: '20-320 guests',
                         priceRange: '$$-$$$',
                         features: ['Mountain Views', 'Rustic Elegance', 'Indoor & Outdoor Options', 'Historical Setting'],
-                        placeId: 'ChIJZftOi0EtcVMRk3p9D9URcAw',
+                        placeId: 'ChIJqc_3Qnm-cUERNkoe0vmMnJI',
                         address: '101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada'
+                    },
+                    {
+                        id: 'mainspace-solara',
+                        name: 'Mainspace Solara',
+                        location: 'Canmore, Alberta',
+                        description: 'A contemporary event space with mountain views and flexible layouts for weddings of all sizes.',
+                        coordinates: { lat: 51.0899, lng: -115.3487 },
+                        image: 'assets/images/venues/mainspace-solara-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '20-250 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities'],
+                        placeId: 'ChIJB9obQr3FcFMRV5tPjm8UHow',
+                        address: '187 Kananaskis Way, Canmore, AB T1W 2A3, Canada'
+                    },
+                    {
+                        id: 'stewart-creek',
+                        name: 'Stewart Creek Golf Course',
+                        location: 'Canmore, Alberta',
+                        description: 'An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.',
+                        coordinates: { lat: 51.0574, lng: -115.3696 },
+                        image: 'assets/images/venues/stewart-creek-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '20-180 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace'],
+                        placeId: 'ChIJq8NNqcLFcFMRsFwhjZDQI-8',
+                        address: '4100 Stewart Creek Dr, Canmore, AB T1W 2V3, Canada'
+                    },
+                    {
+                        id: 'silvertip',
+                        name: 'Silvertip Resort',
+                        location: 'Canmore, Alberta',
+                        description: 'A mountain golf resort offering stunning views of the Three Sisters peaks with beautiful indoor and outdoor ceremony spaces.',
+                        coordinates: { lat: 51.0911, lng: -115.3126 },
+                        image: 'assets/images/venues/silvertip-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '20-250 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience'],
+                        placeId: 'ChIJRbfHuJnFcFMRHo1burdyy9w',
+                        address: '2000 Silvertip Trail, Canmore, AB T1W 3J4, Canada'
+                    },
+                    {
+                        id: 'malcolm-hotel',
+                        name: 'The Malcolm Hotel',
+                        location: 'Canmore, Alberta',
+                        description: 'A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.',
+                        coordinates: { lat: 51.0875, lng: -115.3480 },
+                        image: 'assets/images/venues/malcolm-hotel-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '30-200 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location'],
+                        placeId: 'ChIJCWB_67_FcFMRbSV-ZuLW46E',
+                        address: '321 Spring Creek Dr, Canmore, AB T1W 2G2, Canada'
+                    },
+                    {
+                        id: 'creekside-villa',
+                        name: 'Creekside Villa',
+                        location: 'Canmore, Alberta',
+                        description: 'A charming boutique venue with a picturesque setting along the creek and mountain views.',
+                        coordinates: { lat: 51.0816, lng: -115.3578 },
+                        image: 'assets/images/venues/creekside-villa-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '10-120 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views'],
+                        placeId: 'ChIJNRHJp6bFcFMRC7Askc-fjPM',
+                        address: '709 Benchlands Trail, Canmore, AB T1W 3G9, Canada'
+                    },
+                    {
+                        id: 'finchys',
+                        name: 'Finchy\'s @CanGOLF',
+                        location: 'Canmore, Alberta',
+                        description: 'A unique golf simulator and event space offering a fun, casual setting for wedding events.',
+                        coordinates: { lat: 51.0925, lng: -115.3434 },
+                        image: 'assets/images/venues/finchys-main.jpg',
+                        region: 'canmore',
+                        url: '#canmore-venues',
+                        capacity: '20-100 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options'],
+                        placeId: 'ChIJWdSpew7FcFMRNeLYTIEUp_U',
+                        address: '306 Bow Valley Trail #125B, Canmore, AB T1W 0N2, Canada'
+                    },
+                    {
+                        id: 'emerald-lake',
+                        name: 'Emerald Lake Lodge',
+                        location: 'Field, British Columbia',
+                        description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
+                        coordinates: { lat: 51.4429, lng: -116.5285 },
+                        image: 'assets/images/venues/emerald-lake-main.jpg',
+                        region: 'emerald-lake',
+                        url: '#emerald-lake-venues',
+                        capacity: '10-88 guests',
+                        priceRange: '$$$-$$$$',
+                        features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop'],
+                        placeId: 'ChIJ4f_____YeVMRKF7Aq3XdVWA',
+                        address: '1 Emerald Lake Rd, Field, BC V0A 1G0, Canada'
+                    },
+                    {
+                        id: 'hillside-lodge',
+                        name: 'Hillside Lodge & Chalets',
+                        location: 'Golden, British Columbia',
+                        description: 'A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.',
+                        coordinates: { lat: 51.3194, lng: -116.9722 },
+                        image: 'assets/images/venues/hillside-lodge-main.jpg',
+                        region: 'golden',
+                        url: '#golden-venues',
+                        capacity: '10-60 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings'],
+                        placeId: 'ChIJ1S0CAQXIeVMRPoV7JAGqCfk',
+                        address: '1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada'
+                    },
+                    {
+                        id: 'maple-leaf',
+                        name: 'The Maple Leaf',
+                        location: 'Banff, Alberta',
+                        description: 'A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.',
+                        coordinates: { lat: 51.1767, lng: -115.5712 },
+                        image: 'assets/images/venues/maple-leaf-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '10-80 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine'],
+                        placeId: 'ChIJJ8_i30XKcFMRX4-EqsUwfec',
+                        address: '137 Banff Ave, Banff, AB T1L 1C8, Canada'
+                    },
+                    {
+                        id: 'three-bears',
+                        name: 'Three Bears Brewery',
+                        location: 'Banff, Alberta',
+                        description: 'A unique brewery venue with rustic-industrial charm in the heart of Banff.',
+                        coordinates: { lat: 51.1761, lng: -115.5693 },
+                        image: 'assets/images/venues/three-bears-main.jpg',
+                        region: 'banff',
+                        url: '#banff-venues',
+                        capacity: '30-150 guests',
+                        priceRange: '$$-$$$',
+                        features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location'],
+                        placeId: 'ChIJ0cdeKZvLcFMR0jSmXX0uyAI',
+                        address: '205 Bear St, Banff, AB T1L 1A1, Canada'
+                    },
+                    {
+                        id: 'maligne-lake',
+                        name: 'Maligne Lake Chalet',
+                        location: 'Jasper, Alberta',
+                        description: 'Historic chalet on the shores of iconic Maligne Lake with stunning mountain backdrops.',
+                        coordinates: { lat: 52.7167, lng: -117.6333 },
+                        image: 'assets/images/venues/maligne-lake-main.jpg',
+                        region: 'jasper',
+                        url: '#jasper-venues',
+                        capacity: '10-80 guests',
+                        priceRange: '$$$',
+                        features: ['Historic Property', 'Lakeside Setting', 'Wilderness Experience', 'Exclusive Use'],
+                        placeId: 'ChIJUQutQugpnVMR9MUUneTFKiU',
+                        address: 'Maligne Lake Rd, Jasper, AB T0E 1E0, Canada'
                     }
                 ];
             }
@@ -1217,7 +1381,7 @@ async function initVirtualTours() {
                     console.log(`Using fallback coordinates for ${venueName}`, fallbackCoordinates);
                     checkStreetViewAndInitialize({
                         geometry: {
-                            location: new LatLng(fallbackCoordinates.lat, fallbackCoordinates.lng)
+                            location: new google.maps.LatLng(fallbackCoordinates.lat, fallbackCoordinates.lng)
                         },
                         name: venueName,
                         formatted_address: venueAddress || "Rocky Mountains, Canada"
@@ -1245,9 +1409,14 @@ async function initVirtualTours() {
                     // Fall back to venue marker data
                     const venueData = venueMarkersData.find(venue => venue.name === venueName);
                     if (venueData && venueData.coordinates) {
+                        console.log(`Using fallback coordinates for ${venueName}`, venueData.coordinates);
+                        // Use google.maps.LatLng constructor instead of LatLng directly
                         checkStreetViewAndInitialize({
                             geometry: {
-                                location: new LatLng(venueData.coordinates.lat, venueData.coordinates.lng)
+                                location: new google.maps.LatLng(
+                                    venueData.coordinates.lat, 
+                                    venueData.coordinates.lng
+                                )
                             },
                             name: venueName,
                             formatted_address: venueData.address || "Rocky Mountains, Canada"
@@ -1585,10 +1754,17 @@ async function initVirtualTours() {
         }
         
         // Function to get fallback coordinates for venues
-        function getVenueFallbackCoordinates(venueId) {
-            // Find the venue in our venue markers
-            const venue = venueMarkersData.find(v => v.id === venueId);
+        function getVenueFallbackCoordinates(venueIdOrName) {
+            // First try to find the venue in our venueMarkersData
+            const venue = venueMarkersData.find(v => 
+                v.id === venueIdOrName || 
+                v.name === venueIdOrName ||
+                (v.name && venueIdOrName && v.name.includes(venueIdOrName)) ||
+                (venueIdOrName && v.name && venueIdOrName.includes(v.name))
+            );
+            
             if (venue && venue.coordinates) {
+                console.log(`Found coordinates in venue data for ${venueIdOrName}`, venue.coordinates);
                 return venue.coordinates;
             }
             
@@ -1606,10 +1782,39 @@ async function initVirtualTours() {
                 'mainspace-solara': { lat: 51.0899, lng: -115.3487 },
                 'stewart-creek': { lat: 51.0574, lng: -115.3696 },
                 'malcolm-hotel': { lat: 51.0875, lng: -115.3480 },
-                'cochrane-ranchehouse': { lat: 51.1945, lng: -114.4669 }
+                'cochrane-ranchehouse': { lat: 51.1945, lng: -114.4669 },
+                // Add name-based fallbacks for common venue names
+                'Fairmont Springs Hotel': { lat: 51.1644, lng: -115.5619 },
+                'The Gem': { lat: 51.1720, lng: -115.5940 },
+                'Sky Bistro': { lat: 51.1644, lng: -115.5574 },
+                'Mt. Norquay': { lat: 51.1985, lng: -115.5944 },
+                'Fairmont Chateau Lake Louise': { lat: 51.4163, lng: -116.2162 },
+                'The Malcolm Hotel': { lat: 51.0875, lng: -115.3480 },
+                'Mainspace Solara': { lat: 51.0899, lng: -115.3487 },
+                'Stewart Creek Golf Course': { lat: 51.0574, lng: -115.3696 },
+                'Silvertip Resort': { lat: 51.0911, lng: -115.3126 },
+                'Three Bears Brewery': { lat: 51.1761, lng: -115.5693 },
+                'The Maple Leaf': { lat: 51.1767, lng: -115.5712 }
             };
             
-            return fallbackCoords[venueId] || null;
+            // Try to find by ID
+            if (fallbackCoords[venueIdOrName]) {
+                console.log(`Using hardcoded coordinates for ${venueIdOrName}`, fallbackCoords[venueIdOrName]);
+                return fallbackCoords[venueIdOrName];
+            }
+            
+            // If venueIdOrName is a name, try to find a partial match
+            if (typeof venueIdOrName === 'string') {
+                for (const [key, coords] of Object.entries(fallbackCoords)) {
+                    if (key.includes(venueIdOrName) || venueIdOrName.includes(key)) {
+                        console.log(`Found partial match for ${venueIdOrName} with ${key}`, coords);
+                        return coords;
+                    }
+                }
+            }
+            
+            console.warn(`No fallback coordinates found for ${venueIdOrName}`);
+            return null;
         }
         
         // Function to find venue location using Places API
@@ -1617,6 +1822,24 @@ async function initVirtualTours() {
             console.log(`Searching for venue location: ${venueName}, ${venueAddress}`);
             
             try {
+                // First check if we have this venue in our hardcoded data
+                const venueData = venueMarkersData.find(venue => 
+                    venue.name === venueName || 
+                    (venue.name && venue.name.includes(venueName))
+                );
+                
+                if (venueData && venueData.coordinates) {
+                    console.log(`Found venue in our data: ${venueName}`, venueData);
+                    checkStreetViewAndInitialize({
+                        geometry: {
+                            location: new google.maps.LatLng(venueData.coordinates.lat, venueData.coordinates.lng)
+                        },
+                        name: venueName,
+                        formatted_address: venueData.address || venueAddress || "Rocky Mountains, Canada"
+                    });
+                    return;
+                }
+                
                 // Load Places library
                 const placesLib = await google.maps.importLibrary("places");
                 const PlacesService = placesLib.PlacesService;
@@ -1643,7 +1866,21 @@ async function initVirtualTours() {
                 });
             } catch (error) {
                 console.error("Error in Places API call:", error);
-                showErrorMessage("There was an error finding the venue location. Please try again later.");
+                
+                // Try to use fallback coordinates from our venue data
+                const fallbackCoords = getVenueFallbackCoordinates(venueName);
+                if (fallbackCoords) {
+                    console.log(`Using emergency fallback coordinates for ${venueName}`);
+                    checkStreetViewAndInitialize({
+                        geometry: {
+                            location: new google.maps.LatLng(fallbackCoords.lat, fallbackCoords.lng)
+                        },
+                        name: venueName,
+                        formatted_address: venueAddress || "Rocky Mountains, Canada"
+                    });
+                } else {
+                    showErrorMessage("There was an error finding the venue location. Please try again later.");
+                }
             }
         }
         
@@ -1652,6 +1889,25 @@ async function initVirtualTours() {
             console.log(`Geocoding address: ${address}`);
             
             try {
+                // Find venue in our hardcoded data first
+                const venueData = venueMarkersData.find(venue => 
+                    venue.name === venueName || 
+                    (venue.address && venue.address.includes(address))
+                );
+                
+                if (venueData && venueData.coordinates) {
+                    console.log(`Found venue coordinates in our data for ${venueName}`, venueData.coordinates);
+                    const location = {
+                        geometry: {
+                            location: new google.maps.LatLng(venueData.coordinates.lat, venueData.coordinates.lng)
+                        },
+                        name: venueName,
+                        formatted_address: venueData.address || address
+                    };
+                    checkStreetViewAndInitialize(location);
+                    return;
+                }
+                
                 // Load Geocoding library
                 const geocodingLib = await google.maps.importLibrary("geocoding");
                 const Geocoder = geocodingLib.Geocoder;

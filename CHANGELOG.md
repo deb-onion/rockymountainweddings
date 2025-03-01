@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.6.5 - 2025-03-02
+
+### Changes
+- neverending venue virtual tour fix tried
+
+
 ## Version 2.6.4 - 2025-03-02
 
 ### Changes
@@ -216,6 +222,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
