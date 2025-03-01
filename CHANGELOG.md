@@ -72,7 +72,7 @@
 - Updated both cloudflare.toml and pages.json configuration
 - Added build script for future complex deployments
 
-## Version 1.1.0 - June 10, 2024
+## Version 1.1.0 - 26-02- 2024
 
 ### Venues Page Enhancements
 
