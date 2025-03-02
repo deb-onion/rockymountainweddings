@@ -480,10 +480,221 @@ function initInteractiveMap() {
     return;
   }
 
-  // Rest of initInteractiveMap function...
   Debug.info('MAP_INIT', 'Initializing Google Maps');
+
+  // Example custom map style
+  const mapStyles = [
+    {
+      featureType: 'landscape.natural',
+      elementType: 'geometry',
+      stylers: [{ color: '#dde2e3' }]
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#a9de83' }]
+    },
+    {
+      featureType: 'water',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#a6cbe3' }]
+    }
+  ];
+
+  // Map options
+  const mapOptions = {
+    center: { lat: 51.1645, lng: -115.5708 }, // Banff-ish
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: mapStyles,
+    mapTypeControl: true,
+    zoomControl: true,
+    streetViewControl: true,
+    fullscreenControl: true,
+    tilt: 45
+  };
+
+  let map;
+  try {
+    Debug.info('MAP_INIT', 'Creating new Google Map instance');
+    map = new google.maps.Map(mapContainer, mapOptions);
+    map.addListener('idle', () => {
+      Debug.success('MAP_INIT', 'Map rendered successfully');
+    });
+  } catch (error) {
+    Debug.error('MAP_INIT', 'Error initializing map:', error);
+    mapContainer.innerHTML = `
+      <div class="map-error">
+        <h3>Map Loading Error</h3>
+        <p>We couldn't load the interactive venue map. Please refresh or try again later.</p>
+        <p>Error: ${error.message}</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Circle marker icon based on region color
+  function createMarkerIcon(region) {
+    const colors = {
+      banff: '#e74c3c',
+      canmore: '#3498db',
+      'lake-louise': '#2ecc71',
+      'emerald-lake': '#27ae60',
+      kananaskis: '#f39c12',
+      jasper: '#9b59b6',
+      golden: '#f1c40f',
+      cochrane: '#e67e22'
+    };
+    const color = colors[region] || '#e74c3c'; // default red
+    return {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: color,
+      fillOpacity: 0.9,
+      strokeWeight: 2,
+      strokeColor: '#fff',
+      scale: 10
+    };
+  }
   
-  // Example custom map style and rest of the function...
+  // Attach markers & info windows
+  Debug.info('MAP_INIT', 'Adding venue markers to map');
+  venueMarkers.forEach(venue => {
+    try {
+      const marker = new google.maps.Marker({
+        position: venue.coordinates,
+        map: map,
+        title: venue.name,
+        icon: createMarkerIcon(venue.region),
+        animation: google.maps.Animation.DROP
+      });
+
+      // Info window content
+      const infoContent = `
+        <div class="venue-info-window">
+          <div class="venue-info-header">
+            <img src="${venue.image}" alt="${venue.name}">
+            <div class="venue-info-name">
+              <h3>${venue.name}</h3>
+            </div>
+          </div>
+          <div class="venue-info-content">
+            <p>${venue.description}</p>
+            <div class="venue-info-detail"><i class="fas fa-map-marker-alt"></i> ${venue.location}</div>
+            <div class="venue-info-detail"><i class="fas fa-users"></i> ${venue.capacity}</div>
+            <div class="venue-info-detail"><i class="fas fa-dollar-sign"></i> ${venue.priceRange}</div>
+            <a href="${venue.url}" class="venue-info-link">View Details</a>
+          </div>
+        </div>
+      `;
+      const infoWindow = new google.maps.InfoWindow({
+        content: infoContent,
+        maxWidth: 320
+      });
+
+      // On marker click
+      marker.addListener('click', () => {
+        // Close other open windows
+        venueMarkers.forEach(v => {
+          if (v.infoWindow && v.infoWindow.getMap()) {
+            v.infoWindow.close();
+          }
+        });
+        infoWindow.open(map, marker);
+        venue.infoWindow = infoWindow;
+
+        // Bounce animation
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(() => marker.setAnimation(null), 750);
+
+        // Update map sidebar preview
+        updateSidebarPreview(venue);
+      });
+
+      // Hover effect
+      marker.addListener('mouseover', () => {
+        marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+        marker.setIcon({ ...createMarkerIcon(venue.region), scale: 12 });
+      });
+      marker.addListener('mouseout', () => {
+        marker.setIcon(createMarkerIcon(venue.region));
+      });
+
+      // Store references
+      venue.marker = marker;
+      venue.infoWindow = infoWindow;
+    } catch (e) {
+      Debug.error('MAP_INIT', `Error adding marker for venue ${venue.name}:`, e);
+    }
+  });
+
+  // Filter markers by region
+  const regionFilters = document.querySelectorAll('.region-filter');
+  regionFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      regionFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selectedRegion = btn.dataset.region;
+      let bounds = new google.maps.LatLngBounds();
+      let anyVisible = false;
+
+      venueMarkers.forEach(venue => {
+        if (selectedRegion === 'all' || venue.region === selectedRegion) {
+          venue.marker.setVisible(true);
+          bounds.extend(venue.coordinates);
+          anyVisible = true;
+          // close open infoWindow if open
+          if (venue.infoWindow && venue.infoWindow.getMap()) {
+            venue.infoWindow.close();
+          }
+        } else {
+          venue.marker.setVisible(false);
+        }
+      });
+
+      if (anyVisible) {
+        map.fitBounds(bounds);
+        google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+          if (map.getZoom() > 12) map.setZoom(12);
+        });
+      } else {
+        // fallback if no markers in that region
+        map.setCenter({ lat: 51.1645, lng: -115.5708 });
+        map.setZoom(8);
+      }
+    });
+  });
+
+  // Sidebar preview
+  function updateSidebarPreview(venue) {
+    const placeholder = document.querySelector('.venue-preview-placeholder');
+    const content = document.querySelector('.venue-preview-content');
+    if (!placeholder || !content) return;
+
+    placeholder.style.display = 'none';
+    content.style.display = 'block';
+
+    content.innerHTML = `
+      <div class="preview-image" style="height:150px; overflow:hidden;">
+        <img src="${venue.image}" alt="${venue.name}" style="width:100%; object-fit:cover;">
+      </div>
+      <div class="preview-title">${venue.name}</div>
+      <div class="preview-location">
+        <i class="fas fa-map-marker-alt"></i> ${venue.location}
+      </div>
+      <div class="preview-details">
+        <div class="preview-detail"><i class="fas fa-users"></i> ${venue.capacity}</div>
+        <div class="preview-detail"><i class="fas fa-dollar-sign"></i> ${venue.priceRange}</div>
+      </div>
+      <div class="preview-description">${venue.description}</div>
+      <div class="preview-features">
+        ${venue.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+      </div>
+      <div class="preview-actions">
+        <a href="${venue.url}" class="btn-outline btn-view-venue">View Details</a>
+      </div>
+    `;
+  }
 }
 
 /* ----------------------------------------
@@ -1097,12 +1308,82 @@ async function initVirtualTours() {
     }
   }
   
-  // Continue with the remaining functions...
-  // Rest of the initVirtualTours implementation (showTourError, etc.)
-}
+  function showTourError(venueId, venue = null) {
+    let mapUrl = 'https://www.google.com/maps';
+    if (venue) {
+      const lat = venue.coordinates.lat;
+      const lng = venue.coordinates.lng;
+      mapUrl = `https://www.google.com/maps?q=${lat},${lng}&z=18&layer=c`;
+    } else if (venueId) {
+      // Try to find the venue by ID if not provided
+      const foundVenue = venueMarkers.find(marker => marker.id === venueId);
+      if (foundVenue && foundVenue.coordinates) {
+        const lat = foundVenue.coordinates.lat;
+        const lng = foundVenue.coordinates.lng;
+        mapUrl = `https://www.google.com/maps?q=${lat},${lng}&z=18&layer=c`;
+      }
+    }
+    
+    // Display an attractive fallback with venue image and map link
+    tourContainer.innerHTML = `
+      <div class="tour-error">
+        <h3>Virtual Tour Unavailable</h3>
+        ${venue ? `<img src="${venue.image}" alt="${venue.name}" class="tour-fallback-image">` : ''}
+        <p>Street View for <strong>${venue ? venue.name : venueId}</strong> is not available at this moment.</p>
+        <div class="tour-buttons">
+          <a href="${mapUrl}" target="_blank" class="btn btn-primary" id="viewOnMap">View on Google Maps</a>
+          <button class="btn btn-secondary" id="viewVenueDetails">View Venue Details</button>
+        </div>
+      </div>
+    `;
+    
+    // Add CSS to make the fallback look nicer
+    const style = document.createElement('style');
+    style.textContent = `
+      .tour-error { text-align: center; padding: 20px; }
+      .tour-fallback-image { max-width: 100%; border-radius: 8px; margin: 15px 0; max-height: 300px; object-fit: cover; }
+      .tour-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+    `;
+    document.head.appendChild(style);
+    
+    const viewVenueDetailsBtn = document.getElementById('viewVenueDetails');
+    if (viewVenueDetailsBtn && venue) {
+      viewVenueDetailsBtn.addEventListener('click', () => {
+        closeTourModal();
+        document.querySelector(venue.url)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
 
-// Note: do NOT add the tracking wrapper here - the function is now defined above
-// Original tracking code was causing reference errors
+  function showTourModal() {
+    tourModal.classList.add('active');
+    setTimeout(() => {
+      const content = tourModal.querySelector('.modal-content');
+      if (content) content.classList.add('modal-animate');
+    }, 100);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeTourModal() {
+    const content = tourModal.querySelector('.modal-content');
+    if (content) content.classList.remove('modal-animate');
+    setTimeout(() => {
+      tourModal.classList.remove('active');
+      document.body.style.overflow = '';
+      tourContainer.innerHTML = '';
+    }, 300);
+  }
+
+  if (closeButton) closeButton.addEventListener('click', closeTourModal);
+  tourModal.addEventListener('click', e => {
+    if (e.target === tourModal) closeTourModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && tourModal.classList.contains('active')) {
+      closeTourModal();
+    }
+  });
+}
 
 /* --------------------------------------
    6) Venue Comparison Tool
