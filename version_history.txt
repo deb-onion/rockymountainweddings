@@ -1,3 +1,5 @@
+## Version 2.9.1 - 2025-03-02
+- Emergency rollback to version 2.9.0 to restore working virtual tour functionality
 ## Version 2.9.0 - 2025-03-02
 - Comprehensive mobile optimization for wedding venue pages - Fixed virtual tour modal visibility and controls on mobile devices, optimized venue gallery and details loading for better performance, improved content scrolling and touch interactions, added swipe-to-close functionality for modals, and enhanced responsive layout across all screen sizes.
 ## Version 2.8.0 - 2025-03-02
