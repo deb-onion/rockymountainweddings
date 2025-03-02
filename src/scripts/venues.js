@@ -1287,6 +1287,9 @@ async function initVirtualTours() {
 
         // Function to open virtual tour
         function openVirtualTour(venueId) {
+            // Check if we're on mobile
+            const isMobile = window.innerWidth < 768;
+            
             // Show loading indicator
             tourContainer.innerHTML = '<div class="tour-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading virtual tour...</p></div>';
             
@@ -1317,11 +1320,44 @@ async function initVirtualTours() {
             // Update modal title
             tourModal.querySelector('h2').textContent = `${venueName} Virtual Tour`;
             
+            // Make sure close button is visible and accessible on mobile
+            const closeButton = tourModal.querySelector('.close-modal');
+            if (closeButton) {
+                closeButton.style.display = 'flex';
+                
+                // Make close button more prominent on mobile
+                if (isMobile) {
+                    closeButton.style.width = '40px';
+                    closeButton.style.height = '40px';
+                    closeButton.style.fontSize = '24px';
+                    closeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    closeButton.style.zIndex = '30';
+                }
+            }
+            
             // Create tour tabs container
             createTourTabs(venueId, venueName);
             
+            // Adjust viewer based on device
+            if (isMobile) {
+                // On mobile, optimize the container height
+                const tourContainerEl = document.getElementById('tourContainer');
+                if (tourContainerEl) {
+                    tourContainerEl.style.height = window.innerWidth < 576 ? '60vh' : '70vh';
+                }
+                
+                // Add mobile-specific classes
+                tourModal.classList.add('mobile-view');
+            }
+            
             // Default to showing Street View first
             showStreetView(venueId, venueName, venueAddress, venuePlaceId);
+            
+            // Add swipe to close functionality on mobile
+            if (isMobile) {
+                // This will be handled by the touch event handlers added in the mobile optimization section
+                console.log('Mobile tour view activated with swipe-to-close enabled');
+            }
         }
         
         // Create tour tabs for switching between views
@@ -3063,3 +3099,125 @@ function initSmoothScrolling() {
                 retryBtn.addEventListener('click', closeTourModal);
             }
         }
+
+// MOBILE OPTIMIZATION ENHANCEMENTS
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile detection
+    const isMobile = window.innerWidth < 768;
+    
+    // Improve venue item loading on mobile
+    if (isMobile) {
+        const venueItems = document.querySelectorAll('.venue-item');
+        
+        // Use Intersection Observer to lazy load venue details
+        const venueObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const venueItem = entry.target;
+                    
+                    // Add loaded class after a small delay to ensure smooth rendering
+                    setTimeout(() => {
+                        venueItem.classList.add('loaded');
+                        
+                        // Remove gallery loading state
+                        const gallery = venueItem.querySelector('.venue-gallery');
+                        if (gallery && gallery.classList.contains('loading')) {
+                            gallery.classList.remove('loading');
+                        }
+                    }, 300);
+                    
+                    // Unobserve after loading
+                    venueObserver.unobserve(venueItem);
+                }
+            });
+        }, {
+            threshold: 0.1, // Start loading when 10% visible
+            rootMargin: '100px' // Load a bit before scrolling into view
+        });
+        
+        // Add loading state and observe each venue item
+        venueItems.forEach(item => {
+            const gallery = item.querySelector('.venue-gallery');
+            if (gallery) {
+                gallery.classList.add('loading');
+            }
+            venueObserver.observe(item);
+        });
+    }
+    
+    // Enhanced tour modal handling for mobile
+    const tourModal = document.getElementById('tourModal');
+    if (tourModal) {
+        // Ensure the tour modal has proper class
+        if (!tourModal.classList.contains('tour-modal')) {
+            tourModal.classList.add('tour-modal');
+        }
+        
+        // Ensure close button is properly styled on mobile
+        const closeButton = tourModal.querySelector('.close-modal');
+        if (closeButton) {
+            // Enable tap anywhere to close on mobile (if not clicking on content)
+            if (isMobile) {
+                tourModal.addEventListener('click', function(e) {
+                    const modalContent = tourModal.querySelector('.modal-content');
+                    if (e.target === tourModal && !modalContent.contains(e.target)) {
+                        closeTourModal();
+                    }
+                });
+                
+                // Add extra mobile-friendly features
+                document.addEventListener('touchstart', handleTouchStart);
+                document.addEventListener('touchmove', handleTouchMove);
+            }
+        }
+        
+        // Add swipe to close for the tour modal
+        let xDown = null;
+        let yDown = null;
+        
+        function handleTouchStart(evt) {
+            if (!tourModal.classList.contains('active')) return;
+            
+            xDown = evt.touches[0].clientX;
+            yDown = evt.touches[0].clientY;
+        }
+        
+        function handleTouchMove(evt) {
+            if (!tourModal.classList.contains('active') || !xDown || !yDown) return;
+            
+            const xUp = evt.touches[0].clientX;
+            const yUp = evt.touches[0].clientY;
+            
+            const xDiff = xDown - xUp;
+            const yDiff = yDown - yUp;
+            
+            // Detect swipe down to close
+            if (Math.abs(xDiff) < Math.abs(yDiff) && yDiff < -50) {
+                closeTourModal();
+            }
+            
+            xDown = null;
+            yDown = null;
+        }
+        
+        // Update tour container sizing for mobile
+        function adjustTourContainerSize() {
+            const tourContainer = document.getElementById('tourContainer');
+            if (tourContainer) {
+                if (window.innerWidth < 576) {
+                    tourContainer.style.height = '60vh';
+                } else if (window.innerWidth < 768) {
+                    tourContainer.style.height = '70vh';
+                } else {
+                    tourContainer.style.height = 'calc(80vh - 107px)';
+                }
+            }
+        }
+        
+        // Adjust on resize
+        window.addEventListener('resize', adjustTourContainerSize);
+        
+        // Initial adjustment
+        adjustTourContainerSize();
+    }
+});
