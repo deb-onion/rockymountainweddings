@@ -1,3 +1,5 @@
+## Version 2.8.4 - 2025-03-03
+- Fixed map initialization and virtual tour functionality
 ## Version 2.8.3 - 2025-03-03
 - Fixed map initialization and function reference errors
 ## Version 2.8.2 - 2025-03-03
