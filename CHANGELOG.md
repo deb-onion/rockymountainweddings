@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.8.1 - 2025-03-03
+
+### Changes
+- Fixed venueMarkers scope issue affecting virtual tour and venue comparison functionality
+
+
 ## Version 2.8.0 - 2025-03-03
 
 ### Changes
@@ -234,6 +240,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
