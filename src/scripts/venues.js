@@ -1,322 +1,3 @@
-// VENUE MARKERS ARRAY - Global declaration for all venue data
-const venueMarkers = [
-  // BANFF VENUES
-  {
-    id: 'the-gem',
-    name: 'The Gem',
-    location: 'Bighorn No. 8, Alberta',
-    description: 'An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.',
-    coordinates: { lat: 51.0977, lng: -115.3392 },
-    image: 'assets/images/venues/the-gem-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '20-150 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Mountain Views', 'Elegant Setting', 'Intimate Ceremonies', 'Modern Amenities'],
-    placeId: 'ChIJXdYXc8PPcFMR2FLpubbFK70',
-    address: '900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada'
-  },
-  {
-    id: 'banff-springs',
-    name: 'Fairmont Banff Springs Hotel',
-    location: 'Banff, Alberta',
-    description: "Known as Canada's 'Castle in the Rockies,' this historic hotel offers luxurious wedding venues with stunning mountain views.",
-    coordinates: { lat: 51.1645, lng: -115.5708 },
-    image: 'assets/images/venues/banff-springs-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '10-800 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Historic Castle', 'Mountain Views', 'Luxury Accommodations', 'Multiple Ceremony Sites'],
-    placeId: 'ChIJv7gvLjvKcFMRzvb0LKnpmQA',
-    address: '405 Spray Ave, Banff, AB T1L 1J4, Canada'
-  },
-  {
-    id: 'sky-bistro',
-    name: 'Sky Bistro, Gondola',
-    location: 'Banff, Alberta',
-    description: 'A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.',
-    coordinates: { lat: 51.1493, lng: -115.5731 },
-    image: 'assets/images/venues/sky-bistro-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '20-200 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Mountaintop Location', 'Panoramic Views', 'Gondola Access', 'Fine Dining'],
-    placeId: 'ChIJ9S3E0PnJcFMR8dn8aW1SQns',
-    address: '100 Mountain Ave, Banff, AB T1L 1J3, Canada'
-  },
-  {
-    id: 'maple-leaf',
-    name: 'The Maple Leaf',
-    location: 'Banff, Alberta',
-    description: 'A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.',
-    coordinates: { lat: 51.1767, lng: -115.5712 },
-    image: 'assets/images/venues/maple-leaf-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '10-80 guests',
-    priceRange: '$$-$$$',
-    features: ['Downtown Location', 'Fine Dining', 'Intimate Setting', 'Canadian Cuisine'],
-    placeId: 'ChIJJ8_i30XKcFMRX4-EqsUwfec',
-    address: '137 Banff Ave, Banff, AB T1L 1C8, Canada'
-  },
-  {
-    id: 'mt-norquay',
-    name: 'Mt. Norquay',
-    location: 'Banff, Alberta',
-    description: 'A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.',
-    coordinates: { lat: 51.2080, lng: -115.5937 },
-    image: 'assets/images/venues/mt-norquay-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '50-200 guests',
-    priceRange: '$$-$$$',
-    features: ['Mountain Resort', 'Scenic Views', 'Rustic Lodge', 'Outdoor Ceremonies'],
-    placeId: 'ChIJPe5LM-_KcFMRj5sq8kzdj38',
-    address: 'Improvement District No. 9, AB T0L 1E0, Canada'
-  },
-  {
-    id: 'three-bears',
-    name: 'Three Bears Brewery',
-    location: 'Banff, Alberta',
-    description: 'A unique brewery venue with rustic-industrial charm in the heart of Banff.',
-    coordinates: { lat: 51.1761, lng: -115.5693 },
-    image: 'assets/images/venues/three-bears-main.jpg',
-    region: 'banff',
-    url: '#banff-venues',
-    capacity: '30-150 guests',
-    priceRange: '$$-$$$',
-    features: ['Brewery Setting', 'Urban Rustic', 'Craft Beer', 'Downtown Location'],
-    placeId: 'ChIJ0cdeKZvLcFMR0jSmXX0uyAI',
-    address: '205 Bear St, Banff, AB T1L 1A1, Canada'
-  },
-
-  // CANMORE VENUES
-  {
-    id: 'mainspace-solara',
-    name: 'Mainspace Solara',
-    location: 'Canmore, Alberta',
-    description: 'A contemporary event space with mountain views and flexible layouts for weddings of all sizes.',
-    coordinates: { lat: 51.0899, lng: -115.3487 },
-    image: 'assets/images/venues/mainspace-solara-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '20-250 guests',
-    priceRange: '$$-$$$',
-    features: ['Contemporary Space', 'Flexible Layout', 'Mountain Views', 'Modern Amenities'],
-    placeId: 'ChIJB9obQr3FcFMRV5tPjm8UHow',
-    address: '187 Kananaskis Way, Canmore, AB T1W 2A3, Canada'
-  },
-  {
-    id: 'stewart-creek',
-    name: 'Stewart Creek Golf Course',
-    location: 'Canmore, Alberta',
-    description: 'An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.',
-    coordinates: { lat: 51.0574, lng: -115.3696 },
-    image: 'assets/images/venues/stewart-creek-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '20-180 guests',
-    priceRange: '$$-$$$',
-    features: ['Golf Course', 'Mountain Views', 'Modern Clubhouse', 'Outdoor Terrace'],
-    placeId: 'ChIJq8NNqcLFcFMRsFwhjZDQI-8',
-    address: '4100 Stewart Creek Dr, Canmore, AB T1W 2V3, Canada'
-  },
-  {
-    id: 'silvertip',
-    name: 'Silvertip Resort',
-    location: 'Canmore, Alberta',
-    description: 'A mountain golf resort offering stunning views of the Three Sisters peaks with beautiful indoor and outdoor ceremony spaces.',
-    coordinates: { lat: 51.0911, lng: -115.3126 },
-    image: 'assets/images/venues/silvertip-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '20-250 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Golf Resort', 'Mountain Views', 'Indoor & Outdoor Options', 'Luxury Experience'],
-    placeId: 'ChIJRbfHuJnFcFMRHo1burdyy9w',
-    address: '2000 Silvertip Trail, Canmore, AB T1W 3J4, Canada'
-  },
-  {
-    id: 'malcolm-hotel',
-    name: 'The Malcolm Hotel',
-    location: 'Canmore, Alberta',
-    description: 'A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.',
-    coordinates: { lat: 51.0875, lng: -115.3480 },
-    image: 'assets/images/venues/malcolm-hotel-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '30-200 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Luxury Hotel', 'Ballroom Setting', 'Scottish Heritage', 'Downtown Location'],
-    placeId: 'ChIJCWB_67_FcFMRbSV-ZuLW46E',
-    address: '321 Spring Creek Dr, Canmore, AB T1W 2G2, Canada'
-  },
-  {
-    id: 'creekside-villa',
-    name: 'Creekside Villa',
-    location: 'Canmore, Alberta',
-    description: 'A charming boutique venue with a picturesque setting along the creek and mountain views.',
-    coordinates: { lat: 51.0816, lng: -115.3578 },
-    image: 'assets/images/venues/creekside-villa-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '10-120 guests',
-    priceRange: '$$-$$$',
-    features: ['Boutique Venue', 'Creekside Setting', 'Intimate Atmosphere', 'Mountain Views'],
-    placeId: 'ChIJNRHJp6bFcFMRC7Askc-fjPM',
-    address: '709 Benchlands Trail, Canmore, AB T1W 3G9, Canada'
-  },
-  {
-    id: 'finchys',
-    name: "Finchy's @CanGOLF",
-    location: 'Canmore, Alberta',
-    description: 'A unique golf simulator and event space offering a fun, casual setting for wedding events.',
-    coordinates: { lat: 51.0925, lng: -115.3434 },
-    image: 'assets/images/venues/finchys-main.jpg',
-    region: 'canmore',
-    url: '#canmore-venues',
-    capacity: '20-100 guests',
-    priceRange: '$$-$$$',
-    features: ['Golf Simulator', 'Casual Setting', 'Unique Experience', 'Entertainment Options'],
-    placeId: 'ChIJWdSpew7FcFMRNeLYTIEUp_U',
-    address: '306 Bow Valley Trail #125B, Canmore, AB T1W 0N2, Canada'
-  },
-
-  // LAKE LOUISE VENUES
-  {
-    id: 'chateau-louise',
-    name: 'Fairmont Chateau Lake Louise',
-    location: 'Lake Louise, Alberta',
-    description: 'An iconic venue on the shores of the emerald waters of Lake Louise with glacier views.',
-    coordinates: { lat: 51.4168, lng: -116.2175 },
-    image: 'assets/images/venues/lake-louise-main.jpg',
-    region: 'lake-louise',
-    url: '#lake-louise-venues',
-    capacity: '10-550 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Iconic Location', 'Lakeside Ceremonies', 'Historic Hotel', 'Luxury Experience'],
-    placeId: 'ChIJNZqvCRJdd1MRBBS7Nem5IEQ',
-    address: '111 Lake Louise Dr, Lake Louise, AB T0L 1E0, Canada'
-  },
-
-  // GOLDEN (BC) VENUES
-  {
-    id: 'kicking-horse',
-    name: 'Kicking Horse Resort',
-    location: 'Golden, British Columbia',
-    description: 'A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.',
-    coordinates: { lat: 51.2980, lng: -117.0475 },
-    image: 'assets/images/venues/kicking-horse-main.jpg',
-    region: 'golden',
-    url: '#golden-venues',
-    capacity: '20-200 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Mountain Resort', 'Panoramic Views', 'Gondola Access', 'Luxury Experience'],
-    placeId: 'ChIJSV7VHe2-eVMRaeruFCGNjys',
-    address: '1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada'
-  },
-  {
-    id: 'hillside-lodge',
-    name: 'Hillside Lodge & Chalets',
-    location: 'Golden, British Columbia',
-    description: 'A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.',
-    coordinates: { lat: 51.3194, lng: -116.9722 },
-    image: 'assets/images/venues/hillside-lodge-main.jpg',
-    region: 'golden',
-    url: '#golden-venues',
-    capacity: '10-60 guests',
-    priceRange: '$$-$$$',
-    features: ['Rustic Lodge', 'Private Chalets', 'Forest Setting', 'Intimate Weddings'],
-    placeId: 'ChIJ1S0CAQXIeVMRPoV7JAGqCfk',
-    address: '1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada'
-  },
-
-  // EMERALD LAKE (also in BC)
-  {
-    id: 'emerald-lake',
-    name: 'Emerald Lake Lodge',
-    location: 'Field, British Columbia',
-    description: 'A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.',
-    coordinates: { lat: 51.4429, lng: -116.5285 },
-    image: 'assets/images/venues/emerald-lake-main.jpg',
-    region: 'emerald-lake',
-    url: '#emerald-lake-venues',
-    capacity: '10-88 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Secluded Location', 'Emerald Waters', 'Intimate Setting', 'Mountain Backdrop'],
-    placeId: 'ChIJ4f_____YeVMRKF7Aq3XdVWA',
-    address: '1 Emerald Lake Rd, Field, BC V0A 1G0, Canada'
-  },
-
-  // JASPER VENUES
-  {
-    id: 'pyramid-lake',
-    name: 'Pyramid Lake Lodge',
-    location: 'Jasper, Alberta',
-    description: 'Charming lakeside lodge with mountain views and private island for ceremonies.',
-    coordinates: { lat: 52.9310, lng: -118.0945 },
-    image: 'assets/images/venues/pyramid-lake-main.jpg',
-    region: 'jasper',
-    url: '#jasper-venues',
-    capacity: '10-120 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Lakeside Setting', 'Private Island', 'Mountain Views', 'Intimate Setting'],
-    placeId: 'ChIJNdqht7Asg1MRD2BtHQ5gK14',
-    address: 'Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada'
-  },
-  {
-    id: 'maligne-lake',
-    name: 'Maligne Lake Chalet',
-    location: 'Jasper, Alberta',
-    description: 'Historic chalet on the shores of iconic Maligne Lake with stunning mountain backdrops.',
-    coordinates: { lat: 52.7167, lng: -117.6333 },
-    image: 'assets/images/venues/maligne-lake-main.jpg',
-    region: 'jasper',
-    url: '#jasper-venues',
-    capacity: '10-80 guests',
-    priceRange: '$$$',
-    features: ['Historic Property', 'Lakeside Setting', 'Wilderness Experience', 'Exclusive Use'],
-    placeId: 'ChIJUQutQugpnVMR9MUUneTFKiU',
-    address: 'Maligne Lake Rd, Jasper, AB T0E 1E0, Canada'
-  },
-
-  // COCHRANE VENUES
-  {
-    id: 'cochrane-ranchehouse',
-    name: 'Cochrane RancheHouse',
-    location: 'Cochrane, Alberta',
-    description: 'A charming venue with rustic elegance and panoramic views of the Rocky Mountains and Bow River Valley.',
-    coordinates: { lat: 51.1945, lng: -114.4669 },
-    image: 'assets/images/venues/cochrane-ranchehouse-main.jpg',
-    region: 'cochrane',
-    url: '#cochrane-venues',
-    capacity: '20-320 guests',
-    priceRange: '$$-$$$',
-    features: ['Mountain Views', 'Rustic Elegance', 'Indoor & Outdoor Options', 'Historical Setting'],
-    placeId: 'ChIJqc_3Qnm-cUERNkoe0vmMnJI',
-    address: '101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada'
-  },
-  
-  // KANANASKIS VENUE
-  {
-    id: 'mount-engadine',
-    name: 'Mount Engadine Lodge',
-    location: 'Kananaskis, Alberta',
-    description: 'A secluded mountain lodge perfect for intimate weddings in a pristine wilderness setting.',
-    coordinates: { lat: 50.9034, lng: -115.1926 },
-    image: 'assets/images/venues/mount-engadine-main.jpg',
-    region: 'kananaskis',
-    url: '#kananaskis-venues',
-    capacity: '10-40 guests',
-    priceRange: '$$$-$$$$',
-    features: ['Intimate Setting', 'Wildlife Viewing', 'Remote Lodge', 'All-Inclusive'],
-    placeId: 'ChIJXVoDqcv4cFMRaEOZhQr6gOY',
-    address: 'Mount Shark Rd, Kananaskis, AB T0L 1E0, Canada'
-  }
-];
-
 // Debug utility for tracking function execution and errors
 const Debug = {
   // Set to true to enable detailed logging
@@ -400,6 +81,7 @@ const Debug = {
 // Track Google Maps API loading status
 let googleMapsLoaded = false;
 let googleMapsCallbacks = [];
+let venueMarkers = []; // This will be populated from JSON data instead of hard-coded
 
 // Function to call when Google Maps is ready
 function onGoogleMapsReady() {
@@ -426,11 +108,36 @@ function whenGoogleMapsReady(callback) {
   }
 }
 
+// Fetch venue data from JSON file
+async function fetchVenueData() {
+  try {
+    Debug.info('DATA', 'Fetching venue data from JSON file');
+    const response = await fetch('/data/venues.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    venueMarkers = data.venues;
+    Debug.success('DATA', `Successfully loaded ${venueMarkers.length} venues from JSON`);
+    return venueMarkers;
+  } catch (error) {
+    Debug.error('DATA', 'Error fetching venue data:', error);
+    // Fallback to empty array if fetch fails
+    venueMarkers = [];
+    throw error;
+  }
+}
+
 // Main page initialization
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   Debug.info('INIT', 'Page initialization started');
   
   try {
+    // First, fetch venue data
+    await fetchVenueData();
+    
     // Initialize non-Maps dependent features first
     initVenueGalleries();    // Auto-rotating gallery
     initVenueModal();        // Inquiry form modal
@@ -465,6 +172,18 @@ function initInteractiveMap() {
   const mapContainer = document.getElementById('venuesMap');
   if (!mapContainer) {
     Debug.error('MAP_INIT', 'Map container not found (id="venuesMap").');
+    return;
+  }
+
+  // Check if we have venue data
+  if (!venueMarkers || venueMarkers.length === 0) {
+    Debug.error('MAP_INIT', 'No venue data available for map.');
+    mapContainer.innerHTML = `
+      <div class="map-error">
+        <h3>Map Data Error</h3>
+        <p>We couldn't load venue data for the map. Please refresh or try again later.</p>
+      </div>
+    `;
     return;
   }
 
@@ -518,6 +237,15 @@ function initInteractiveMap() {
   try {
     Debug.info('MAP_INIT', 'Creating new Google Map instance');
     map = new google.maps.Map(mapContainer, mapOptions);
+    
+    // Force a resize after map is created to fix initial blank map issue
+    setTimeout(() => {
+      Debug.info('MAP_INIT', 'Triggering resize event for map');
+      google.maps.event.trigger(map, 'resize');
+      // Also set center again to ensure map is positioned correctly
+      map.setCenter(mapOptions.center);
+    }, 500);
+    
     map.addListener('idle', () => {
       Debug.success('MAP_INIT', 'Map rendered successfully');
     });
@@ -1176,31 +904,117 @@ function initVenueModal() {
 /* --------------------------------------
    5) Virtual Tours with 360° Panorama
 --------------------------------------- */
-async function initVirtualTours() {
-  try {
-    // Only attempt to import libraries if Google Maps is loaded
-    if (typeof google !== 'undefined' && google?.maps?.importLibrary) {
-      Debug.info('VIRTUAL_TOUR', 'Loading Google Maps libraries');
-      await google.maps.importLibrary('places');
-      await google.maps.importLibrary('streetView');
-    }
-  } catch (err) {
-    Debug.warn('VIRTUAL_TOUR', 'importLibrary not supported in older browsers:', err);
-  }
-
+function initVirtualTours() {
   const tourModal = document.getElementById('tourModal');
   if (!tourModal) {
     Debug.error('VIRTUAL_TOUR', 'Tour modal element not found');
     return;
   }
 
+  // Make sure the modal content has correct structure
+  if (!tourModal.querySelector('.modal-content')) {
+    Debug.error('VIRTUAL_TOUR', 'Tour modal is missing modal-content element');
+    // Add it if missing
+    tourModal.innerHTML = `
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Virtual Tour</h2>
+          <button class="close-modal" aria-label="Close modal">&times;</button>
+        </div>
+        <div id="tourContainer"></div>
+      </div>
+    `;
+  }
+
   const tourButtons = document.querySelectorAll('.view-360');
+  Debug.info('VIRTUAL_TOUR', `Found ${tourButtons.length} tour buttons`);
+  
   const closeButton = tourModal.querySelector('.close-modal');
   const tourContainer = document.getElementById('tourContainer');
+  
+  if (!tourContainer) {
+    Debug.error('VIRTUAL_TOUR', 'Tour container element not found');
+    return;
+  }
 
+  // Add style to ensure modal is visible
+  const modalStyle = document.createElement('style');
+  modalStyle.textContent = `
+    .tour-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      overflow: auto;
+    }
+    
+    .tour-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .tour-modal .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      position: relative;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .tour-modal .modal-content.modal-animate {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .tour-modal .modal-header {
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .tour-modal .modal-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .tour-modal .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #555;
+    }
+    
+    #tourContainer {
+      height: 70vh;
+      width: 100%;
+      position: relative;
+    }
+  `;
+  document.head.appendChild(modalStyle);
+
+  // Make sure each button clicks correctly
   tourButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const venueId = btn.dataset.venue || '';
+    // Remove any existing event listeners
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+    
+    newBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const venueId = this.dataset.venue || '';
       Debug.info('VIRTUAL_TOUR', `Tour button clicked for venue: ${venueId}`);
       openVirtualTour(venueId);
     });
@@ -1356,15 +1170,22 @@ async function initVirtualTours() {
   }
 
   function showTourModal() {
+    Debug.info('VIRTUAL_TOUR', 'Opening tour modal');
     tourModal.classList.add('active');
     setTimeout(() => {
       const content = tourModal.querySelector('.modal-content');
-      if (content) content.classList.add('modal-animate');
+      if (content) {
+        content.classList.add('modal-animate');
+        Debug.info('VIRTUAL_TOUR', 'Modal animated in');
+      } else {
+        Debug.error('VIRTUAL_TOUR', 'Modal content element not found');
+      }
     }, 100);
     document.body.style.overflow = 'hidden';
   }
 
   function closeTourModal() {
+    Debug.info('VIRTUAL_TOUR', 'Closing tour modal');
     const content = tourModal.querySelector('.modal-content');
     if (content) content.classList.remove('modal-animate');
     setTimeout(() => {
@@ -1374,10 +1195,16 @@ async function initVirtualTours() {
     }, 300);
   }
 
-  if (closeButton) closeButton.addEventListener('click', closeTourModal);
+  if (closeButton) {
+    closeButton.addEventListener('click', closeTourModal);
+  } else {
+    Debug.error('VIRTUAL_TOUR', 'Close button not found in modal');
+  }
+  
   tourModal.addEventListener('click', e => {
     if (e.target === tourModal) closeTourModal();
   });
+  
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && tourModal.classList.contains('active')) {
       closeTourModal();
