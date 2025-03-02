@@ -1,3 +1,5 @@
+## Version 2.8.5 - 2025-03-03
+- Improved maintainability by moving venue data to external JSON file
 ## Version 2.8.4 - 2025-03-03
 - Fixed map initialization and virtual tour functionality
 ## Version 2.8.3 - 2025-03-03

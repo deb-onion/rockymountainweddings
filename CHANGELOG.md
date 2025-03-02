@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.8.5 - 2025-03-03
+
+### Changes
+- Improved maintainability by moving venue data to external JSON file
+
+
 ## Version 2.8.4 - 2025-03-03
 
 ### Changes
@@ -258,6 +264,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
