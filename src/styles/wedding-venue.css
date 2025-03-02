@@ -1414,6 +1414,66 @@
     width: 36px;
     height: 36px;
   }
+  
+  /* Fix for venue visibility on mobile */
+  .regional-venues {
+    background-color: rgba(249, 249, 249, 0.8); /* Lighter background to ensure visibility */
+    padding: 3rem 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    overflow: visible;
+  }
+  
+  .regional-venues::before {
+    opacity: 0.1; /* Reduce the opacity of the background gradient */
+  }
+  
+  .region-heading {
+    margin-bottom: 2rem;
+  }
+  
+  .region-heading h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .region-heading p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Ensure venues are visible */
+  .venue-item {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+  }
+  
+  /* Improved venue gallery visibility */
+  .venue-gallery {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Make venue info more visible */
+  .venue-info {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    background-color: #fff;
+  }
+
+  /* Improved comparison section positioning */
+  .venue-comparison {
+    padding: 3rem 0;
+    margin-top: 2rem;
+    background-color: #f9f9f9;
+    position: relative;
+    z-index: 1;
+  }
 }
 @media (max-width: 576px) {
   .modal-content h2 {

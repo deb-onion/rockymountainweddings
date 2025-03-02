@@ -438,63 +438,6 @@
         </div>
     </section>
 
-    <!-- Enhanced Venue Comparison Tool -->
-    <section class="venue-comparison reveal">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Compare Wedding Venues</h2>
-                <p>Select up to 3 venues to compare features side by side</p>
-            </div>
-            
-            <div class="comparison-container">
-                <div class="venue-selector">
-                    <div class="selector-intro">
-                        <p>Add venues to compare:</p>
-                    </div>
-                    <div class="selector-input">
-                        <select id="venueSelector" class="venue-select" title="Select venue to compare" aria-label="Select venue to compare">
-                            <option value="">Select a venue</option>
-                            <optgroup label="Banff">
-                                <option value="banff-springs">Fairmont Banff Springs</option>
-                                <option value="tunnel-mountain">Tunnel Mountain Reservoir</option>
-                                <option value="buffalo-mountain">Buffalo Mountain Lodge</option>
-                            </optgroup>
-                            <optgroup label="Canmore">
-                                <option value="silvertip">Silvertip Resort</option>
-                                <option value="cornerstone">Cornerstone Theatre</option>
-                                <option value="stewart-creek">Stewart Creek Golf Club</option>
-                            </optgroup>
-                            <optgroup label="Lake Louise">
-                                <option value="chateau-louise">Fairmont Chateau Lake Louise</option>
-                                <option value="post-hotel">Post Hotel & Spa</option>
-                            </optgroup>
-                            <optgroup label="Emerald Lake">
-                                <option value="emerald-lodge">Emerald Lake Lodge</option>
-                            </optgroup>
-                            <optgroup label="Kananaskis">
-                                <option value="kananaskis-resort">Kananaskis Mountain Lodge</option>
-                                <option value="boundary-ranch">Boundary Ranch</option>
-                                <option value="mount-engadine">Mount Engadine Lodge</option>
-                            </optgroup>
-                        </select>
-                        <button id="addVenueBtn" class="btn-add-venue"><i class="fas fa-plus"></i> Add to Compare</button>
-                    </div>
-                </div>
-                
-                <div class="comparison-table-container">
-                    <div class="comparison-placeholder">
-                        <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
-                    </div>
-                    <div class="comparison-table" style="display: none;">
-                        <!-- Will be populated with visual comparison cards -->
-                    </div>
-                </div>
-                
-                <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
-            </div>
-        </div>
-    </section>
-
     <!-- Banff Venues -->
     <section class="regional-venues reveal" id="banff-venues" data-region="banff">
         <div class="container">
@@ -1538,6 +1481,63 @@
                         <button class="btn-venue-inquiry primary" data-venue="Cochrane RancheHouse">Schedule a Visit</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Venue Comparison Tool -->
+    <section class="venue-comparison reveal">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Compare Wedding Venues</h2>
+                <p>Select up to 3 venues to compare features side by side</p>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="venue-selector">
+                    <div class="selector-intro">
+                        <p>Add venues to compare:</p>
+                    </div>
+                    <div class="selector-input">
+                        <select id="venueSelector" class="venue-select" title="Select venue to compare" aria-label="Select venue to compare">
+                            <option value="">Select a venue</option>
+                            <optgroup label="Banff">
+                                <option value="banff-springs">Fairmont Banff Springs</option>
+                                <option value="tunnel-mountain">Tunnel Mountain Reservoir</option>
+                                <option value="buffalo-mountain">Buffalo Mountain Lodge</option>
+                            </optgroup>
+                            <optgroup label="Canmore">
+                                <option value="silvertip">Silvertip Resort</option>
+                                <option value="cornerstone">Cornerstone Theatre</option>
+                                <option value="stewart-creek">Stewart Creek Golf Club</option>
+                            </optgroup>
+                            <optgroup label="Lake Louise">
+                                <option value="chateau-louise">Fairmont Chateau Lake Louise</option>
+                                <option value="post-hotel">Post Hotel & Spa</option>
+                            </optgroup>
+                            <optgroup label="Emerald Lake">
+                                <option value="emerald-lodge">Emerald Lake Lodge</option>
+                            </optgroup>
+                            <optgroup label="Kananaskis">
+                                <option value="kananaskis-resort">Kananaskis Mountain Lodge</option>
+                                <option value="boundary-ranch">Boundary Ranch</option>
+                                <option value="mount-engadine">Mount Engadine Lodge</option>
+                            </optgroup>
+                        </select>
+                        <button id="addVenueBtn" class="btn-add-venue"><i class="fas fa-plus"></i> Add to Compare</button>
+                    </div>
+                </div>
+                
+                <div class="comparison-table-container">
+                    <div class="comparison-placeholder">
+                        <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
+                    </div>
+                    <div class="comparison-table" style="display: none;">
+                        <!-- Will be populated with visual comparison cards -->
+                    </div>
+                </div>
+                
+                <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
             </div>
         </div>
     </section>
