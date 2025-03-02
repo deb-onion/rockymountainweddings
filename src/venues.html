@@ -1,1679 +1,1625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Venues</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/venues.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Google Maps API with modern dynamic loading approach -->
-    <script>
-        // Error handler for Google Maps
-        function gm_authFailure() {
-            console.error('Google Maps authentication error - check API key and restrictions');
-            const mapContainers = document.querySelectorAll('.venues-map');
-            mapContainers.forEach(container => {
-                container.innerHTML = `
-                    <div class="map-error">
-                        <h3>Map Loading Error</h3>
-                        <p>We're experiencing technical difficulties with our map. Please refresh the page or try again later.</p>
-                    </div>
-                `;
-            });
+  <!-- Basic SEO Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Venues in the Canadian Rockies | Rocky Mountain Weddings</title>
+  <meta name="description" content="Explore our comprehensive list of wedding venues across Banff, Canmore, Lake Louise, Jasper, Golden, Cochrane, Emerald Lake, and Kananaskis. Plan your perfect mountain wedding with virtual tours and venue comparisons.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Main & Venues CSS -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/venues.css">
+
+  <!-- Google Maps API (make sure to replace the API key with your restricted key) -->
+  <script>
+    // Inline error handler for Google Maps
+    function gm_authFailure() {
+      console.error('Google Maps authentication error - please verify your API key/referrer settings.');
+      const mapContainers = document.querySelectorAll('.venues-map');
+      mapContainers.forEach(container => {
+        container.innerHTML = `
+          <div class="map-error">
+            <h3>Map Loading Error</h3>
+            <p>We're experiencing technical difficulties with our map. Please refresh or try again later.</p>
+          </div>
+        `;
+      });
+    }
+
+    // Simple callback to confirm Maps loaded
+    function initGoogleMapsAPI() {
+      console.log("Google Maps API loaded successfully.");
+    }
+  </script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,geometry&callback=initGoogleMapsAPI"
+    onerror="gm_authFailure()">
+  </script>
+
+  <!-- Pannellum for 360° tours (for venue interiors) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
+
+  <!-- Smoothscroll Polyfill for older browsers -->
+  <script src="https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+
+  <!-- Structured Data for SEO (sample schema for venue listing) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Rocky Mountain Wedding Venues",
+    "description": "A curated list of breathtaking venues in Banff, Canmore, Lake Louise, Jasper, Kananaskis, Golden, Cochrane, and Emerald Lake.",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Place",
+          "name": "The Gem",
+          "description": "An elegant venue with magnificent mountain views, perfect for intimate weddings and celebrations.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "900A Harvie Heights Rd",
+            "addressLocality": "Bighorn No. 8",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 2W2",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0977,
+            "longitude": -115.3392
+          }
         }
-    </script>
-    <!-- Simple Google Maps script loading -->
-    <script>
-        // Initialize function for Google Maps API
-        function initGoogleMapsAPI() {
-            console.log("Google Maps API loaded successfully");
-            // You can add any global initialization code here if needed
-            // This ensures the API is properly initialized before being used
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Place",
+          "name": "Fairmont Banff Springs Hotel",
+          "description": "Known as Canada's 'Castle in the Rockies,' offering luxurious wedding venues with mountain views.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "405 Spray Ave",
+            "addressLocality": "Banff",
+            "addressRegion": "Alberta",
+            "postalCode": "T1L 1J4",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.1645,
+            "longitude": -115.5708
+          }
         }
-    </script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,marker,streetView,geometry&callback=initGoogleMapsAPI"></script>
-    <!-- Pannellum for 360° tours (for venue interiors) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@type": "Place",
-                        "name": "The Gem",
-                        "description": "A unique mountain venue with rustic charm and stunning views, perfect for intimate celebrations.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "900A Harvie Heights Rd",
-                            "addressLocality": "Bighorn No. 8",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T1W 2W2",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.1720,
-                            "longitude": -115.5940
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Fairmont Banff Springs Hotel",
-                        "description": "Known as Canada's 'Castle in the Rockies,' this historic hotel offers luxurious wedding venues with stunning mountain views.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "405 Spray Ave",
-                            "addressLocality": "Banff",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T1L 1J4",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.1645,
-                            "longitude": -115.5708
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Sky Bistro, Gondola",
-                        "description": "Elevate your celebration with breathtaking mountain-top views accessed by a scenic gondola ride.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "100 Mountain Ave",
-                            "addressLocality": "Banff",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T1L 1J3",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.1493,
-                            "longitude": -115.5731
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 4,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Mainspace Solara",
-                        "description": "Contemporary event space with mountain views and modern amenities.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "187 Kananaskis Way",
-                            "addressLocality": "Canmore",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T1W 2A3",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.0899,
-                            "longitude": -115.3487
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 5,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Fairmont Chateau Lake Louise",
-                        "description": "An iconic venue on the shores of the emerald waters of Lake Louise with glacier views.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "111 Lake Louise Drive",
-                            "addressLocality": "Lake Louise",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T0L 1E0",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.4168,
-                            "longitude": -116.2175
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 6,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Kicking Horse Resort",
-                        "description": "Mountaintop weddings with panoramic Rocky Mountain views accessed by gondola.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "1500 Kicking Horse Trail",
-                            "addressLocality": "Golden",
-                            "addressRegion": "British Columbia",
-                            "postalCode": "V0A 1H0",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.2982,
-                            "longitude": -116.9623
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 7,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Pyramid Lake Lodge",
-                        "description": "Charming lakeside lodge with mountain views and private island for ceremonies.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "Pyramid Lake Rd #6",
-                            "addressLocality": "Jasper",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T0E 0A8",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 52.9310,
-                            "longitude": -118.0945
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 8,
-                    "item": {
-                        "@type": "Place",
-                        "name": "Cochrane RancheHouse",
-                        "description": "Rustic elegance with mountain views and western heritage near Calgary.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "101 Ranchehouse Rd",
-                            "addressLocality": "Cochrane",
-                            "addressRegion": "Alberta",
-                            "postalCode": "T4C 2K8",
-                            "addressCountry": "Canada"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": 51.1945,
-                            "longitude": -114.4669
-                        }
-                    }
-                }
-            ]
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Place",
+          "name": "Sky Bistro, Gondola",
+          "description": "A breathtaking mountain-top venue with panoramic views accessed by a scenic gondola ride.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "100 Mountain Ave",
+            "addressLocality": "Banff",
+            "addressRegion": "Alberta",
+            "postalCode": "T1L 1J3",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.1493,
+            "longitude": -115.5731
+          }
         }
-    </script>
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Place",
+          "name": "The Maple Leaf",
+          "description": "A charming restaurant in downtown Banff offering fine dining and an intimate setting for weddings.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "137 Banff Ave",
+            "addressLocality": "Banff",
+            "addressRegion": "Alberta",
+            "postalCode": "T1L 1C8",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.1767,
+            "longitude": -115.5712
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Place",
+          "name": "Mt. Norquay",
+          "description": "A ski resort venue with spectacular mountain vistas and a rustic lodge atmosphere.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Improvement District No. 9",
+            "addressLocality": "Banff",
+            "addressRegion": "Alberta",
+            "postalCode": "T0L 1E0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.2080,
+            "longitude": -115.5937
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Place",
+          "name": "Three Bears Brewery",
+          "description": "A unique brewery venue with rustic-industrial charm in the heart of Banff.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "205 Bear St",
+            "addressLocality": "Banff",
+            "addressRegion": "Alberta",
+            "postalCode": "T1L 1A1",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.1761,
+            "longitude": -115.5693
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Place",
+          "name": "Mainspace Solara",
+          "description": "A contemporary event space with mountain views and flexible layouts for weddings of all sizes.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "187 Kananaskis Way",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 2A3",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0899,
+            "longitude": -115.3487
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Place",
+          "name": "Stewart Creek Golf Course",
+          "description": "An elegant golf course venue with stunning mountain backdrops and a modern clubhouse for receptions.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4100 Stewart Creek Dr",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 2V3",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0574,
+            "longitude": -115.3696
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "Place",
+          "name": "Silvertip Resort",
+          "description": "A mountain golf resort offering stunning views of the Three Sisters peaks with beautiful indoor and outdoor ceremony spaces.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2000 Silvertip Trail",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 3J4",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0911,
+            "longitude": -115.3126
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "item": {
+          "@type": "Place",
+          "name": "The Malcolm Hotel",
+          "description": "A luxury hotel with Scottish-inspired elegance and sophisticated ballrooms for weddings.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "321 Spring Creek Dr",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 2G2",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0875,
+            "longitude": -115.3480
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "item": {
+          "@type": "Place",
+          "name": "Creekside Villa",
+          "description": "A charming boutique venue with a picturesque setting along the creek and mountain views.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "709 Benchlands Trail",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 3G9",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0816,
+            "longitude": -115.3578
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "item": {
+          "@type": "Place",
+          "name": "Finchy's @CanGOLF",
+          "description": "A unique golf simulator and event space offering a fun, casual setting for wedding events.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "306 Bow Valley Trail #125B",
+            "addressLocality": "Canmore",
+            "addressRegion": "Alberta",
+            "postalCode": "T1W 0N2",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.0925,
+            "longitude": -115.3434
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "item": {
+          "@type": "Place",
+          "name": "Fairmont Chateau Lake Louise",
+          "description": "An iconic venue on the shores of the emerald waters of Lake Louise with glacier views.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "111 Lake Louise Dr",
+            "addressLocality": "Lake Louise",
+            "addressRegion": "Alberta",
+            "postalCode": "T0L 1E0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.4168,
+            "longitude": -116.2175
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "item": {
+          "@type": "Place",
+          "name": "Kicking Horse Resort",
+          "description": "A mountain resort offering breathtaking views and versatile venues for weddings throughout the year.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1500 Kicking Horse Trail",
+            "addressLocality": "Golden",
+            "addressRegion": "British Columbia",
+            "postalCode": "V0A 1H0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.2980,
+            "longitude": -117.0475
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "item": {
+          "@type": "Place",
+          "name": "Hillside Lodge & Chalets",
+          "description": "A rustic lodge with private chalets nestled in the mountains, perfect for intimate weddings.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1740 Seward Frontage Rd",
+            "addressLocality": "Golden",
+            "addressRegion": "British Columbia",
+            "postalCode": "V0A 1H0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.3194,
+            "longitude": -116.9722
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "item": {
+          "@type": "Place",
+          "name": "Emerald Lake Lodge",
+          "description": "A secluded lodge on the shores of the vibrant, glacier-fed Emerald Lake, perfect for intimate weddings.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1 Emerald Lake Rd",
+            "addressLocality": "Field",
+            "addressRegion": "British Columbia",
+            "postalCode": "V0A 1G0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.4429,
+            "longitude": -116.5285
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "item": {
+          "@type": "Place",
+          "name": "Pyramid Lake Lodge",
+          "description": "Charming lakeside lodge with mountain views and private island for ceremonies.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Km North On, Pyramid Lake Rd #6",
+            "addressLocality": "Jasper",
+            "addressRegion": "Alberta",
+            "postalCode": "T0E 0A8",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.9310,
+            "longitude": -118.0945
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "item": {
+          "@type": "Place",
+          "name": "Maligne Lake Chalet",
+          "description": "Historic chalet on the shores of iconic Maligne Lake with stunning mountain backdrops.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Maligne Lake Rd",
+            "addressLocality": "Jasper",
+            "addressRegion": "Alberta",
+            "postalCode": "T0E 1E0",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.7167,
+            "longitude": -117.6333
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "item": {
+          "@type": "Place",
+          "name": "Cochrane RancheHouse",
+          "description": "A charming venue with rustic elegance and panoramic views of the Rocky Mountains and Bow River Valley.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "101 Ranchehouse Rd",
+            "addressLocality": "Cochrane",
+            "addressRegion": "Alberta",
+            "postalCode": "T4C 2K8",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.1945,
+            "longitude": -114.4669
+          }
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
+  <!-- Preloader (optional) -->
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="close-menu">
-            <i class="fas fa-times"></i>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="close-menu">
+      <i class="fas fa-times"></i>
+    </div>
+    <nav class="mobile-nav">
+      <a href="services.html">Services</a>
+      <a href="venues.html" class="active">Venues</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="cta-link">Start Planning</a>
+    </nav>
+    <div class="mobile-contact">
+      <a href="tel:+14035551234"><i class="fas fa-phone"></i> (403) 555-1234</a>
+      <a href="mailto:hello@rockymountainweddings.ca"><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</a>
+    </div>
+    <div class="mobile-social">
+      <a href="https://instagram.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://pinterest.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="Rocky Mountain Weddings" loading="lazy">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="services.html">Services</a>
+        <a href="venues.html" class="active">Venues</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" class="cta-link">Start Planning</a>
+      </nav>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Venues Hero -->
+  <section class="venues-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Stunning Wedding Venues</h1>
+        <p>Discover magical locations across the Canadian Rockies</p>
+        <a href="contact.html" class="cta-link">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venues Introduction -->
+  <section class="venues-intro reveal">
+    <div class="container">
+      <div class="intro-content">
+        <div class="intro-text">
+          <h2>Find Your Perfect Mountain Backdrop</h2>
+          <p>Experience the world's most breathtaking wedding venues in the Canadian Rockies. From historic castle-like hotels to secluded lakeside lodges, there's a perfect setting for every style and budget.</p>
+          <p>As mountain wedding specialists, we partner with top venues to ensure you find a location that suits your vision. Browse the sections below, compare venues, or dive into our interactive map for an in-depth look at your dream destination.</p>
         </div>
-        <nav class="mobile-nav">
-            <a href="services.html">Services</a>
-            <a href="venues.html" class="active">Venues</a>
-            <a href="about.html">About</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html" class="cta-link">Start Planning</a>
-        </nav>
-        <div class="mobile-contact">
-            <a href="tel:+14035551234"><i class="fas fa-phone"></i> (403) 555-1234</a>
-            <a href="mailto:hello@rockymountainweddings.ca"><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</a>
+        <div class="intro-image">
+          <img src="assets/images/venues-intro.jpg" alt="Stunning mountain ceremony setup overlooking the Canadian Rockies" loading="lazy">
         </div>
-        <div class="mobile-social">
+      </div>
+    </div>
+  </section>
+
+  <!-- Region Filters (Unified) -->
+  <section class="region-filters-section reveal">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Browse Venues by Region</h2>
+        <p>Filter our collection of wedding venues throughout the Rockies</p>
+      </div>
+      <div class="filter-buttons">
+        <button class="region-filter active" data-region="all">All Regions</button>
+        <button class="region-filter" data-region="banff">Banff</button>
+        <button class="region-filter" data-region="canmore">Canmore</button>
+        <button class="region-filter" data-region="lake-louise">Lake Louise</button>
+        <button class="region-filter" data-region="emerald-lake">Emerald Lake</button>
+        <button class="region-filter" data-region="kananaskis">Kananaskis</button>
+        <button class="region-filter" data-region="golden">Golden, BC</button>
+        <button class="region-filter" data-region="jasper">Jasper</button>
+        <button class="region-filter" data-region="cochrane">Cochrane</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="interactive-map-section reveal">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Explore Venues by Location</h2>
+        <p>Click on the map markers to discover each venue's details</p>
+      </div>
+
+      <div class="map-container">
+        <div id="venuesMap" class="venues-map"></div>
+        <div class="map-sidebar">
+          <div class="region-filters">
+            <button class="region-filter active" data-region="all">All Regions</button>
+            <button class="region-filter" data-region="banff">Banff</button>
+            <button class="region-filter" data-region="canmore">Canmore</button>
+            <button class="region-filter" data-region="lake-louise">Lake Louise</button>
+            <button class="region-filter" data-region="emerald-lake">Emerald Lake</button>
+            <button class="region-filter" data-region="kananaskis">Kananaskis</button>
+            <button class="region-filter" data-region="golden">Golden, BC</button>
+            <button class="region-filter" data-region="jasper">Jasper</button>
+            <button class="region-filter" data-region="cochrane">Cochrane</button>
+          </div>
+
+          <div class="venue-preview">
+            <div class="venue-preview-placeholder">
+              <p><i class="fas fa-map-marker-alt"></i> Click on a venue marker to view details</p>
+            </div>
+            <div class="venue-preview-content">
+              <!-- Populated dynamically in venues.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Regions Section (Optional Additional SEO) -->
+  <section class="featured-regions reveal">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Destination Regions</h2>
+        <p>Explore our wedding venues by region</p>
+      </div>
+
+      <div class="regions-grid">
+        <!-- Banff -->
+        <div class="region-card" id="banff">
+          <div class="region-image">
+            <img src="assets/images/venues/banff-region.jpg" alt="Banff wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Banff</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>Famous for its stunning mountain backdrop and historic venues like the Fairmont Banff Springs.</p>
+            <a href="#banff-venues" class="region-link" data-region="banff">View Banff Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Canmore -->
+        <div class="region-card" id="canmore">
+          <div class="region-image">
+            <img src="assets/images/venues/canmore-region.jpg" alt="Canmore wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Canmore</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>A charming mountain town offering elegant lodges, contemporary spaces, and breathtaking mountain views.</p>
+            <a href="#canmore-venues" class="region-link" data-region="canmore">View Canmore Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Lake Louise -->
+        <div class="region-card" id="lake-louise">
+          <div class="region-image">
+            <img src="assets/images/venues/lake-louise-region.jpg" alt="Lake Louise wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Lake Louise</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>Home to the turquoise blue lake and the majestic Chateau, offering unparalleled natural beauty.</p>
+            <a href="#lake-louise-venues" class="region-link" data-region="lake-louise">View Lake Louise Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Emerald Lake -->
+        <div class="region-card" id="emerald-lake">
+          <div class="region-image">
+            <img src="assets/images/venues/emerald-lake-region.jpg" alt="Emerald Lake wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Emerald Lake</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>A secluded paradise in Yoho National Park with a vibrant emerald-colored lake and charming lodge.</p>
+            <a href="#emerald-lake-venues" class="region-link" data-region="emerald-lake">View Emerald Lake Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Kananaskis -->
+        <div class="region-card" id="kananaskis">
+          <div class="region-image">
+            <img src="assets/images/venues/kananaskis-region.jpg" alt="Kananaskis wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Kananaskis</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>A wilderness area with luxury resorts, mountain lodges, and endless outdoor adventure activities.</p>
+            <a href="#kananaskis-venues" class="region-link" data-region="kananaskis">View Kananaskis Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Golden, BC -->
+        <div class="region-card" id="golden">
+          <div class="region-image">
+            <img src="assets/images/venues/golden-region.jpg" alt="Golden BC wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Golden</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>Home to spectacular mountain resorts like Kicking Horse, offering panoramic views of the Rockies.</p>
+            <a href="#golden-venues" class="region-link" data-region="golden">View Golden Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Jasper -->
+        <div class="region-card" id="jasper">
+          <div class="region-image">
+            <img src="assets/images/venues/jasper-region.jpg" alt="Jasper wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Jasper</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>Stunning national park with pristine lakes, epic mountain vistas, and charming wilderness lodges.</p>
+            <a href="#jasper-venues" class="region-link" data-region="jasper">View Jasper Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Cochrane -->
+        <div class="region-card" id="cochrane">
+          <div class="region-image">
+            <img src="assets/images/venues/cochrane-region.jpg" alt="Cochrane wedding venues" loading="lazy">
+            <div class="region-name">
+              <h3>Cochrane</h3>
+            </div>
+          </div>
+          <div class="region-details">
+            <p>Western heritage meets modern charm near Calgary, with gorgeous mountain views and rustic elegance.</p>
+            <a href="#cochrane-venues" class="region-link" data-region="cochrane">View Cochrane Venues <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Comparison Tool -->
+  <section class="venue-comparison reveal">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Compare Wedding Venues</h2>
+        <p>Select up to 3 venues to compare features side by side</p>
+      </div>
+
+      <div class="comparison-container">
+        <div class="venue-selector">
+          <div class="selector-intro">
+            <p>Add venues to compare:</p>
+          </div>
+          <div class="selector-input">
+            <select id="venueSelector" class="venue-select" title="Select venue to compare" aria-label="Select venue to compare">
+              <option value="">Select a venue</option>
+              <optgroup label="Banff">
+                <option value="fairmont-banff-springs">Fairmont Banff Springs Hotel</option>
+                <option value="the-gem">The Gem</option>
+                <option value="sky-bistro">Sky Bistro, Gondola</option>
+                <option value="maple-leaf">The Maple Leaf</option>
+                <option value="mt-norquay">Mt. Norquay</option>
+                <option value="three-bears">Three Bears Brewery</option>
+              </optgroup>
+              <optgroup label="Canmore">
+                <option value="mainspace-solara">Mainspace Solara</option>
+                <option value="stewart-creek">Stewart Creek Golf Course</option>
+                <option value="silvertip">Silvertip Resort</option>
+                <option value="malcolm-hotel">The Malcolm Hotel</option>
+                <option value="creekside-villa">Creekside Villa</option>
+                <option value="finchys">Finchy's @CanGOLF</option>
+              </optgroup>
+              <optgroup label="Lake Louise">
+                <option value="fairmont-chateau">Fairmont Chateau Lake Louise</option>
+              </optgroup>
+              <optgroup label="Golden">
+                <option value="kicking-horse">Kicking Horse Resort</option>
+                <option value="hillside-lodge">Hillside Lodge & Chalets</option>
+              </optgroup>
+              <optgroup label="Emerald Lake">
+                <option value="emerald-lake">Emerald Lake Lodge</option>
+              </optgroup>
+              <optgroup label="Jasper">
+                <option value="pyramid-lake">Pyramid Lake Lodge</option>
+                <option value="maligne-lake">Maligne Lake Chalet</option>
+              </optgroup>
+              <optgroup label="Kananaskis">
+                <option value="mount-engadine">Mount Engadine Lodge</option>
+              </optgroup>
+              <optgroup label="Cochrane">
+                <option value="cochrane-ranchehouse">Cochrane RancheHouse</option>
+              </optgroup>
+            </select>
+            <button id="addVenueBtn" class="btn-add-venue"><i class="fas fa-plus"></i> Add to Compare</button>
+          </div>
+        </div>
+
+        <div class="comparison-table-container">
+          <div class="comparison-placeholder">
+            <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
+          </div>
+          <div class="comparison-table">
+            <!-- Populated with comparison cards in venues.js -->
+          </div>
+        </div>
+
+        <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANFF Venues -->
+  <section class="regional-venues reveal" id="banff-venues" data-region="banff">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Banff Wedding Venues</h2>
+        <p>Iconic venues in Canada's first national park</p>
+      </div>
+
+      <!-- Example: The Gem -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/the-gem-main.jpg" alt="The Gem wedding venue in Banff" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/the-gem-1.jpg" alt="The Gem interiors" loading="lazy">
+            <img src="assets/images/venues/the-gem-2.jpg" alt="The Gem ceremony setup" loading="lazy">
+            <img src="assets/images/venues/the-gem-3.jpg" alt="The Gem reception area" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>The Gem</h3>
+          <p class="venue-tagline">A unique mountain venue with rustic charm and stunning views</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 20-150 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$-$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>The Gem offers a unique mountain venue experience combining rustic charm with modern amenities. Located just minutes from Banff, this hidden treasure provides panoramic mountain views and a private, intimate setting for your celebration.</p>
+            <p>With both indoor and outdoor ceremony options, a spacious reception area, and customizable packages, The Gem is perfect for couples seeking a distinctive venue with character and natural beauty.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Mountain Views</span>
+            <span class="feature-tag">Indoor & Outdoor Options</span>
+            <span class="feature-tag">Rustic Elegance</span>
+            <span class="feature-tag">Exclusive Use</span>
+            <span class="feature-tag">Custom Packages</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="the-gem">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="The Gem">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fairmont Banff Springs -->
+      <div class="venue-item">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/banff-springs-main.jpg" alt="Fairmont Banff Springs wedding setup" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/banff-springs-1.jpg" alt="Banff Springs terrace" loading="lazy">
+            <img src="assets/images/venues/banff-springs-2.jpg" alt="Banff Springs ballroom" loading="lazy">
+            <img src="assets/images/venues/banff-springs-3.jpg" alt="Banff Springs exterior" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <h3>Fairmont Banff Springs Hotel</h3>
+          <p class="venue-tagline">A castle in the mountains for your fairy tale wedding</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 405 Spray Ave, Banff, AB T1L 1J4, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-800 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$-$$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Known as Canada's "Castle in the Rockies," the Fairmont Banff Springs offers a blend of old-world charm and modern luxury. With multiple ceremony and reception spaces including grand ballrooms and intimate terraces, this venue accommodates both lavish celebrations and smaller gatherings.</p>
+            <p>The historic architecture, breathtaking mountain views, and impeccable service make this iconic hotel one of the most sought-after wedding venues in the Canadian Rockies.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">In-house Catering</span>
+            <span class="feature-tag">Indoor & Outdoor Options</span>
+            <span class="feature-tag">Historic Property</span>
+            <span class="feature-tag">Spa Services</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="banff-springs">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Fairmont Banff Springs Hotel">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Banff venues like Sky Bistro, The Maple Leaf, Mt. Norquay, Three Bears... (same structure) -->
+
+    </div>
+  </section>
+
+  <!-- CANMORE Venues -->
+  <section class="regional-venues reveal" id="canmore-venues" data-region="canmore">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Canmore Wedding Venues</h2>
+        <p>Charming venues in this picturesque mountain town</p>
+      </div>
+
+      <!-- Mainspace Solara -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/mainspace-solara-main.jpg" alt="Mainspace Solara wedding venue" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/mainspace-solara-1.jpg" alt="Mainspace Solara setup" loading="lazy">
+            <img src="assets/images/venues/mainspace-solara-2.jpg" alt="Mainspace Solara reception" loading="lazy">
+            <img src="assets/images/venues/mainspace-solara-3.jpg" alt="Mainspace Solara details" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>Mainspace Solara</h3>
+          <p class="venue-tagline">Contemporary event space with mountain views and modern amenities</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 187 Kananaskis Way, Canmore, AB T1W 2A3, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 20-180 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$-$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Mainspace Solara provides a contemporary venue with floor-to-ceiling windows showcasing the surrounding mountains. The flexible space can be tailored to your vision, whether elegant or minimalist.</p>
+            <p>On-site accommodations, proximity to downtown Canmore, and customizable packages make this venue a stylish, convenient choice for your mountain wedding celebration.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Mountain Views</span>
+            <span class="feature-tag">Modern Design</span>
+            <span class="feature-tag">Versatile Space</span>
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">Customizable</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="mainspace-solara">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Mainspace Solara">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Canmore venues: Stewart Creek, Silvertip, Malcolm Hotel, Creekside Villa, Finchy's ... -->
+
+    </div>
+  </section>
+
+  <!-- LAKE LOUISE Venues -->
+  <section class="regional-venues reveal" id="lake-louise-venues" data-region="lake-louise">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Lake Louise Wedding Venues</h2>
+        <p>Stunning lakeside settings with glacier views</p>
+      </div>
+
+      <!-- Fairmont Chateau Lake Louise -->
+      <div class="venue-item">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/lake-louise-main.jpg" alt="Fairmont Chateau Lake Louise wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/lake-louise-1.jpg" alt="Lake Louise ceremony" loading="lazy">
+            <img src="assets/images/venues/lake-louise-2.jpg" alt="Chateau ballroom" loading="lazy">
+            <img src="assets/images/venues/lake-louise-3.jpg" alt="Lake Louise views" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <h3>Fairmont Chateau Lake Louise</h3>
+          <p class="venue-tagline">An iconic venue on the shores of the emerald waters of Lake Louise</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 111 Lake Louise Drive, Lake Louise, AB T0L 1E0, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-550 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$-$$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>The Fairmont Chateau Lake Louise provides one of the most spectacular backdrops for a wedding in the Canadian Rockies. Exchange vows by the lake with Victoria Glacier behind you, then celebrate in the chateau's elegant ballrooms.</p>
+            <p>Luxurious on-site accommodations, world-class dining, and comprehensive wedding packages make this an unparalleled destination for a mountain wedding.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">In-house Catering</span>
+            <span class="feature-tag">Indoor & Outdoor Options</span>
+            <span class="feature-tag">Lakeside Ceremony</span>
+            <span class="feature-tag">Spa Services</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="chateau-louise">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Fairmont Chateau Lake Louise">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERALD LAKE Venues -->
+  <section class="regional-venues reveal" id="emerald-lake-venues" data-region="emerald-lake">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Emerald Lake Wedding Venues</h2>
+        <p>A secluded gem in Yoho National Park</p>
+      </div>
+
+      <!-- Emerald Lake Lodge -->
+      <div class="venue-item">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/emerald-lake-main.jpg" alt="Emerald Lake Lodge wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/emerald-lake-1.jpg" alt="Emerald Lake ceremony" loading="lazy">
+            <img src="assets/images/venues/emerald-lake-2.jpg" alt="Emerald Lake Lodge exterior" loading="lazy">
+            <img src="assets/images/venues/emerald-lake-3.jpg" alt="Emerald Lake views" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <h3>Emerald Lake Lodge</h3>
+          <p class="venue-tagline">Historic lodge on the shores of the stunning turquoise Emerald Lake</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1 Emerald Lake Rd, Field, BC V0A 1G0, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-88 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$-$$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Emerald Lake Lodge is a magical setting with its historic timber lodge right on the shores of the vibrant Emerald Lake. Enjoy lakeside ceremonies with dramatic mountain scenery and the tranquility of Yoho National Park.</p>
+            <p>Cabin-style accommodations, Rocky Mountain cuisine, and intimate gathering spaces make this a perfect choice for smaller weddings seeking exclusivity and romance.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Lakeside Setting</span>
+            <span class="feature-tag">Historic Lodge</span>
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">Fine Dining</span>
+            <span class="feature-tag">Exclusive Use Available</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="emerald-lake">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Emerald Lake Lodge">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KANANASKIS Venues -->
+  <section class="regional-venues reveal" id="kananaskis-venues" data-region="kananaskis">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Kananaskis Wedding Venues</h2>
+        <p>A wilderness area with luxury resorts and scenic lodges</p>
+      </div>
+
+      <!-- Mount Engadine Lodge -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/mount-engadine-main.jpg" alt="Mount Engadine Lodge wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/mount-engadine-1.jpg" alt="Mount Engadine scenic" loading="lazy">
+            <img src="assets/images/venues/mount-engadine-2.jpg" alt="Mount Engadine interior" loading="lazy">
+            <img src="assets/images/venues/mount-engadine-3.jpg" alt="Mount Engadine ceremony" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>Mount Engadine Lodge</h3>
+          <p class="venue-tagline">Intimate backcountry lodge for smaller weddings</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Kananaskis, Alberta, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-40 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$-$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Mount Engadine Lodge is a charming retreat nestled in the mountains, known for its cozy atmosphere and spectacular wildlife viewing. It's ideal for smaller weddings or elopements seeking an intimate and off-the-beaten-path experience.</p>
+            <p>The lodge offers comfortable accommodations, delicious meals, and a serene environment away from the bustle of busier mountain towns.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Intimate Setting</span>
+            <span class="feature-tag">Wildlife Viewing</span>
+            <span class="feature-tag">Remote Lodge</span>
+            <span class="feature-tag">All-Inclusive</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="mount-engadine">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Mount Engadine Lodge">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN, BC Venues -->
+  <section class="regional-venues reveal" id="golden-venues" data-region="golden">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Golden, BC Wedding Venues</h2>
+        <p>Stunning mountain venues in British Columbia</p>
+      </div>
+
+      <!-- Kicking Horse Resort -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/kicking-horse-main.jpg" alt="Kicking Horse Resort wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/kicking-horse-1.jpg" alt="Kicking Horse views" loading="lazy">
+            <img src="assets/images/venues/kicking-horse-2.jpg" alt="Kicking Horse ceremony" loading="lazy">
+            <img src="assets/images/venues/kicking-horse-3.jpg" alt="Kicking Horse dining" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>Kicking Horse Resort</h3>
+          <p class="venue-tagline">Mountaintop weddings with panoramic Rocky Mountain views</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 20-200 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$-$$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Kicking Horse Resort offers a spectacular mountaintop wedding experience with ceremonies at the Eagle's Eye Restaurant—Canada's highest elevation restaurant, accessible by gondola. Enjoy 360° views of the surrounding peaks, on-mountain accommodations, and exceptional dining.</p>
+            <p>Whether you're looking for a summer alpine backdrop or a winter wonderland, Kicking Horse has options year-round for an unforgettable wedding celebration.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Mountaintop Views</span>
+            <span class="feature-tag">Gondola Access</span>
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">Fine Dining</span>
+            <span class="feature-tag">All-Season</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="kicking-horse">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Kicking Horse Resort">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hillside Lodge & Chalets -->
+      <div class="venue-item">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/hillside-lodge-main.jpg" alt="Hillside Lodge & Chalets wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/hillside-lodge-1.jpg" alt="Hillside Lodge exterior" loading="lazy">
+            <img src="assets/images/venues/hillside-lodge-2.jpg" alt="Hillside Lodge ceremony" loading="lazy">
+            <img src="assets/images/venues/hillside-lodge-3.jpg" alt="Hillside Lodge grounds" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <h3>Hillside Lodge & Chalets</h3>
+          <p class="venue-tagline">Rustic mountain lodge with private cabins for an intimate celebration</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-60 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$-$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: May-October</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Hillside Lodge & Chalets is a secluded retreat ideal for couples seeking a private mountain getaway. The property offers cozy cabins, scenic outdoor ceremony sites, and a relaxed atmosphere for weekend-long celebrations.</p>
+            <p>Immerse your guests in the natural beauty of British Columbia with wilderness surroundings and rustic charm that still provides comfortable amenities.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Rustic Charm</span>
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">Outdoor Ceremonies</span>
+            <span class="feature-tag">Private Setting</span>
+            <span class="feature-tag">Weekend Packages</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn-venue-inquiry primary" data-venue="Hillside Lodge & Chalets">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JASPER Venues -->
+  <section class="regional-venues reveal" id="jasper-venues" data-region="jasper">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Jasper Wedding Venues</h2>
+        <p>Stunning venues in the heart of Jasper National Park</p>
+      </div>
+
+      <!-- Pyramid Lake Lodge -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/pyramid-lake-main.jpg" alt="Pyramid Lake Lodge wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/pyramid-lake-1.jpg" alt="Pyramid Lake views" loading="lazy">
+            <img src="assets/images/venues/pyramid-lake-2.jpg" alt="Pyramid Lake ceremony" loading="lazy">
+            <img src="assets/images/venues/pyramid-lake-3.jpg" alt="Pyramid Lake Lodge exterior" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>Pyramid Lake Lodge</h3>
+          <p class="venue-tagline">Charming lakeside lodge with mountain views and private island</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-120 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$-$$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: May-October</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Pyramid Lake Lodge provides a stunning setting with its location on the shores of Pyramid Lake. Host an unforgettable ceremony on the private island connected by a footbridge, surrounded by pristine mountain scenery.</p>
+            <p>Accommodations, dining, and on-site activities ensure your guests enjoy a wonderful mountain escape in Jasper National Park.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Lakeside Setting</span>
+            <span class="feature-tag">Private Island</span>
+            <span class="feature-tag">On-site Accommodations</span>
+            <span class="feature-tag">Mountain Views</span>
+            <span class="feature-tag">Intimate Setting</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="pyramid-lake">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Pyramid Lake Lodge">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maligne Lake Chalet -->
+      <div class="venue-item">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/maligne-lake-main.jpg" alt="Maligne Lake Chalet wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/maligne-lake-1.jpg" alt="Maligne Lake views" loading="lazy">
+            <img src="assets/images/venues/maligne-lake-2.jpg" alt="Maligne Lake ceremony" loading="lazy">
+            <img src="assets/images/venues/maligne-lake-3.jpg" alt="Maligne Lake Chalet exterior" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <h3>Maligne Lake Chalet</h3>
+          <p class="venue-tagline">Historic chalet on the shores of iconic Maligne Lake</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Maligne Lake Rd, Jasper, AB T0E 1E0, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 10-80 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: June-September</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>Maligne Lake Chalet offers a truly unique wedding experience at one of the most photographed locations in the Rockies. Arrive by boat and exchange vows with turquoise waters and towering peaks all around.</p>
+            <p>This historic log chalet is perfect for couples wanting a blend of wilderness adventure and rustic charm in Jasper National Park.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Historic Property</span>
+            <span class="feature-tag">Lakeside Setting</span>
+            <span class="feature-tag">Boat Access</span>
+            <span class="feature-tag">Wilderness Experience</span>
+            <span class="feature-tag">Exclusive Use</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn-venue-inquiry primary" data-venue="Maligne Lake Chalet">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COCHRANE Venues -->
+  <section class="regional-venues reveal" id="cochrane-venues" data-region="cochrane">
+    <div class="container">
+      <div class="region-heading">
+        <h2>Cochrane Wedding Venues</h2>
+        <p>Charming venues with mountain views near Calgary</p>
+      </div>
+
+      <!-- Cochrane RancheHouse -->
+      <div class="venue-item featured-venue">
+        <div class="venue-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/venues/cochrane-ranchehouse-main.jpg" alt="Cochrane RancheHouse wedding" loading="lazy">
+          </div>
+          <div class="gallery-thumbs">
+            <img src="assets/images/venues/cochrane-ranchehouse-1.jpg" alt="RancheHouse ceremony" loading="lazy">
+            <img src="assets/images/venues/cochrane-ranchehouse-2.jpg" alt="RancheHouse reception" loading="lazy">
+            <img src="assets/images/venues/cochrane-ranchehouse-3.jpg" alt="RancheHouse exterior" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-info">
+          <div class="featured-badge">Featured Venue</div>
+          <h3>Cochrane RancheHouse</h3>
+          <p class="venue-tagline">Rustic elegance with mountain views and western heritage</p>
+          <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada</p>
+
+          <div class="venue-details">
+            <div class="detail-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Capacity: 30-250 guests</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Price Range: $$-$$$</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Available: Year-round</span>
+            </div>
+          </div>
+
+          <div class="venue-description">
+            <p>The Cochrane RancheHouse blends western heritage with modern amenities. Its grand hall has exposed timber beams, stone fireplaces, and large windows showcasing the Rocky Mountains. With indoor and outdoor ceremony spots, scenic grounds for photos, and a convenient location near Calgary, it's a prime choice for those wanting a rustic yet refined venue.</p>
+          </div>
+
+          <div class="venue-features">
+            <span class="feature-tag">Mountain Views</span>
+            <span class="feature-tag">Rustic Elegance</span>
+            <span class="feature-tag">Indoor & Outdoor Options</span>
+            <span class="feature-tag">Western Heritage</span>
+            <span class="feature-tag">Close to Calgary</span>
+          </div>
+
+          <div class="venue-actions">
+            <button class="btn btn-secondary view-360" data-venue="cochrane-ranchehouse">
+              <i class="fas fa-vr-cardboard"></i> Virtual Tour
+            </button>
+            <button class="btn-venue-inquiry primary" data-venue="Cochrane RancheHouse">Schedule a Visit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Inquiry Form Modal -->
+  <div class="venue-modal" id="venueModal">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <h2>Schedule a Venue Viewing</h2>
+      <p class="modal-intro">Complete the form below and we'll be in touch within 24 hours to arrange your private venue tour.</p>
+
+      <form id="venueInquiryForm" class="venue-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="names">Full Names*</label>
+            <input type="text" id="names" name="names" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number*</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="weddingDate">Potential Wedding Date</label>
+            <input type="date" id="weddingDate" name="weddingDate">
+          </div>
+
+          <div class="form-group">
+            <label for="guestCount">Estimated Guest Count</label>
+            <select id="guestCount" name="guestCount" title="Estimated Guest Count" aria-label="Estimated Guest Count">
+              <option value="">Select guest count</option>
+              <option value="10-50">10-50 guests</option>
+              <option value="51-100">51-100 guests</option>
+              <option value="101-150">101-150 guests</option>
+              <option value="151-200">151-200 guests</option>
+              <option value="200+">200+ guests</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="selectedVenue">Selected Venue*</label>
+            <input type="text" id="selectedVenue" name="selectedVenue" readonly>
+          </div>
+
+          <!-- Venue-specific fields will be added here dynamically in JS -->
+
+          <div class="form-group full-width">
+            <label for="message">Additional Details</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 360° Virtual Tour Modal -->
+  <div id="tourModal" class="tour-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Virtual Tour</h2>
+        <button class="close-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="tourContainer"></div>
+    </div>
+  </div>
+
+  <!-- Planning CTA Section -->
+  <section class="venues-cta reveal">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Need Help Finding Your Perfect Venue?</h2>
+        <p>Our venue specialists can help you find the ideal location that matches your vision and budget.</p>
+        <a href="contact.html" class="btn btn-primary">Get Personalized Recommendations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/images/logo-white.png" alt="Rocky Mountain Weddings" loading="lazy">
+          <p>Creating unforgettable wedding experiences in the Canadian Rockies</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="venues.html">Venues</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Banff, Alberta, Canada</p>
+          <p><i class="fas fa-phone"></i> (403) 555-1234</p>
+          <p><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</p>
+          <div class="social-links">
             <a href="https://instagram.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
             <a href="https://pinterest.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a>
+            <a href="https://facebook.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          </div>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Navigation -->
-    <header class="site-header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="assets/images/logo.png" alt="Rocky Mountain Weddings">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <a href="services.html">Services</a>
-                <a href="venues.html" class="active">Venues</a>
-                <a href="about.html">About</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="blog.html">Blog</a>
-                <a href="contact.html" class="cta-link">Start Planning</a>
-            </nav>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Venues Hero -->
-    <section class="venues-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Stunning Wedding Venues</h1>
-                <p>Discover magical locations across the Canadian Rockies</p>
-                <a href="contact.html" class="cta-link">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Venues Introduction -->
-    <section class="venues-intro reveal">
-        <div class="container">
-            <div class="intro-content">
-                <div class="intro-text">
-                    <h2>Find Your Perfect Mountain Backdrop</h2>
-                    <p>The Canadian Rockies offer some of the world's most breathtaking wedding venues. From historic castle-like hotels to intimate lakeside lodges, there's a perfect setting for every couple's vision.</p>
-                    <p>As experts in mountain weddings, we've developed close relationships with the region's most prestigious venues. Our knowledge ensures you'll find the ideal location that aligns with your style, guest count, and budget.</p>
-                </div>
-                <div class="intro-image">
-                    <img src="assets/images/venues-intro.jpg" alt="Stunning mountain ceremony setup overlooking the Canadian Rockies">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Region Filter Section -->
-    <section class="region-filters-section reveal">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Browse by Region</h2>
-                <p>Filter our collection of stunning wedding venues</p>
-            </div>
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Regions</button>
-                <button class="filter-btn" data-filter="banff">Banff</button>
-                <button class="filter-btn" data-filter="canmore">Canmore</button>
-                <button class="filter-btn" data-filter="lake-louise">Lake Louise</button>
-                <button class="filter-btn" data-filter="golden">Golden, BC</button>
-                <button class="filter-btn" data-filter="jasper">Jasper</button>
-                <button class="filter-btn" data-filter="cochrane">Cochrane</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Interactive Map Section -->
-    <section class="interactive-map-section reveal">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Explore Venues by Location</h2>
-                <p>Click on the map to discover our curated collection of wedding venues</p>
-            </div>
-            
-            <div class="map-container">
-                <div id="venuesMap" class="venues-map" style="height: 500px; width: 100%;"></div>
-                
-                <div class="map-sidebar">
-                    <div class="region-filters">
-                        <button class="region-filter active" data-region="all">All Regions</button>
-                        <button class="region-filter" data-region="banff">Banff</button>
-                        <button class="region-filter" data-region="canmore">Canmore</button>
-                        <button class="region-filter" data-region="lake-louise">Lake Louise</button>
-                        <button class="region-filter" data-region="emerald-lake">Emerald Lake</button>
-                        <button class="region-filter" data-region="kananaskis">Kananaskis</button>
-                    </div>
-                    
-                    <div class="venue-preview">
-                        <div class="venue-preview-placeholder">
-                            <p><i class="fas fa-map-marker-alt"></i> Click on a venue marker to view details</p>
-                        </div>
-                        <div class="venue-preview-content" style="display: none;">
-                            <!-- Will be populated dynamically -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Featured Regions Section -->
-    <section class="featured-regions reveal">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Destination Regions</h2>
-                <p>Explore our wedding venues by region</p>
-            </div>
-
-            <div class="regions-grid">
-                <!-- Banff Region -->
-                <div class="region-card" id="banff">
-                    <div class="region-image">
-                        <img src="assets/images/venues/banff-region.jpg" alt="Banff wedding venues">
-                        <div class="region-name">
-                            <h3>Banff</h3>
-                        </div>
-                    </div>
-                    <div class="region-details">
-                        <p>Famous for its stunning mountain backdrop and historic venues including the iconic Banff Springs Hotel.</p>
-                        <a href="#banff-venues" class="region-link">View Banff Venues <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Canmore Region -->
-                <div class="region-card" id="canmore">
-                    <div class="region-image">
-                        <img src="assets/images/venues/canmore-region.jpg" alt="Canmore wedding venues">
-                        <div class="region-name">
-                            <h3>Canmore</h3>
-                        </div>
-                    </div>
-                    <div class="region-details">
-                        <p>A charming mountain town offering elegant lodges, contemporary spaces, and breathtaking views of the Three Sisters peaks.</p>
-                        <a href="#canmore-venues" class="region-link">View Canmore Venues <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Lake Louise Region -->
-                <div class="region-card" id="lake-louise">
-                    <div class="region-image">
-                        <img src="assets/images/venues/lake-louise-region.jpg" alt="Lake Louise wedding venues">
-                        <div class="region-name">
-                            <h3>Lake Louise</h3>
-                        </div>
-                    </div>
-                    <div class="region-details">
-                        <p>Home to the turquoise blue lake and magnificent Chateau, offering unparalleled natural beauty for your ceremony.</p>
-                        <a href="#lake-louise-venues" class="region-link">View Lake Louise Venues <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Emerald Lake Region -->
-                <div class="region-card" id="emerald-lake">
-                    <div class="region-image">
-                        <img src="assets/images/venues/emerald-lake-region.jpg" alt="Emerald Lake wedding venues">
-                        <div class="region-name">
-                            <h3>Emerald Lake</h3>
-                        </div>
-                    </div>
-                    <div class="region-details">
-                        <p>A secluded paradise in Yoho National Park with a stunning emerald-colored lake and intimate lodge for romantic celebrations.</p>
-                        <a href="#emerald-lake-venues" class="region-link">View Emerald Lake Venues <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Kananaskis Region -->
-                <div class="region-card" id="kananaskis">
-                    <div class="region-image">
-                        <img src="assets/images/venues/kananaskis-region.jpg" alt="Kananaskis wedding venues">
-                        <div class="region-name">
-                            <h3>Kananaskis</h3>
-                        </div>
-                    </div>
-                    <div class="region-details">
-                        <p>A wilderness area with luxury resorts and lodges offering privacy in a spectacular mountain setting away from the crowds.</p>
-                        <a href="#kananaskis-venues" class="region-link">View Kananaskis Venues <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Venue Comparison Tool -->
-    <section class="venue-comparison reveal">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Compare Wedding Venues</h2>
-                <p>Select up to 3 venues to compare features side by side</p>
-            </div>
-            
-            <div class="comparison-container">
-                <div class="venue-selector">
-                    <div class="selector-intro">
-                        <p>Add venues to compare:</p>
-                    </div>
-                    <div class="selector-input">
-                        <select id="venueSelector" class="venue-select" title="Select venue to compare" aria-label="Select venue to compare">
-                            <option value="">Select a venue</option>
-                            <optgroup label="Banff">
-                                <option value="banff-springs">Fairmont Banff Springs</option>
-                                <option value="tunnel-mountain">Tunnel Mountain Reservoir</option>
-                                <option value="buffalo-mountain">Buffalo Mountain Lodge</option>
-                            </optgroup>
-                            <optgroup label="Canmore">
-                                <option value="silvertip">Silvertip Resort</option>
-                                <option value="cornerstone">Cornerstone Theatre</option>
-                                <option value="stewart-creek">Stewart Creek Golf Club</option>
-                            </optgroup>
-                            <optgroup label="Lake Louise">
-                                <option value="chateau-louise">Fairmont Chateau Lake Louise</option>
-                                <option value="post-hotel">Post Hotel & Spa</option>
-                            </optgroup>
-                            <optgroup label="Emerald Lake">
-                                <option value="emerald-lodge">Emerald Lake Lodge</option>
-                            </optgroup>
-                            <optgroup label="Kananaskis">
-                                <option value="kananaskis-resort">Kananaskis Mountain Lodge</option>
-                                <option value="boundary-ranch">Boundary Ranch</option>
-                                <option value="mount-engadine">Mount Engadine Lodge</option>
-                            </optgroup>
-                        </select>
-                        <button id="addVenueBtn" class="btn-add-venue"><i class="fas fa-plus"></i> Add to Compare</button>
-                    </div>
-                </div>
-                
-                <div class="comparison-table-container">
-                    <div class="comparison-placeholder">
-                        <p><i class="fas fa-info-circle"></i> Add venues above to start comparing</p>
-                    </div>
-                    <div class="comparison-table" style="display: none;">
-                        <!-- Will be populated with visual comparison cards -->
-                    </div>
-                </div>
-                
-                <button id="resetCompareBtn" class="btn-reset-compare">Reset Comparison</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Banff Venues -->
-    <section class="regional-venues reveal" id="banff-venues" data-region="banff">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Banff Wedding Venues</h2>
-                <p>Iconic venues in Canada's first national park</p>
-            </div>
-            
-            <!-- The Gem (Featured) -->
-            <div class="venue-item featured-venue">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/the-gem-main.jpg" alt="The Gem wedding venue in Banff">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/the-gem-1.jpg" alt="The Gem interiors">
-                        <img src="assets/images/venues/the-gem-2.jpg" alt="The Gem ceremony setup">
-                        <img src="assets/images/venues/the-gem-3.jpg" alt="The Gem reception area">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <div class="featured-badge">Featured Venue</div>
-                    <h3>The Gem</h3>
-                    <p class="venue-tagline">A unique mountain venue with rustic charm and stunning views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 900A Harvie Heights Rd, Bighorn No. 8, AB T1W 2W2, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-150 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>The Gem offers a unique mountain venue experience combining rustic charm with modern amenities. Located just minutes from Banff, this hidden treasure provides panoramic mountain views and a private, intimate setting for your celebration.</p>
-                        <p>With both indoor and outdoor ceremony options, a spacious reception area, and customizable packages, The Gem is perfect for couples seeking a distinctive venue with character and natural beauty.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">Rustic Elegance</span>
-                        <span class="feature-tag">Exclusive Use</span>
-                        <span class="feature-tag">Custom Packages</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="the-gem"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="The Gem">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fairmont Banff Springs -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/banff-springs-main.jpg" alt="Fairmont Banff Springs wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/banff-springs-1.jpg" alt="Banff Springs terrace">
-                        <img src="assets/images/venues/banff-springs-2.jpg" alt="Banff Springs ballroom">
-                        <img src="assets/images/venues/banff-springs-3.jpg" alt="Banff Springs exterior">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Fairmont Banff Springs Hotel</h3>
-                    <p class="venue-tagline">A castle in the mountains for your fairy tale wedding</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 405 Spray Ave, Banff, AB T1L 1J4, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-800 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Known as Canada's "Castle in the Rockies," the Fairmont Banff Springs offers a perfect blend of old-world charm and modern luxury. With multiple ceremony and reception spaces including grand ballrooms, intimate terraces, and beautiful outdoor locations, this venue can accommodate both grand celebrations and intimate gatherings.</p>
-                        <p>The historic architecture, stunning mountain views, and impeccable service make this iconic hotel one of the most sought-after wedding venues in the Canadian Rockies.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">In-house Catering</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">Historic Property</span>
-                        <span class="feature-tag">Spa Services</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="banff-springs"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Fairmont Banff Springs Hotel">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sky Bistro, Gondola -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/sky-bistro-main.jpg" alt="Sky Bistro Gondola wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/sky-bistro-1.jpg" alt="Sky Bistro views">
-                        <img src="assets/images/venues/sky-bistro-2.jpg" alt="Sky Bistro dining">
-                        <img src="assets/images/venues/sky-bistro-3.jpg" alt="Banff Gondola experience">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Sky Bistro, Gondola</h3>
-                    <p class="venue-tagline">Elevate your celebration with breathtaking mountain-top views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 100 Mountain Ave, Banff, AB T1L 1J3, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-200 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Located at the summit of Sulphur Mountain, Sky Bistro offers a truly unique wedding experience with panoramic views of six mountain ranges. Your guests will enjoy a scenic gondola ride to the venue, creating an unforgettable start to your celebration.</p>
-                        <p>The modern restaurant features floor-to-ceiling windows showcasing the stunning mountain vistas, excellent cuisine featuring local ingredients, and a sophisticated atmosphere for an elevated wedding experience.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Panoramic Views</span>
-                        <span class="feature-tag">Unique Experience</span>
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">Gondola Access</span>
-                        <span class="feature-tag">All-Season</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="sky-bistro"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Sky Bistro, Gondola">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Maple Leaf -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/maple-leaf-main.jpg" alt="The Maple Leaf restaurant wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/maple-leaf-1.jpg" alt="Maple Leaf dining room">
-                        <img src="assets/images/venues/maple-leaf-2.jpg" alt="Maple Leaf cuisine">
-                        <img src="assets/images/venues/maple-leaf-3.jpg" alt="Maple Leaf private room">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>The Maple Leaf</h3>
-                    <p class="venue-tagline">Intimate fine dining in the heart of Banff</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 137 Banff Ave, Banff, AB T1L 1C8, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-80 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>The Maple Leaf restaurant offers an intimate and elegant setting for smaller weddings and rehearsal dinners. Located on Banff Avenue, this acclaimed restaurant specializes in Canadian cuisine featuring locally-sourced ingredients and an extensive wine selection.</p>
-                        <p>With options for private dining rooms or full restaurant buyouts, The Maple Leaf provides exceptional service and cuisine in a sophisticated atmosphere right in downtown Banff.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">Central Location</span>
-                        <span class="feature-tag">Private Rooms</span>
-                        <span class="feature-tag">Canadian Cuisine</span>
-                        <span class="feature-tag">Full Buyout Available</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="The Maple Leaf">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mt. Norquay -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/norquay-main.jpg" alt="Mt. Norquay wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/norquay-1.jpg" alt="Mt. Norquay views">
-                        <img src="assets/images/venues/norquay-2.jpg" alt="Mt. Norquay ceremony">
-                        <img src="assets/images/venues/norquay-3.jpg" alt="Mt. Norquay dining">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Mt. Norquay</h3>
-                    <p class="venue-tagline">Alpine wedding venue with spectacular mountain views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Improvement District No. 9, AB T0L 1E0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-150 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Mt. Norquay offers a dramatic mountain setting for your wedding celebration. The Cliffhouse Bistro, accessed via the North American chairlift, provides a stunning alpine backdrop with panoramic views of Banff and the surrounding mountains.</p>
-                        <p>During winter, celebrate in the cozy lodge with snowy mountain views, while summer weddings can take advantage of outdoor ceremony spaces with breathtaking vistas. The unique chairlift experience adds an unforgettable element to your special day.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Chairlift Access</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">All-Season</span>
-                        <span class="feature-tag">Unique Experience</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="mt-norquay"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Mt. Norquay">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Three Bears Brewery -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/three-bears-main.jpg" alt="Three Bears Brewery wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/three-bears-1.jpg" alt="Three Bears interior">
-                        <img src="assets/images/venues/three-bears-2.jpg" alt="Three Bears brewery">
-                        <img src="assets/images/venues/three-bears-3.jpg" alt="Three Bears dining">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Three Bears Brewery</h3>
-                    <p class="venue-tagline">Contemporary brewery venue with rustic mountain charm</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 205 Bear St, Banff, AB T1L 1A1, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-120 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Three Bears Brewery offers a trendy, casual venue for couples seeking a relaxed yet stylish atmosphere. Located in downtown Banff, this craft brewery features a modern industrial aesthetic with warm wood accents, creating a perfect blend of rustic charm and contemporary style.</p>
-                        <p>With craft beer brewed on-site, excellent food options, and a welcoming atmosphere, Three Bears Brewery is ideal for couples looking for a laid-back celebration that still feels special and distinctive.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Craft Brewery</span>
-                        <span class="feature-tag">Downtown Location</span>
-                        <span class="feature-tag">Relaxed Atmosphere</span>
-                        <span class="feature-tag">Modern Rustic</span>
-                        <span class="feature-tag">Full Buyout Available</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="Three Bears Brewery">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Canmore Venues Section -->
-    <section class="regional-venues reveal" id="canmore-venues" data-region="canmore">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Canmore Wedding Venues</h2>
-                <p>Charming venues in this picturesque mountain town</p>
-            </div>
-            
-            <!-- Mainspace Solara (Featured) -->
-            <div class="venue-item featured-venue">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/mainspace-solara-main.jpg" alt="Mainspace Solara wedding venue">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/mainspace-solara-1.jpg" alt="Mainspace Solara setup">
-                        <img src="assets/images/venues/mainspace-solara-2.jpg" alt="Mainspace Solara reception">
-                        <img src="assets/images/venues/mainspace-solara-3.jpg" alt="Mainspace Solara details">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <div class="featured-badge">Featured Venue</div>
-                    <h3>Mainspace Solara</h3>
-                    <p class="venue-tagline">Contemporary event space with mountain views and modern amenities</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 187 Kananaskis Way, Canmore, AB T1W 2A3, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-180 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Mainspace Solara offers a contemporary event venue with floor-to-ceiling windows showcasing spectacular mountain views. The versatile space can be transformed to match your vision, whether elegant and refined or modern and minimalist.</p>
-                        <p>With on-site accommodation options, proximity to downtown Canmore, and customizable packages, this venue provides both convenience and style for your mountain wedding celebration.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Modern Design</span>
-                        <span class="feature-tag">Versatile Space</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Customizable</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="mainspace-solara"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Mainspace Solara">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Stewart Creek Golf Course -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/stewart-creek-main.jpg" alt="Stewart Creek Golf Course wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/stewart-creek-1.jpg" alt="Stewart Creek ceremony">
-                        <img src="assets/images/venues/stewart-creek-2.jpg" alt="Stewart Creek dining">
-                        <img src="assets/images/venues/stewart-creek-3.jpg" alt="Stewart Creek views">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Stewart Creek Golf Course</h3>
-                    <p class="venue-tagline">Elegant golf course venue with stunning mountain backdrops</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 4100 Stewart Creek Dr, Canmore, AB T1W 2V3, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-160 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: May-October</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Stewart Creek Golf Course offers an exceptional wedding setting with panoramic mountain views, lush fairways, and a stylish clubhouse. The outdoor ceremony site provides a breathtaking backdrop of the Three Sisters mountains, while the elegant dining room features floor-to-ceiling windows to showcase the natural beauty.</p>
-                        <p>Known for excellent cuisine and attentive service, Stewart Creek provides a seamless experience for couples seeking a refined golf course venue with mountain charm.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Golf Course</span>
-                        <span class="feature-tag">Outdoor Ceremony</span>
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">Wedding Packages</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="stewart-creek"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Stewart Creek Golf Course">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Silvertip Resort -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/silvertip-main.jpg" alt="Silvertip Resort wedding setup">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/silvertip-1.jpg" alt="Silvertip outdoor ceremony">
-                        <img src="assets/images/venues/silvertip-2.jpg" alt="Silvertip pavilion">
-                        <img src="assets/images/venues/silvertip-3.jpg" alt="Silvertip mountain views">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Silvertip Resort</h3>
-                    <p class="venue-tagline">Luxury mountain golf resort with panoramic Three Sisters views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 2000 Silvertip Trail, Canmore, AB T1W 3J4, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-250 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Silvertip Resort is perched on the mountainside with spectacular views of the Bow Valley. This luxurious venue offers multiple ceremony locations and reception spaces including the stunning pavilion with floor-to-ceiling windows and the elegant ballroom for larger celebrations.</p>
-                        <p>With comprehensive wedding packages, exceptional cuisine, and professional planning assistance, Silvertip provides a seamless, upscale experience for mountain weddings.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Panoramic Views</span>
-                        <span class="feature-tag">Luxury Experience</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">Golf Course</span>
-                        <span class="feature-tag">Wedding Packages</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="silvertip"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Silvertip Resort">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Malcolm Hotel -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/malcolm-hotel-main.jpg" alt="The Malcolm Hotel wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/malcolm-hotel-1.jpg" alt="Malcolm Hotel ballroom">
-                        <img src="assets/images/venues/malcolm-hotel-2.jpg" alt="Malcolm Hotel exterior">
-                        <img src="assets/images/venues/malcolm-hotel-3.jpg" alt="Malcolm Hotel amenities">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>The Malcolm Hotel</h3>
-                    <p class="venue-tagline">Elegant hotel venue with Scottish-inspired luxury</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 321 Spring Creek Dr, Canmore, AB T1W 2G2, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-350 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>The Malcolm Hotel blends Scottish heritage with contemporary luxury, offering elegant wedding spaces in the heart of Canmore. The grand ballroom features mountain views and can be configured for weddings of various sizes, while the outdoor terrace provides a beautiful setting for ceremonies or cocktail receptions.</p>
-                        <p>With luxury accommodations, fine dining options, and comprehensive wedding services, The Malcolm Hotel offers a sophisticated, full-service venue experience.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Luxury Hotel</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Central Location</span>
-                        <span class="feature-tag">In-house Catering</span>
-                        <span class="feature-tag">Spa Services</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="malcolm-hotel"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="The Malcolm Hotel">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Creekside Villa -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/creekside-villa-main.jpg" alt="Creekside Villa wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/creekside-villa-1.jpg" alt="Creekside Villa garden">
-                        <img src="assets/images/venues/creekside-villa-2.jpg" alt="Creekside Villa dining">
-                        <img src="assets/images/venues/creekside-villa-3.jpg" alt="Creekside Villa details">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Creekside Villa</h3>
-                    <p class="venue-tagline">Intimate villa venue with charming garden and mountain views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 709 Benchlands Trail, Canmore, AB T1W 3G9, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-90 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Creekside Villa offers a charming, intimate setting for smaller weddings. The beautiful garden provides a picturesque ceremony location, while the cozy, stylish interior creates a warm atmosphere for your reception. The venue is known for its exceptional cuisine and personalized service.</p>
-                        <p>Perfect for couples seeking an intimate venue with character and a homey feel, Creekside Villa provides a unique alternative to larger hotel and resort venues in the Canmore area.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Intimate Setting</span>
-                        <span class="feature-tag">Garden Ceremonies</span>
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">Exclusive Use</span>
-                        <span class="feature-tag">Boutique Experience</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="Creekside Villa">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Finchy's @CanGOLF -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/finchys-main.jpg" alt="Finchy's @CanGOLF wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/finchys-1.jpg" alt="Finchy's interior">
-                        <img src="assets/images/venues/finchys-2.jpg" alt="Finchy's dining setup">
-                        <img src="assets/images/venues/finchys-3.jpg" alt="Finchy's activities">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Finchy's @CanGOLF</h3>
-                    <p class="venue-tagline">Unique venue combining dining with interactive golf entertainment</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 306 Bow Valley Trail #125B, Canmore, AB T1W 0N2, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-120 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Finchy's @CanGOLF offers a fun, unconventional wedding venue that combines excellent dining with interactive golf entertainment. The modern space features golf simulators that can provide entertainment for your guests, making it perfect for couples looking for something different from traditional venues.</p>
-                        <p>With casual dining options, a full bar, and entertainment built in, this venue creates a relaxed, playful atmosphere for celebration.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Unique Experience</span>
-                        <span class="feature-tag">Entertainment Included</span>
-                        <span class="feature-tag">Casual Atmosphere</span>
-                        <span class="feature-tag">Full Bar</span>
-                        <span class="feature-tag">Golf Simulators</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="Finchy's @CanGOLF">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lake Louise Venues -->
-    <section class="regional-venues reveal" id="lake-louise-venues" data-region="lake-louise">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Lake Louise Wedding Venues</h2>
-                <p>Stunning lakeside settings with glacier views</p>
-            </div>
-            
-            <!-- Fairmont Chateau Lake Louise -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/lake-louise-main.jpg" alt="Fairmont Chateau Lake Louise wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/lake-louise-1.jpg" alt="Lake Louise ceremony">
-                        <img src="assets/images/venues/lake-louise-2.jpg" alt="Chateau ballroom">
-                        <img src="assets/images/venues/lake-louise-3.jpg" alt="Lake Louise views">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Fairmont Chateau Lake Louise</h3>
-                    <p class="venue-tagline">An iconic venue on the shores of the emerald waters of Lake Louise</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 111 Lake Louise Drive, Lake Louise, AB T0L 1E0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-550 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>The Fairmont Chateau Lake Louise offers one of the most spectacular backdrops for a wedding in the Canadian Rockies. Exchange vows on the shores of Lake Louise with the Victoria Glacier as your backdrop, then celebrate in one of the elegant ballrooms inside the historic chateau.</p>
-                        <p>With luxurious accommodations on site, comprehensive wedding packages, and world-class dining, this venue provides everything you need for a destination wedding in the mountains.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">In-house Catering</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">Lakeside Ceremony</span>
-                        <span class="feature-tag">Spa Services</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="chateau-louise"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Fairmont Chateau Lake Louise">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Golden, BC Venues -->
-    <section class="regional-venues reveal" id="golden-venues" data-region="golden">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Golden, BC Wedding Venues</h2>
-                <p>Breathtaking mountain venues in British Columbia</p>
-            </div>
-            
-            <!-- Kicking Horse Resort -->
-            <div class="venue-item featured-venue">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/kicking-horse-main.jpg" alt="Kicking Horse Resort wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/kicking-horse-1.jpg" alt="Kicking Horse views">
-                        <img src="assets/images/venues/kicking-horse-2.jpg" alt="Kicking Horse ceremony">
-                        <img src="assets/images/venues/kicking-horse-3.jpg" alt="Kicking Horse dining">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <div class="featured-badge">Featured Venue</div>
-                    <h3>Kicking Horse Resort</h3>
-                    <p class="venue-tagline">Mountaintop weddings with panoramic Rocky Mountain views</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1500 Kicking Horse Trail, Golden, BC V0A 1H0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 20-200 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Kicking Horse Resort offers a truly spectacular mountain wedding experience with ceremonies at the Eagle's Eye Restaurant - Canada's highest elevation restaurant. Accessible by gondola, this venue provides breathtaking 360° views of the surrounding Rocky Mountains.</p>
-                        <p>With on-mountain accommodations, exceptional dining, and a variety of ceremony and reception options, Kicking Horse creates an unforgettable alpine wedding experience in any season.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountaintop Views</span>
-                        <span class="feature-tag">Gondola Access</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">All-Season</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="kicking-horse"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Kicking Horse Resort">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Hillside Lodge & Chalets -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/hillside-lodge-main.jpg" alt="Hillside Lodge & Chalets wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/hillside-lodge-1.jpg" alt="Hillside Lodge exterior">
-                        <img src="assets/images/venues/hillside-lodge-2.jpg" alt="Hillside Lodge ceremony">
-                        <img src="assets/images/venues/hillside-lodge-3.jpg" alt="Hillside Lodge grounds">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Hillside Lodge & Chalets</h3>
-                    <p class="venue-tagline">Rustic mountain lodge with private cabins and scenic grounds</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1740 Seward Frontage Rd, Golden, BC V0A 1H0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-120 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: May-October</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Hillside Lodge & Chalets offers a secluded mountain retreat perfect for couples seeking a rustic yet comfortable wedding venue. The property features beautiful outdoor ceremony spaces with mountain backdrops, a reception area, and private cabin accommodations for you and your guests.</p>
-                        <p>This venue is ideal for weekend wedding celebrations where guests can enjoy the natural beauty of the area while having comfortable accommodations on-site.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Rustic Charm</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Outdoor Ceremonies</span>
-                        <span class="feature-tag">Private Setting</span>
-                        <span class="feature-tag">Weekend Packages</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="Hillside Lodge & Chalets">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Emerald Lake Lodge -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/emerald-lake-main.jpg" alt="Emerald Lake Lodge wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/emerald-lake-1.jpg" alt="Emerald Lake ceremony">
-                        <img src="assets/images/venues/emerald-lake-2.jpg" alt="Emerald Lake Lodge exterior">
-                        <img src="assets/images/venues/emerald-lake-3.jpg" alt="Emerald Lake views">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Emerald Lake Lodge</h3>
-                    <p class="venue-tagline">Historic lodge on the shores of the stunning turquoise Emerald Lake</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 1 Emerald Lake Rd, Field, BC V0A 1G0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-100 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Emerald Lake Lodge offers a magical setting for weddings with its historic timber lodge situated on the shores of the vibrant turquoise Emerald Lake. The venue features lakeside ceremony locations with mountain backdrops, elegant reception spaces, and charming cabin-style accommodations.</p>
-                        <p>This secluded mountain retreat provides a truly immersive experience in Yoho National Park, with exceptional dining featuring Rocky Mountain cuisine and the opportunity for exclusive use of the property.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Lakeside Setting</span>
-                        <span class="feature-tag">Historic Property</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Fine Dining</span>
-                        <span class="feature-tag">Exclusive Use Available</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="emerald-lake"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Emerald Lake Lodge">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Jasper Venues -->
-    <section class="regional-venues reveal" id="jasper-venues" data-region="jasper">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Jasper Wedding Venues</h2>
-                <p>Stunning venues in the heart of Jasper National Park</p>
-            </div>
-            
-            <!-- Pyramid Lake Lodge -->
-            <div class="venue-item featured-venue">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/pyramid-lake-main.jpg" alt="Pyramid Lake Lodge wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/pyramid-lake-1.jpg" alt="Pyramid Lake views">
-                        <img src="assets/images/venues/pyramid-lake-2.jpg" alt="Pyramid Lake ceremony">
-                        <img src="assets/images/venues/pyramid-lake-3.jpg" alt="Pyramid Lake Lodge exterior">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <div class="featured-badge">Featured Venue</div>
-                    <h3>Pyramid Lake Lodge</h3>
-                    <p class="venue-tagline">Charming lakeside lodge with mountain views and private island</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Km North On, Pyramid Lake Rd #6, Jasper, AB T0E 0A8, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-120 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$-$$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: May-October</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Pyramid Lake Lodge offers a picturesque setting for mountain weddings with its location on the shores of pristine Pyramid Lake. The venue features a unique ceremony site on a small private island connected by a charming footbridge, creating a truly magical backdrop for your vows.</p>
-                        <p>With rustic-elegant accommodations, excellent dining, and the natural beauty of Jasper National Park surrounding you, this venue provides an intimate and memorable setting for your celebration.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Lakeside Setting</span>
-                        <span class="feature-tag">Private Island</span>
-                        <span class="feature-tag">On-site Accommodations</span>
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Intimate Setting</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="pyramid-lake"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Pyramid Lake Lodge">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Maligne Lake Chalet -->
-            <div class="venue-item">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/maligne-lake-main.jpg" alt="Maligne Lake Chalet wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/maligne-lake-1.jpg" alt="Maligne Lake views">
-                        <img src="assets/images/venues/maligne-lake-2.jpg" alt="Maligne Lake ceremony">
-                        <img src="assets/images/venues/maligne-lake-3.jpg" alt="Maligne Lake Chalet exterior">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <h3>Maligne Lake Chalet</h3>
-                    <p class="venue-tagline">Historic chalet on the shores of iconic Maligne Lake</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> Maligne Lake Rd, Jasper, AB T0E 1E0, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 10-80 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: June-September</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>Maligne Lake Chalet offers a truly unique wedding experience at one of the most photographed locations in the Canadian Rockies. This historic log chalet, situated on the shores of the stunning Maligne Lake, provides a rustic and intimate setting for your celebration.</p>
-                        <p>With the option to arrive by boat and the spectacular backdrop of turquoise waters and mountain peaks, this venue creates an unforgettable experience for couples seeking a genuine mountain wilderness setting with historic charm.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Historic Property</span>
-                        <span class="feature-tag">Lakeside Setting</span>
-                        <span class="feature-tag">Boat Access</span>
-                        <span class="feature-tag">Wilderness Experience</span>
-                        <span class="feature-tag">Exclusive Use</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn-venue-inquiry primary" data-venue="Maligne Lake Chalet">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cochrane Venues -->
-    <section class="regional-venues reveal" id="cochrane-venues" data-region="cochrane">
-        <div class="container">
-            <div class="region-heading">
-                <h2>Cochrane Wedding Venues</h2>
-                <p>Charming venues with mountain views near Calgary</p>
-            </div>
-            
-            <!-- Cochrane RancheHouse -->
-            <div class="venue-item featured-venue">
-                <div class="venue-gallery">
-                    <div class="gallery-main">
-                        <img src="assets/images/venues/cochrane-ranchehouse-main.jpg" alt="Cochrane RancheHouse wedding">
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="assets/images/venues/cochrane-ranchehouse-1.jpg" alt="RancheHouse ceremony">
-                        <img src="assets/images/venues/cochrane-ranchehouse-2.jpg" alt="RancheHouse reception">
-                        <img src="assets/images/venues/cochrane-ranchehouse-3.jpg" alt="RancheHouse exterior">
-                    </div>
-                </div>
-                <div class="venue-info">
-                    <div class="featured-badge">Featured Venue</div>
-                    <h3>Cochrane RancheHouse</h3>
-                    <p class="venue-tagline">Rustic elegance with mountain views and western heritage</p>
-                    <p class="venue-address"><i class="fas fa-map-marker-alt"></i> 101 Ranchehouse Rd, Cochrane, AB T4C 2K8, Canada</p>
-                    
-                    <div class="venue-details">
-                        <div class="detail-item">
-                            <i class="fas fa-user-friends"></i>
-                            <span>Capacity: 30-250 guests</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Price Range: $$-$$$</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Available: Year-round</span>
-                        </div>
-                    </div>
-                    
-                    <div class="venue-description">
-                        <p>The Cochrane RancheHouse combines rustic charm with modern amenities in a beautiful setting with mountain views. This venue features a grand hall with exposed timber beams, stone fireplaces, and floor-to-ceiling windows showcasing the surrounding landscape.</p>
-                        <p>With both indoor and outdoor ceremony options, beautiful grounds for photos, and a convenient location just outside Calgary, the RancheHouse offers the perfect blend of western heritage and contemporary elegance for your wedding celebration.</p>
-                    </div>
-                    
-                    <div class="venue-features">
-                        <span class="feature-tag">Mountain Views</span>
-                        <span class="feature-tag">Rustic Elegance</span>
-                        <span class="feature-tag">Indoor & Outdoor Options</span>
-                        <span class="feature-tag">Western Heritage</span>
-                        <span class="feature-tag">Close to Calgary</span>
-                    </div>
-                    
-                    <div class="venue-actions">
-                        <button class="btn btn-secondary view-360" data-venue="cochrane-ranchehouse"><i class="fas fa-vr-cardboard"></i> Virtual Tour</button>
-                        <button class="btn-venue-inquiry primary" data-venue="Cochrane RancheHouse">Schedule a Visit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Venue Inquiry Form Modal -->
-    <div class="venue-modal" id="venueModal">
-        <div class="modal-content">
-            <button class="close-modal" aria-label="Close modal">&times;</button>
-            <h2>Schedule a Venue Viewing</h2>
-            <p class="modal-intro">Complete the form below and we'll be in touch within 24 hours to arrange your private venue tour.</p>
-            
-            <form id="venueInquiryForm" class="venue-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="names">Full Names*</label>
-                        <input type="text" id="names" name="names" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address*</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number*</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="weddingDate">Potential Wedding Date</label>
-                        <input type="date" id="weddingDate" name="weddingDate">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="guestCount">Estimated Guest Count</label>
-                        <select id="guestCount" name="guestCount" title="Estimated Guest Count" aria-label="Estimated Guest Count">
-                            <option value="">Select guest count</option>
-                            <option value="10-50">10-50 guests</option>
-                            <option value="51-100">51-100 guests</option>
-                            <option value="101-150">101-150 guests</option>
-                            <option value="151-200">151-200 guests</option>
-                            <option value="200+">200+ guests</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="selectedVenue">Selected Venue*</label>
-                        <input type="text" id="selectedVenue" name="selectedVenue" readonly>
-                    </div>
-
-                    <!-- Venue-specific fields will be added here dynamically -->
-                    
-                    <div class="form-group full-width">
-                        <label for="message">Additional Details</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision for your wedding day..."></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit Request</button>
-            </form>
-        </div>
+  <!-- Cookie Consent Banner (optional) -->
+  <div class="cookie-banner">
+    <div class="cookie-content">
+      <p>We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our <a href="#">Cookie Policy</a>.</p>
+      <div class="cookie-buttons">
+        <button class="cookie-accept">Accept</button>
+        <button class="cookie-settings">Customize Settings</button>
+      </div>
     </div>
+  </div>
 
-    <!-- 360° Virtual Tour Modal -->
-    <div id="tourModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Virtual Tour</h2>
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-            </div>
-            <div id="tourContainer"></div>
-        </div>
-    </div>
-
-    <!-- Planning CTA Section -->
-    <section class="venues-cta reveal">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Need Help Finding Your Perfect Venue?</h2>
-                <p>Our venue specialists can help you find the ideal location that matches your vision and budget</p>
-                <a href="contact.html" class="btn btn-primary">Get Personalized Recommendations</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/logo-white.png" alt="Rocky Mountain Weddings">
-                    <p>Creating unforgettable wedding experiences in the Canadian Rockies</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="venues.html">Venues</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Banff, Alberta, Canada</p>
-                    <p><i class="fas fa-phone"></i> (403) 555-1234</p>
-                    <p><i class="fas fa-envelope"></i> hello@rockymountainweddings.ca</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                        <a href="https://pinterest.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a>
-                        <a href="https://facebook.com/rockymountainweddings" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Rocky Mountain Weddings. All rights reserved.</p>
-                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner">
-        <div class="cookie-content">
-            <p>We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our <a href="#">Cookie Policy</a>.</p>
-            <div class="cookie-buttons">
-                <button class="cookie-accept">Accept</button>
-                <button class="cookie-settings">Customize Settings</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer Scripts -->
-    <script src="scripts/main.js"></script>
-    <script src="scripts/venues.js"></script>
+  <!-- JS Scripts -->
+  <script src="scripts/main.js"></script>
+  <script src="scripts/venues.js"></script>
 </body>
 </html>
