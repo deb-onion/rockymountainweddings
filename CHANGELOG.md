@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.8.0 - 2025-03-03
+
+### Changes
+- Added comprehensive venue data for Banff, Canmore, Lake Louise, Jasper, Golden, Cochrane, and Emerald Lake. Unified region filters, completed SEO improvements, expanded the virtual tours configuration, and ensured the entire Venues page reflects all recent updates. Also implemented all final debugging steps recommended in the code review.
+
+
 ## Version 2.7.0 - 2025-03-02
 
 ### Changes
@@ -228,6 +234,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 
