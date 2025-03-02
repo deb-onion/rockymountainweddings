@@ -1,3 +1,5 @@
+## Version 2.8.3 - 2025-03-03
+- Fixed map initialization and function reference errors
 ## Version 2.8.2 - 2025-03-03
 - Added powerful debugging utility to identify Virtual Tour issues
 ## Version 2.8.1 - 2025-03-03
