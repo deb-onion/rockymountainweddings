@@ -81,12 +81,15 @@ const Debug = {
 // Track Google Maps API loading status
 let googleMapsLoaded = false;
 let googleMapsCallbacks = [];
+let googleMapsRetryAttempts = 0;
+const MAX_RETRY_ATTEMPTS = 3;
 let venueMarkers = []; // This will be populated from JSON data instead of hard-coded
 
 // Function to call when Google Maps is ready
 function onGoogleMapsReady() {
   Debug.success('GOOGLE_MAPS', 'Google Maps API loaded successfully');
   googleMapsLoaded = true;
+  googleMapsRetryAttempts = 0;
   
   // Execute any callbacks waiting for Maps API
   while (googleMapsCallbacks.length > 0) {
@@ -103,8 +106,24 @@ function onGoogleMapsReady() {
 function whenGoogleMapsReady(callback) {
   if (googleMapsLoaded) {
     callback();
+  } else if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+    // Google Maps is available but our flag wasn't set
+    googleMapsLoaded = true;
+    callback();
   } else {
     googleMapsCallbacks.push(callback);
+    
+    // If we have retries left, set a timeout to check again
+    if (googleMapsRetryAttempts < MAX_RETRY_ATTEMPTS) {
+      googleMapsRetryAttempts++;
+      setTimeout(() => {
+        Debug.info('GOOGLE_MAPS', `Retry attempt ${googleMapsRetryAttempts} for Maps API`);
+        if (!googleMapsLoaded && typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+          Debug.success('GOOGLE_MAPS', 'Maps API found on retry');
+          onGoogleMapsReady();
+        }
+      }, 1000 * googleMapsRetryAttempts); // Increase delay with each retry
+    }
   }
 }
 
@@ -198,15 +217,35 @@ function initInteractiveMap() {
     return;
   }
 
-  // Ensure map container has dimension
-  if (mapContainer.offsetWidth === 0 || mapContainer.offsetHeight === 0) {
-    Debug.warn('MAP_INIT', 'Map container has zero width/height; setting minHeight=500px.');
-    mapContainer.style.minHeight = '500px';
+  // Ensure map container has explicit dimensions - critical for mobile
+  const containerWidth = mapContainer.offsetWidth;
+  const containerHeight = mapContainer.offsetHeight;
+  
+  if (containerWidth === 0 || containerHeight === 0) {
+    Debug.warn('MAP_INIT', 'Map container has zero width/height; explicitly setting dimensions.');
+    mapContainer.style.minHeight = '350px'; // Reduced height for mobile
+    mapContainer.style.width = '100%';
+    
+    // Force a layout recalculation
+    setTimeout(() => {
+      initMapAfterContainerSized(mapContainer);
+    }, 100);
+  } else {
+    initMapAfterContainerSized(mapContainer);
   }
+}
 
+// Separate function to initialize map after ensuring container has size
+function initMapAfterContainerSized(mapContainer) {
   // Check if Google Maps is loaded
   if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
     Debug.error('MAP_INIT', 'Google Maps API not available.');
+    mapContainer.innerHTML = `
+      <div class="map-error">
+        <h3>Map Loading Error</h3>
+        <p>We couldn't load the Google Maps API. Please refresh or try again later.</p>
+      </div>
+    `;
     return;
   }
 
@@ -230,18 +269,25 @@ function initInteractiveMap() {
       stylers: [{ color: '#a6cbe3' }]
     }
   ];
-
-  // Map options
+  
+  // Get device type for mobile-specific options
+  const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+  
+  // Map options with mobile-specific adjustments
   const mapOptions = {
-    center: { lat: 51.1645, lng: -115.5708 }, // Banff-ish
-    zoom: 8,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: new google.maps.LatLng(51.4, -116.2), // Center on Banff area
+    zoom: isMobile ? 7 : 9, // Use a wider zoom on mobile
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
     styles: mapStyles,
-    mapTypeControl: true,
-    zoomControl: true,
-    streetViewControl: true,
-    fullscreenControl: true,
-    tilt: 45
+    mapTypeControl: !isMobile, // Disable map type control on mobile to save space
+    streetViewControl: !isMobile, // Disable street view control on mobile
+    fullscreenControl: true, // Keep fullscreen on mobile
+    gestureHandling: 'cooperative', // Better touch handling for mobile
+    zoomControlOptions: {
+      position: isMobile ? 
+        google.maps.ControlPosition.RIGHT_CENTER : 
+        google.maps.ControlPosition.RIGHT_TOP
+    }
   };
 
   let map;
@@ -917,37 +963,27 @@ function initVenueModal() {
 --------------------------------------- */
 function initVirtualTours() {
   try {
+    // Get references to modal elements
     const tourModal = document.getElementById('tourModal');
-    if (!tourModal) {
-      console.error('Tour modal element not found');
-      return;
-    }
-
-    // Make sure the modal content has correct structure
-    if (!tourModal.querySelector('.modal-content')) {
-      // Add it if missing
-      tourModal.innerHTML = `
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>Virtual Tour</h2>
-            <button class="close-modal" aria-label="Close modal">&times;</button>
-          </div>
-          <div id="tourContainer"></div>
-        </div>
-      `;
-    }
-
-    const tourButtons = document.querySelectorAll('.view-360');
-    console.log(`Found ${tourButtons.length} tour buttons`);
-    
-    const closeButton = tourModal.querySelector('.close-modal');
     const tourContainer = document.getElementById('tourContainer');
+    const closeButton = tourModal.querySelector('.close-modal');
     
-    if (!tourContainer) {
-      console.error('Tour container element not found');
+    // Get all virtual tour buttons (improved selector)
+    const tourButtons = document.querySelectorAll('.view-360, [data-venue]');
+    
+    Debug.info('VIRTUAL_TOURS', `Found ${tourButtons.length} tour buttons`);
+    
+    // Ensure proper elements exist
+    if (!tourModal || !tourContainer) {
+      Debug.error('VIRTUAL_TOURS', 'Tour modal or container not found');
       return;
     }
-
+    
+    // Add touch-friendly class to body when on touchscreen devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      document.body.classList.add('touch-device');
+    }
+    
     // Function to open virtual tour
     function openVirtualTour(venueId) {
       // Show loading indicator
@@ -1617,73 +1653,145 @@ function initVirtualTours() {
       }
     }
         
-    // Set up event listeners for all tour buttons
+    // Add active class to make buttons more visually prominent on mobile
     tourButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const venueId = this.dataset.venue || this.getAttribute('data-venue');
-        if (venueId) {
-          openVirtualTour(venueId);
-        } else {
-          console.error('No venue ID specified for tour button');
-          showTourError(null, null, 'Could not determine which venue to show.');
-        }
-      });
+      button.classList.add('virtual-tour-active');
+    });
+        
+    // Set up event listeners for all tour buttons using both click and touch events
+    tourButtons.forEach(button => {
+      // Remove any existing event listeners
+      button.removeEventListener('click', handleVirtualTourButtonClick);
+      
+      // Add a more reliable event listener
+      button.addEventListener('click', handleVirtualTourButtonClick);
+      
+      // Add touch-specific handling for mobile
+      if ('ontouchstart' in window) {
+        button.addEventListener('touchstart', function() {
+          this.classList.add('touched');
+        }, { passive: true });
+        
+        button.addEventListener('touchend', handleVirtualTourButtonTouchEnd, { passive: false });
+      }
     });
     
-    // Set up close button functionality
+    function handleVirtualTourButtonClick(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const venueId = this.dataset.venue || this.getAttribute('data-venue');
+      Debug.info('TOUR_BUTTON', `Virtual tour button clicked for venue ID: ${venueId}`);
+      
+      if (venueId) {
+        openVirtualTour(venueId);
+      } else {
+        Debug.error('TOUR_BUTTON', 'No venue ID specified for tour button');
+        showTourError(null, null, 'Could not determine which venue to show.');
+      }
+    }
+    
+    function handleVirtualTourButtonTouchEnd(e) {
+      e.preventDefault();
+      
+      const venueId = this.dataset.venue || this.getAttribute('data-venue');
+      Debug.info('TOUR_BUTTON', `Virtual tour button touched for venue ID: ${venueId}`);
+      
+      // Remove the touched class
+      this.classList.remove('touched');
+      
+      if (venueId) {
+        openVirtualTour(venueId);
+      } else {
+        Debug.error('TOUR_BUTTON', 'No venue ID specified for tour button');
+        showTourError(null, null, 'Could not determine which venue to show.');
+      }
+    }
+    
+    // Set up close button functionality with improved mobile support
     if (closeButton) {
+      closeButton.removeEventListener('click', closeTourModal);
       closeButton.addEventListener('click', closeTourModal);
+      
+      if ('ontouchstart' in window) {
+        closeButton.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          closeTourModal();
+        }, { passive: false });
+      }
     }
     
     // Close tour modal when clicking outside of it or with ESC key
-    tourModal.addEventListener('click', function(e) {
+    tourModal.removeEventListener('click', handleModalBackgroundClick);
+    tourModal.addEventListener('click', handleModalBackgroundClick);
+    
+    function handleModalBackgroundClick(e) {
       // Only close if clicking directly on the background modal element
       if (e.target === tourModal) {
         closeTourModal();
       }
-    });
+    }
     
-    document.addEventListener('keydown', function(e) {
+    document.removeEventListener('keydown', handleEscapeKeyPress);
+    document.addEventListener('keydown', handleEscapeKeyPress);
+    
+    function handleEscapeKeyPress(e) {
       if (e.key === 'Escape' && tourModal.classList.contains('active')) {
         closeTourModal();
       }
-    });
-    
-    // Function to show modal
-    function showTourModal() {
-      tourModal.classList.add('active');
-      setTimeout(() => {
-        tourModal.querySelector('.modal-content').classList.add('modal-animate');
-      }, 100);
-      document.body.style.overflow = 'hidden';
     }
     
-    // Function to close modal
+    // Function to show modal with mobile-friendly adjustments
+    function showTourModal() {
+      document.body.classList.add('modal-open');
+      tourModal.classList.add('active');
+      
+      // Use requestAnimationFrame for smoother animation, especially on mobile
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          tourModal.querySelector('.modal-content').classList.add('modal-animate');
+        }, 50);
+      });
+      
+      document.body.style.overflow = 'hidden';
+      
+      // On mobile, ensure scroll position is maintained
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    }
+    
+    // Close modal with proper mobile cleanup
     function closeTourModal() {
-      // Animate modal out
       const modalContent = tourModal.querySelector('.modal-content');
       if (modalContent) {
         modalContent.classList.remove('modal-animate');
       }
       
-      // Hide modal after animation completes
+      // Use a short timeout for the animation to complete
       setTimeout(() => {
         tourModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        
+        // Restore scroll position on mobile
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.overflow = '';
-        tourContainer.innerHTML = '';
         
-        // Remove tabs if they exist
-        const tabsContainer = tourModal.querySelector('.tour-tabs');
-        if (tabsContainer) {
-          tabsContainer.remove();
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
         
-        // Reset title
-        const modalTitle = tourModal.querySelector('h2');
-        if (modalTitle) {
-          modalTitle.textContent = 'Virtual Tour';
-        }
-      }, 300);
+        // Reset tour container content
+        setTimeout(() => {
+          if (!tourModal.classList.contains('active')) {
+            tourContainer.innerHTML = '';
+          }
+        }, 300);
+      }, 200);
     }
     
     // Function to show error
@@ -1760,22 +1868,55 @@ function initVirtualTours() {
     }
     
   } catch (error) {
-    console.error("Error initializing virtual tours:", error);
-    // Handle the error gracefully
-    const tourModal = document.getElementById('tourModal');
-    if (tourModal) {
-      const tourButtons = document.querySelectorAll('.view-360');
-      
-      // Update tour buttons to show error on click
-      tourButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-          event.preventDefault();
-          alert("Sorry, the virtual tour feature is temporarily unavailable. Please try again later.");
-        });
-      });
-    }
+    Debug.error('VIRTUAL_TOURS', 'Error initializing virtual tours', error);
   }
 }
+
+// Add CSS rules for better mobile experience
+document.addEventListener('DOMContentLoaded', function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Make tour buttons more tappable on mobile */
+    .touch-device .view-360 {
+      padding: 12px 16px;
+      min-height: 44px;
+      position: relative;
+    }
+    
+    /* Visual feedback for touched buttons */
+    .view-360.touched {
+      background-color: #d0a85c !important;
+      transform: scale(0.98);
+    }
+    
+    /* Ensure modal is properly sized on mobile */
+    @media (max-width: 767px) {
+      #tourModal .modal-content {
+        width: 95%;
+        max-width: 95%;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Increase size of close button for easier tapping */
+      #tourModal .close-modal {
+        font-size: 32px;
+        padding: 8px;
+        right: 10px;
+        top: 10px;
+      }
+      
+      /* Improve tour tab buttons on mobile */
+      .tour-tabs .tab-btn {
+        padding: 12px;
+        min-height: 44px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
 
 /* --------------------------------------
    6) Venue Comparison Tool
@@ -2647,4 +2788,157 @@ function showBeautifulFallback(venue, container) {
     </div>
   `;
 }
+
+// Global fallback initialization for mobile devices
+window.addEventListener('load', function() {
+  const isMobile = window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints;
+  
+  if (isMobile) {
+    Debug.info('MOBILE_FALLBACK', 'Applying mobile-specific fallback initializations');
+    
+    // Fallback for map initialization
+    setTimeout(() => {
+      const mapContainer = document.getElementById('venuesMap');
+      if (mapContainer && (!mapContainer.querySelector('iframe') && !mapContainer.querySelector('.gm-style'))) {
+        Debug.warn('MOBILE_FALLBACK', 'Map not initialized properly, attempting fallback');
+        
+        // Check if Google Maps is available
+        if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+          // Force flag to be true
+          googleMapsLoaded = true;
+          
+          // Re-initialize map
+          try {
+            initInteractiveMap();
+          } catch (error) {
+            Debug.error('MOBILE_FALLBACK', 'Error in map fallback initialization', error);
+          }
+        } else {
+          // Create a fallback static map
+          mapContainer.innerHTML = `
+            <div class="map-error">
+              <h3>Interactive Map Unavailable</h3>
+              <p>The interactive map could not be loaded. Please try refreshing the page or viewing on desktop.</p>
+              <img src="assets/images/venues/map-fallback.jpg" alt="Map of wedding venues in the Canadian Rockies" style="width:100%; max-width:600px; margin:20px auto; display:block;">
+            </div>
+          `;
+        }
+      }
+    }, 2000); // Wait 2 seconds after page load
+    
+    // Fallback for virtual tour buttons
+    setTimeout(() => {
+      const virtualTourButtons = document.querySelectorAll('.view-360, [data-venue]');
+      
+      Debug.info('MOBILE_FALLBACK', `Ensuring ${virtualTourButtons.length} virtual tour buttons are clickable`);
+      
+      virtualTourButtons.forEach(button => {
+        // Add direct onclick attribute as fallback
+        const venueId = button.dataset.venue || button.getAttribute('data-venue');
+        if (venueId) {
+          Debug.info('MOBILE_FALLBACK', `Adding fallback handler for venue: ${venueId}`);
+          
+          // Remove existing handlers to avoid duplicates
+          button.removeEventListener('click', handleTourButtonClick);
+          
+          // Add direct event handler
+          button.addEventListener('click', handleTourButtonClick);
+          
+          // Add touchend handler specifically for mobile
+          button.removeEventListener('touchend', handleTourButtonTouch);
+          button.addEventListener('touchend', handleTourButtonTouch, { passive: false });
+          
+          // Make button more visible
+          button.style.position = 'relative';
+          button.style.zIndex = '10';
+          
+          // Add inline styles for better tappability
+          button.style.minHeight = '44px';
+          button.style.padding = '12px 16px';
+          button.style.display = 'inline-flex';
+          button.style.alignItems = 'center';
+          button.style.justifyContent = 'center';
+        }
+      });
+      
+      function handleTourButtonClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const venueId = this.dataset.venue || this.getAttribute('data-venue');
+        
+        // Display loading indication
+        this.classList.add('loading');
+        
+        // Attempt to open tour
+        if (typeof openVirtualTour === 'function') {
+          try {
+            openVirtualTour(venueId);
+          } catch (error) {
+            Debug.error('MOBILE_FALLBACK', `Error opening tour for venue ${venueId}`, error);
+            showFallbackTourModal(venueId);
+          }
+        } else {
+          Debug.warn('MOBILE_FALLBACK', 'openVirtualTour function not available, using fallback');
+          showFallbackTourModal(venueId);
+        }
+        
+        // Remove loading after delay
+        setTimeout(() => {
+          this.classList.remove('loading');
+        }, 500);
+      }
+      
+      function handleTourButtonTouch(e) {
+        e.preventDefault();
+        handleTourButtonClick.call(this, e);
+      }
+      
+      function showFallbackTourModal(venueId) {
+        Debug.info('MOBILE_FALLBACK', `Showing fallback tour modal for venue: ${venueId}`);
+        
+        // Find venue in data
+        const venue = venueMarkers.find(v => v.id === venueId);
+        
+        // Get or create modal
+        let modal = document.getElementById('fallbackTourModal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'fallbackTourModal';
+          modal.className = 'tour-modal active';
+          modal.innerHTML = `
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>${venue ? venue.name : 'Venue'} Tour</h2>
+                <button class="close-modal" aria-label="Close modal">&times;</button>
+              </div>
+              <div class="fallback-tour-container">
+                <div class="tour-message">
+                  <p>The interactive tour is not available on this device. Please try on desktop or visit the venue's website directly.</p>
+                  <div class="tour-actions">
+                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue ? venue.name + ' ' + (venue.address || 'Canadian Rockies') : 'Rocky Mountain wedding venues')}" class="btn-secondary" target="_blank">View on Google Maps</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(modal);
+          
+          // Add close button handler
+          const closeBtn = modal.querySelector('.close-modal');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+              modal.classList.remove('active');
+              document.body.style.overflow = '';
+            });
+          }
+        }
+        
+        // Show the modal
+        document.body.style.overflow = 'hidden';
+        modal.classList.add('active');
+      }
+    }, 1500); // Wait 1.5 seconds after page load
+  }
+});
   

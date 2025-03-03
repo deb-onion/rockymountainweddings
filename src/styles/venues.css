@@ -1284,3 +1284,132 @@
     font-size: 12px;
   }
 }
+
+/* Mobile-specific enhancements */
+@media (max-width: 767px) {
+  /* Make map container more mobile-friendly */
+  #venuesMap {
+    min-height: 300px !important;
+    width: 100% !important;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  /* Ensure map container has proper size */
+  .map-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Fix any potential layer issues */
+  .map-container > div {
+    z-index: 1;
+  }
+  
+  /* Venue selector on mobile */
+  .venue-selector {
+    flex-direction: column;
+  }
+  
+  /* Make buttons more tappable */
+  .btn, .btn-primary, .btn-secondary, .view-360, .btn-venue-inquiry, .region-filter, .tab-btn {
+    min-height: 44px;
+    padding: 10px 16px;
+    margin: 5px;
+    touch-action: manipulation;
+  }
+  
+  /* Style virtual tour buttons specifically */
+  .view-360 {
+    position: relative;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transform: translateZ(0); /* Force hardware acceleration */
+  }
+  
+  /* Visual feedback when touched */
+  .view-360:active,
+  .btn:active,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-venue-inquiry:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+  
+  /* Loading indicator for buttons */
+  .view-360.loading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  
+  .view-360.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Tour modal improvements */
+  .tour-modal .modal-content {
+    width: 90%;
+    max-width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for Safari mobile */
+  .tour-modal {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+  }
+  
+  /* Map error messages */
+  .map-error {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  /* Ensure venue galleries work on mobile */
+  .venue-gallery .gallery-main {
+    min-height: 200px;
+  }
+  
+  .venue-gallery .gallery-thumbs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .venue-gallery .gallery-thumbs img {
+    max-width: calc(33.333% - 10px);
+    margin: 5px;
+  }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .tour-modal,
+  .venue-modal {
+    height: -webkit-fill-available;
+  }
+}
