@@ -112,7 +112,7 @@ function whenGoogleMapsReady(callback) {
 async function fetchVenueData() {
   try {
     Debug.info('DATA', 'Fetching venue data from JSON file');
-    const response = await fetch('/data/venues.json');
+    const response = await fetch('./data/venues.json');
     
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -124,6 +124,17 @@ async function fetchVenueData() {
     return venueMarkers;
   } catch (error) {
     Debug.error('DATA', 'Error fetching venue data:', error);
+    // Display a user-friendly error in the map container
+    const mapContainer = document.getElementById('venuesMap');
+    if (mapContainer) {
+      mapContainer.innerHTML = `
+        <div class="map-error">
+          <h3>Data Loading Error</h3>
+          <p>We couldn't load the venue data. Please refresh the page or try again later.</p>
+          <p>Technical details: ${error.message}</p>
+        </div>
+      `;
+    }
     // Fallback to empty array if fetch fails
     venueMarkers = [];
     throw error;
@@ -1035,94 +1046,143 @@ function initVirtualTours() {
     
     if (!venue) {
       Debug.error('VIRTUAL_TOUR', `Venue not found with ID: ${venueId}`);
-      showTourError(venueId);
+      showTourError(venueId, null, 'Venue data not found');
       return;
     }
     
-    Debug.info('VIRTUAL_TOUR', `Attempting to load virtual tour for ${venue.name} with placeId: ${venue.placeId}`);
+    Debug.info('VIRTUAL_TOUR', `Loading virtual tour for ${venue.name}`);
     
     try {
-      // Add a timeout to detect if panorama fails to load
-      let panoramaLoadTimeout = setTimeout(() => {
-        Debug.warn('VIRTUAL_TOUR', 'Street View panorama taking too long to load, showing fallback');
-        showTourError(venueId, venue);
-      }, 5000);
+      // Verify Google Maps and Street View are available
+      if (!window.google || !google.maps || !google.maps.StreetViewPanorama || !google.maps.StreetViewService) {
+        Debug.error('VIRTUAL_TOUR', 'Street View API not fully loaded');
+        showTourError(venueId, venue, 'Google Street View API not fully loaded');
+        return;
+      }
       
-      // Street View implementation using placeIds
-      const panorama = new google.maps.StreetViewPanorama(
-        tourContainer,
-        {
-          pano: null,
-          visible: true,
-          pov: {
-            heading: 0,
-            pitch: 0,
-          },
-          zoom: 1,
-          addressControl: false,
-          showRoadLabels: false,
-        }
-      );
+      // Create a timeout to handle cases where panorama takes too long
+      const panoramaTimeout = setTimeout(() => {
+        Debug.warn('VIRTUAL_TOUR', 'Street View panorama loading timeout');
+        showTourError(venueId, venue, 'Street View took too long to respond');
+      }, 8000); // Longer timeout for better chance of success
       
-      // Listen for panorama ready or error events
-      panorama.addListener('status_changed', () => {
-        const status = panorama.getStatus();
-        Debug.info('VIRTUAL_TOUR', `Street View status: ${status}`);
-        if (status === 'OK') {
-          clearTimeout(panoramaLoadTimeout);
-        } else if (status === 'ZERO_RESULTS' || status === 'ERROR') {
-          clearTimeout(panoramaLoadTimeout);
-          showTourError(venueId, venue);
-        }
-      });
+      // Create a Street View service instance
+      const streetViewService = new google.maps.StreetViewService();
       
-      const sv = new google.maps.StreetViewService();
-      sv.getPanorama({ placeId: venue.placeId }, (data, status) => {
-        Debug.info('VIRTUAL_TOUR', `Street View response for placeId: ${status}`);
-        if (status === 'OK') {
-          // Success - show Street View
-          clearTimeout(panoramaLoadTimeout);
-          panorama.setPano(data.location.pano);
-          
-          // Add venue info overlay
-          const overlay = document.createElement('div');
-          overlay.className = 'venue-pano-overlay';
-          overlay.innerHTML = `
-            <h3>${venue.name}</h3>
-            <p>${venue.location}</p>
-            <button class="btn btn-sm btn-light pano-close">Close Info</button>
-          `;
-          tourContainer.appendChild(overlay);
-          
-          document.querySelector('.pano-close')?.addEventListener('click', () => {
-            overlay.style.display = 'none';
-          });
-        } else {
-          // Fallback to venue coordinates if placeId doesn't have Street View
-          Debug.info('VIRTUAL_TOUR', `Falling back to coordinates for ${venue.name}`);
-          sv.getPanorama({
-            location: venue.coordinates,
-            radius: 100,
-            source: google.maps.StreetViewSource.OUTDOOR
-          }, (data, status) => {
-            Debug.info('VIRTUAL_TOUR', `Street View response for coordinates: ${status}`);
-            if (status === 'OK') {
-              clearTimeout(panoramaLoadTimeout);
-              panorama.setPano(data.location.pano);
+      // Function to initialize panorama once we have data
+      const initPanorama = (panoData) => {
+        clearTimeout(panoramaTimeout);
+        
+        Debug.success('VIRTUAL_TOUR', 'Panorama data found, initializing view');
+        
+        // Create the panorama
+        const panorama = new google.maps.StreetViewPanorama(
+          tourContainer,
+          {
+            pano: panoData.location.pano,
+            visible: true,
+            pov: {
+              heading: 0,
+              pitch: 0,
+            },
+            zoom: 1,
+            addressControl: true,
+            showRoadLabels: false,
+          }
+        );
+        
+        // Add venue info overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'venue-pano-overlay';
+        overlay.innerHTML = `
+          <h3>${venue.name}</h3>
+          <p>${venue.location}</p>
+          <button class="btn btn-sm btn-light pano-close">Close Info</button>
+        `;
+        tourContainer.appendChild(overlay);
+        
+        document.querySelector('.pano-close')?.addEventListener('click', () => {
+          overlay.style.display = 'none';
+        });
+      };
+      
+      // First attempt: try using the place ID
+      if (venue.placeId) {
+        Debug.info('VIRTUAL_TOUR', `Trying Street View with Place ID: ${venue.placeId}`);
+        
+        streetViewService.getPanorama({ placeId: venue.placeId }, (data, status) => {
+          if (status === "OK") {
+            initPanorama(data);
+          } else {
+            Debug.warn('VIRTUAL_TOUR', `Place ID attempt failed: ${status}`);
+            
+            // Second attempt: try using coordinates
+            if (venue.coordinates && venue.coordinates.lat && venue.coordinates.lng) {
+              Debug.info('VIRTUAL_TOUR', 'Trying Street View with coordinates');
+              
+              const position = new google.maps.LatLng(venue.coordinates.lat, venue.coordinates.lng);
+              streetViewService.getPanorama({
+                location: position,
+                radius: 50,
+                source: google.maps.StreetViewSource.DEFAULT
+              }, (data, status) => {
+                if (status === "OK") {
+                  initPanorama(data);
+                } else {
+                  // Try one more time with a wider radius
+                  Debug.warn('VIRTUAL_TOUR', `Coordinate attempt failed: ${status}, trying wider radius`);
+                  
+                  streetViewService.getPanorama({
+                    location: position,
+                    radius: 200,
+                    source: google.maps.StreetViewSource.DEFAULT
+                  }, (data, status) => {
+                    if (status === "OK") {
+                      initPanorama(data);
+                    } else {
+                      Debug.error('VIRTUAL_TOUR', `All Street View attempts failed: ${status}`);
+                      clearTimeout(panoramaTimeout);
+                      showTourError(venueId, venue, `Street View not available (${status})`);
+                    }
+                  });
+                }
+              });
             } else {
-              clearTimeout(panoramaLoadTimeout);
-              showTourError(venueId, venue);
+              Debug.error('VIRTUAL_TOUR', 'No valid coordinates for fallback');
+              clearTimeout(panoramaTimeout);
+              showTourError(venueId, venue, 'Missing location data for Street View');
             }
-          });
-        }
-      });
+          }
+        });
+      } else if (venue.coordinates && venue.coordinates.lat && venue.coordinates.lng) {
+        // Direct to coordinates if no place ID
+        Debug.info('VIRTUAL_TOUR', 'No Place ID, using coordinates directly');
+        
+        const position = new google.maps.LatLng(venue.coordinates.lat, venue.coordinates.lng);
+        streetViewService.getPanorama({
+          location: position,
+          radius: 100,
+          source: google.maps.StreetViewSource.DEFAULT
+        }, (data, status) => {
+          if (status === "OK") {
+            initPanorama(data);
+          } else {
+            Debug.error('VIRTUAL_TOUR', `Street View request failed: ${status}`);
+            clearTimeout(panoramaTimeout);
+            showTourError(venueId, venue, `Street View data not found (${status})`);
+          }
+        });
+      } else {
+        Debug.error('VIRTUAL_TOUR', 'Venue has no location data for Street View');
+        showTourError(venueId, venue, 'Missing location data for Street View');
+      }
     } catch (error) {
-      Debug.error('VIRTUAL_TOUR', 'Street View error:', error);
-      showTourError(venueId, venue);
+      Debug.error('VIRTUAL_TOUR', 'Error in virtual tour:', error);
+      showTourError(venueId, venue, `Error: ${error.message}`);
     }
   }
-  
-  function showTourError(venueId, venue = null) {
+
+  function showTourError(venueId, venue = null, errorReason = 'Street View data is not available') {
     let mapUrl = 'https://www.google.com/maps';
     if (venue) {
       const lat = venue.coordinates.lat;
@@ -1138,15 +1198,22 @@ function initVirtualTours() {
       }
     }
     
+    Debug.warn('VIRTUAL_TOUR', `Showing error/fallback UI for ${venue ? venue.name : venueId}: ${errorReason}`);
+    
     // Display an attractive fallback with venue image and map link
     tourContainer.innerHTML = `
       <div class="tour-error">
         <h3>Virtual Tour Unavailable</h3>
         ${venue ? `<img src="${venue.image}" alt="${venue.name}" class="tour-fallback-image">` : ''}
         <p>Street View for <strong>${venue ? venue.name : venueId}</strong> is not available at this moment.</p>
+        <p class="error-details"><small>Reason: ${errorReason}</small></p>
         <div class="tour-buttons">
-          <a href="${mapUrl}" target="_blank" class="btn btn-primary" id="viewOnMap">View on Google Maps</a>
-          <button class="btn btn-secondary" id="viewVenueDetails">View Venue Details</button>
+          <a href="${mapUrl}" target="_blank" class="btn btn-primary">
+            <i class="fas fa-map-marked-alt"></i> View on Google Maps
+          </a>
+          <button class="btn btn-secondary" id="viewVenueDetails">
+            <i class="fas fa-info-circle"></i> View Venue Details
+          </button>
         </div>
       </div>
     `;
@@ -1157,14 +1224,23 @@ function initVirtualTours() {
       .tour-error { text-align: center; padding: 20px; }
       .tour-fallback-image { max-width: 100%; border-radius: 8px; margin: 15px 0; max-height: 300px; object-fit: cover; }
       .tour-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+      .error-details { color: #777; font-style: italic; margin-bottom: 15px; }
     `;
     document.head.appendChild(style);
     
+    // Add event handler for the View Venue Details button
     const viewVenueDetailsBtn = document.getElementById('viewVenueDetails');
     if (viewVenueDetailsBtn && venue) {
       viewVenueDetailsBtn.addEventListener('click', () => {
         closeTourModal();
-        document.querySelector(venue.url)?.scrollIntoView({ behavior: 'smooth' });
+        const venueElement = document.querySelector(venue.url);
+        if (venueElement) {
+          venueElement.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          Debug.warn('VIRTUAL_TOUR', `Could not find element for selector: ${venue.url}`);
+          // Fallback to the venues section
+          document.querySelector('#banff-venues')?.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
   }
@@ -1816,7 +1892,7 @@ function initVenueComparison() {
         .toast.info    { background-color: #2196f3; }
         .toast-close { background: none; border: none; color: white; cursor: pointer; font-size: 18px; margin-left: 10px; }
         @keyframes toast-in { to { opacity: 1; transform: translateY(0); } } }
-        @keyframes toast-out { to { opacity: 0; transform: translateY(-20px); } }
+        @keyframes toast-out { to { opacity: 0; transform: translateY(-20px); } } }
       `;
       document.head.appendChild(style);
     }
@@ -1896,5 +1972,122 @@ function initSmoothScrolling() {
       }
     });
   });
+}
+
+// Add a direct global event listener for virtual tour buttons
+document.addEventListener('click', function(e) {
+  // Check if clicked element or any of its parents have the class 'view-360'
+  let target = e.target;
+  while (target && target !== document.body) {
+    if (target.classList && target.classList.contains('view-360')) {
+      e.preventDefault();
+      const venueId = target.getAttribute('data-venue');
+      console.log('DIRECT CLICK on view-360 button for venue:', venueId);
+      
+      // Find the venue in our data
+      const venue = venueMarkers.find(marker => marker.id === venueId);
+      if (!venue) {
+        console.error('Could not find venue with ID:', venueId);
+        return;
+      }
+      
+      // Get the modal and container elements
+      const tourModal = document.getElementById('tourModal');
+      const tourContainer = document.getElementById('tourContainer');
+      
+      if (!tourModal || !tourContainer) {
+        console.error('Tour modal or container not found in DOM');
+        return;
+      }
+      
+      // Force-show the modal
+      console.log('Showing tour modal for venue:', venue.name);
+      tourModal.style.display = 'flex';
+      
+      // Add the loading indicator
+      tourContainer.innerHTML = `
+        <div class="tour-loading">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>Loading virtual tour for ${venue.name}...</p>
+        </div>
+      `;
+      
+      // Try to show Google StreetView
+      setTimeout(() => {
+        try {
+          if (!window.google || !google.maps || !google.maps.StreetViewPanorama) {
+            throw new Error('Google Maps Street View not available');
+          }
+          
+          // Create panorama with basic options
+          const panorama = new google.maps.StreetViewPanorama(
+            tourContainer,
+            {
+              position: venue.coordinates,
+              pov: { heading: 0, pitch: 0 },
+              zoom: 1,
+              addressControl: true,
+              fullscreenControl: true
+            }
+          );
+          
+          // Try to find a panorama at this location
+          const sv = new google.maps.StreetViewService();
+          sv.getPanorama({
+            location: venue.coordinates,
+            radius: 50,
+            source: google.maps.StreetViewSource.DEFAULT
+          }, (data, status) => {
+            if (status === 'OK') {
+              // Success - show Street View
+              console.log('Found Street View panorama!');
+              panorama.setPano(data.location.pano);
+            } else {
+              // Show fallback
+              console.warn('No Street View available:', status);
+              showSimpleFallback(venue);
+            }
+          });
+        } catch (error) {
+          console.error('Street View error:', error);
+          showSimpleFallback(venue);
+        }
+      }, 500);
+      
+      // Break the loop since we found and handled the event
+      break;
+    }
+    target = target.parentElement;
+  }
+  
+  // Also handle close button and outside modal clicks
+  if (e.target.classList.contains('close-modal') || e.target.id === 'tourModal') {
+    const tourModal = document.getElementById('tourModal');
+    if (tourModal) {
+      console.log('Closing tour modal');
+      tourModal.style.display = 'none';
+    }
+  }
+});
+
+// Simple fallback function for when Street View fails
+function showSimpleFallback(venue) {
+  const tourContainer = document.getElementById('tourContainer');
+  if (!tourContainer) return;
+  
+  // Create map URL
+  const mapUrl = `https://www.google.com/maps?q=${venue.coordinates.lat},${venue.coordinates.lng}&layer=c`;
+  
+  // Show fallback UI
+  tourContainer.innerHTML = `
+    <div class="tour-error" style="text-align:center; padding:20px;">
+      <h3>Virtual Tour Unavailable</h3>
+      <img src="${venue.image}" alt="${venue.name}" style="max-width:100%; border-radius:8px; margin:15px 0; max-height:300px; object-fit:cover;">
+      <p>We couldn't load Street View for <strong>${venue.name}</strong>.</p>
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
+        <a href="${mapUrl}" target="_blank" class="btn btn-primary">View on Google Maps</a>
+      </div>
+    </div>
+  `;
 }
   
