@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/venues.css">
 
-  <!-- Google Maps API (make sure to replace the API key with your restricted key) -->
+  <!-- Google Maps API with explicit Street View library -->
   <script>
     // Inline error handler for Google Maps
     function gm_authFailure() {
@@ -38,8 +38,8 @@
       console.log("Google Maps API loaded successfully.");
     }
   </script>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,geometry&callback=initGoogleMapsAPI"
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-Z8rjN4y7xKGBG24pNpv9kpwb8g1ELE&libraries=places,geometry,streetview&callback=initGoogleMapsAPI"
     onerror="gm_authFailure()">
   </script>
 

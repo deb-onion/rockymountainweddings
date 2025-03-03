@@ -183,7 +183,7 @@
       "name": "Storm Mountain Lodge",
       "location": "Lake Louise, Alberta",
       "description": "A historic wilderness lodge with rustic cabins and natural beauty, perfect for intimate weddings.",
-      "coordinates": { "lat": 51.2652, "lng: -116.0445 },
+      "coordinates": { "lat": 51.2652, "lng": -116.0445 },
       "image": "assets/images/venues/storm-mountain-main.jpg",
       "region": "lake-louise",
       "url": "#lake-louise-venues",

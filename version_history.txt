@@ -1,3 +1,5 @@
+## Version 2.8.6 - 2025-03-03
+- Fixed virtual tour functionality with direct event handling
 ## Version 2.8.5 - 2025-03-03
 - Improved maintainability by moving venue data to external JSON file
 ## Version 2.8.4 - 2025-03-03
