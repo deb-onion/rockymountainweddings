@@ -2012,45 +2012,62 @@ document.addEventListener('click', function(e) {
         </div>
       `;
       
-      // Try to show Google StreetView
+      // Try to show a panorama photo instead of Street View for certain venues
+      // This is a more reliable option since Street View might not be available everywhere
       setTimeout(() => {
+        // First try: if venue has a specific panorama image, use that
+        if (venue.panoramaImage) {
+          showPanoramaImage(venue, tourContainer);
+          return;
+        }
+        
+        // Second try: See if we can get a Street View image
         try {
           if (!window.google || !google.maps || !google.maps.StreetViewPanorama) {
-            throw new Error('Google Maps Street View not available');
+            throw new Error('Google Street View not available');
           }
           
-          // Create panorama with basic options
-          const panorama = new google.maps.StreetViewPanorama(
-            tourContainer,
-            {
-              position: venue.coordinates,
-              pov: { heading: 0, pitch: 0 },
-              zoom: 1,
-              addressControl: true,
-              fullscreenControl: true
-            }
-          );
-          
-          // Try to find a panorama at this location
+          // Create Street View service
           const sv = new google.maps.StreetViewService();
-          sv.getPanorama({
-            location: venue.coordinates,
-            radius: 50,
-            source: google.maps.StreetViewSource.DEFAULT
-          }, (data, status) => {
-            if (status === 'OK') {
-              // Success - show Street View
-              console.log('Found Street View panorama!');
-              panorama.setPano(data.location.pano);
-            } else {
-              // Show fallback
-              console.warn('No Street View available:', status);
-              showSimpleFallback(venue);
+          
+          // Try with place ID first if available
+          if (venue.placeId) {
+            sv.getPanorama({ placeId: venue.placeId }, (data, status) => {
+              if (status === "OK") {
+                showStreetViewPanorama(venue, tourContainer, data);
+              } else {
+                // Try with coordinates as backup
+                tryWithCoordinates();
+              }
+            });
+          } else {
+            tryWithCoordinates();
+          }
+          
+          // Helper function to try with coordinates
+          function tryWithCoordinates() {
+            if (!venue.coordinates || !venue.coordinates.lat || !venue.coordinates.lng) {
+              showBeautifulFallback(venue, tourContainer);
+              return;
             }
-          });
+            
+            // Try a wider radius to find any nearby Street View
+            sv.getPanorama({
+              location: venue.coordinates,
+              radius: 500, // Look in a larger radius
+              source: google.maps.StreetViewSource.DEFAULT
+            }, (data, status) => {
+              if (status === "OK") {
+                showStreetViewPanorama(venue, tourContainer, data);
+              } else {
+                console.log(`No Street View available for ${venue.name}: ${status}`);
+                showBeautifulFallback(venue, tourContainer);
+              }
+            });
+          }
         } catch (error) {
           console.error('Street View error:', error);
-          showSimpleFallback(venue);
+          showBeautifulFallback(venue, tourContainer);
         }
       }, 500);
       
@@ -2070,22 +2087,75 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Simple fallback function for when Street View fails
-function showSimpleFallback(venue) {
-  const tourContainer = document.getElementById('tourContainer');
-  if (!tourContainer) return;
+// Function to display a Street View panorama
+function showStreetViewPanorama(venue, container, data) {
+  // Create the panorama
+  const panorama = new google.maps.StreetViewPanorama(
+    container,
+    {
+      pano: data.location.pano,
+      visible: true,
+      pov: { heading: 0, pitch: 0 },
+      zoom: 1,
+      addressControl: true,
+      fullscreenControl: true
+    }
+  );
   
-  // Create map URL
-  const mapUrl = `https://www.google.com/maps?q=${venue.coordinates.lat},${venue.coordinates.lng}&layer=c`;
+  // Add venue info overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'venue-pano-overlay';
+  overlay.style.cssText = 'position:absolute; top:10px; left:10px; background:rgba(255,255,255,0.8); padding:10px; border-radius:5px; z-index:10;';
+  overlay.innerHTML = `
+    <h3 style="margin:0 0 5px; font-size:16px;">${venue.name}</h3>
+    <p style="margin:0; font-size:12px;">${venue.location}</p>
+    <button class="btn-close-overlay" style="border:none; background:#e74c3c; color:white; padding:3px 8px; margin-top:5px; cursor:pointer; border-radius:3px;">Close</button>
+  `;
+  container.appendChild(overlay);
   
-  // Show fallback UI
-  tourContainer.innerHTML = `
-    <div class="tour-error" style="text-align:center; padding:20px;">
-      <h3>Virtual Tour Unavailable</h3>
-      <img src="${venue.image}" alt="${venue.name}" style="max-width:100%; border-radius:8px; margin:15px 0; max-height:300px; object-fit:cover;">
-      <p>We couldn't load Street View for <strong>${venue.name}</strong>.</p>
-      <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
-        <a href="${mapUrl}" target="_blank" class="btn btn-primary">View on Google Maps</a>
+  document.querySelector('.btn-close-overlay')?.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+}
+
+// Function to display a static panorama image (when available)
+function showPanoramaImage(venue, container) {
+  container.innerHTML = `
+    <div style="position:relative; width:100%; height:100%;">
+      <img src="${venue.panoramaImage}" alt="${venue.name} panoramic view" 
+           style="width:100%; height:100%; object-fit:cover; border-radius:5px;">
+      <div style="position:absolute; bottom:20px; left:20px; background:rgba(255,255,255,0.8); padding:15px; border-radius:5px;">
+        <h3 style="margin:0 0 10px;">${venue.name}</h3>
+        <p style="margin:0;">${venue.location}</p>
+      </div>
+    </div>
+  `;
+}
+
+// Function to show a beautiful fallback when Street View is unavailable
+function showBeautifulFallback(venue, container) {
+  // Create a beautiful fallback with the venue image, map link, and info
+  const mapUrl = `https://www.google.com/maps?q=${venue.coordinates.lat},${venue.coordinates.lng}`;
+  
+  container.innerHTML = `
+    <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; background:#f8f9fa;">
+      <h3 style="margin:0 0 20px; color:#2c3e50; font-size:22px;">Experience ${venue.name}</h3>
+      <div style="position:relative; width:100%; max-width:600px; margin-bottom:25px; overflow:hidden; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+        <img src="${venue.image}" alt="${venue.name}" style="width:100%; object-fit:cover; aspect-ratio:16/9; transition:transform 0.3s;" 
+             onmouseover="this.style.transform='scale(1.05)'" 
+             onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <p style="margin:0 0 15px; color:#505050; max-width:600px; line-height:1.6;">
+        While 360° Street View is not available for this location, ${venue.name} offers 
+        ${venue.description.substring(0, 100)}...
+      </p>
+      <div style="display:flex; gap:15px; margin-top:15px;">
+        <a href="${mapUrl}" target="_blank" style="text-decoration:none; background:#e74c3c; color:white; padding:10px 20px; border-radius:5px; display:flex; align-items:center; gap:5px; font-weight:500; transition:background 0.3s;" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+          <i class="fas fa-map-marker-alt"></i> View on Map
+        </a>
+        <a href="${venue.url}" style="text-decoration:none; background:#3498db; color:white; padding:10px 20px; border-radius:5px; display:flex; align-items:center; gap:5px; font-weight:500; transition:background 0.3s;" onmouseover="this.style.background='#2980b9'" onmouseout="this.style.background='#3498db'">
+          <i class="fas fa-info-circle"></i> Venue Details
+        </a>
       </div>
     </div>
   `;
