@@ -1,5 +1,11 @@
 # Rocky Mountain Weddings - Changelog
 
+## Version 2.9.1 - 2025-03-03
+
+### Changes
+- Fixed mobile functionality for venues page: Enabled Street View and satellite controls on interactive map, improved virtual tour functionality with proper fallbacks, added mobile-optimized UI controls, and fixed touch interaction issues.
+
+
 ## Version 2.9.0 - 2025-03-03
 
 ### Changes
@@ -288,6 +294,7 @@
 - Initial map implementation
 - Basic pages: Home, Services, Venues, About, Portfolio
 - Responsive design implementation 
+
 
 
 

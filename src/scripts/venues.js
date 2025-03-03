@@ -279,14 +279,26 @@ function initMapAfterContainerSized(mapContainer) {
     zoom: isMobile ? 7 : 9, // Use a wider zoom on mobile
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     styles: mapStyles,
-    mapTypeControl: !isMobile, // Disable map type control on mobile to save space
-    streetViewControl: !isMobile, // Disable street view control on mobile
-    fullscreenControl: true, // Keep fullscreen on mobile
-    gestureHandling: 'cooperative', // Better touch handling for mobile
-    zoomControlOptions: {
+    mapTypeControl: true, // Enable map type control for all devices
+    mapTypeControlOptions: {
       position: isMobile ? 
-        google.maps.ControlPosition.RIGHT_CENTER : 
-        google.maps.ControlPosition.RIGHT_TOP
+        google.maps.ControlPosition.TOP_LEFT :
+        google.maps.ControlPosition.TOP_RIGHT,
+      style: isMobile ? 
+        google.maps.MapTypeControlStyle.DROPDOWN_MENU : 
+        google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+    },
+    streetViewControl: true, // Enable Street View for all devices
+    streetViewControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_BOTTOM
+    },
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    gestureHandling: 'greedy', // Make touch handling more responsive
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_CENTER
     }
   };
 
@@ -2870,17 +2882,61 @@ window.addEventListener('load', function() {
         // Display loading indication
         this.classList.add('loading');
         
-        // Attempt to open tour
-        if (typeof openVirtualTour === 'function') {
-          try {
-            openVirtualTour(venueId);
-          } catch (error) {
-            Debug.error('MOBILE_FALLBACK', `Error opening tour for venue ${venueId}`, error);
-            showFallbackTourModal(venueId);
+        // Find venue data
+        const venue = venueMarkers.find(v => v.id === venueId);
+        if (!venue) {
+          Debug.error('TOUR_BUTTON', `Could not find venue data for ID: ${venueId}`);
+          this.classList.remove('loading');
+          return;
+        }
+
+        // Try to initialize Street View
+        const streetViewService = new google.maps.StreetViewService();
+        
+        // First try with place ID
+        if (venue.placeId) {
+          streetViewService.getPanorama({ placeId: venue.placeId }, handleStreetViewResponse);
+        } else if (venue.coordinates) {
+          // Try with coordinates as fallback
+          streetViewService.getPanorama({
+            location: venue.coordinates,
+            radius: 100,
+            source: google.maps.StreetViewSource.OUTDOOR
+          }, handleStreetViewResponse);
+        }
+
+        function handleStreetViewResponse(data, status) {
+          if (status === "OK" && data) {
+            // Street View available - show the tour
+            if (typeof openVirtualTour === 'function') {
+              try {
+                openVirtualTour(venueId);
+              } catch (error) {
+                Debug.error('TOUR_BUTTON', `Error opening tour for venue ${venueId}`, error);
+                showMobileOptimizedTour(venue, data);
+              }
+            } else {
+              showMobileOptimizedTour(venue, data);
+            }
+          } else {
+            // No Street View available - try interior photos
+            const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+            
+            if (venue.placeId) {
+              placesService.getDetails({
+                placeId: venue.placeId,
+                fields: ['photos', 'name', 'formatted_address']
+              }, (place, placeStatus) => {
+                if (placeStatus === google.maps.places.PlacesServiceStatus.OK && place && place.photos) {
+                  showPhotoGalleryTour(venue, place.photos);
+                } else {
+                  showFallbackTourModal(venueId);
+                }
+              });
+            } else {
+              showFallbackTourModal(venueId);
+            }
           }
-        } else {
-          Debug.warn('MOBILE_FALLBACK', 'openVirtualTour function not available, using fallback');
-          showFallbackTourModal(venueId);
         }
         
         // Remove loading after delay

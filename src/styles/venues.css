@@ -1413,3 +1413,169 @@
     height: -webkit-fill-available;
   }
 }
+
+/* Mobile-optimized tour styles */
+.tour-info.mobile {
+  position: absolute;
+  bottom: 70px;
+  left: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+}
+
+.tour-info.mobile h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.tour-info.mobile p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.tour-info.mobile .close-info {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Tour gallery styles */
+.tour-gallery {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.tour-gallery .gallery-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tour-gallery .gallery-main img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tour-gallery .gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.tour-gallery .gallery-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.tour-gallery .gallery-controls button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tour-gallery .gallery-controls button:not(:disabled):hover {
+  opacity: 1;
+}
+
+.tour-gallery .gallery-count {
+  color: white;
+  font-size: 14px;
+}
+
+.tour-gallery .gallery-thumbs {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  background: #222;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tour-gallery .gallery-thumbs img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.tour-gallery .gallery-thumbs img.active {
+  border-color: #3498db;
+  opacity: 1;
+}
+
+/* Mobile-specific map control styles */
+@media (max-width: 767px) {
+  .gm-style-mtc button {
+    height: 40px !important;
+    padding: 0 10px !important;
+  }
+  
+  .gm-style-mtc div[role="menu"] {
+    margin-top: 5px !important;
+  }
+  
+  .gm-style-mtc div[role="menuitem"] {
+    padding: 12px !important;
+  }
+  
+  .gm-fullscreen-control {
+    margin: 10px !important;
+  }
+  
+  .gm-svpc {
+    margin-bottom: 10px !important;
+  }
+  
+  /* Ensure map controls are more tappable */
+  .gm-control-active {
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+  
+  /* Improve Street View pegman dragging area */
+  .gm-svpc {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Make zoom controls more tappable */
+  .gm-bundled-control .gmnoprint > div {
+    width: 40px !important;
+    height: 81px !important;
+  }
+  
+  .gm-bundled-control .gmnoprint > div > div {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
