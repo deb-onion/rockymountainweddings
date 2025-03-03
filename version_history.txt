@@ -1,3 +1,5 @@
+## Version 2.8.8 - 2025-03-03
+- virtual tour potential fix maybe
 ## Version 2.8.7 - 2025-03-03
 - Fixed virtual tour functionality with direct event handling
 ## Version 2.8.6 - 2025-03-03
